@@ -9,3 +9,7 @@ mkdir $HOME/.config/kitty
 ln -s $PWD/config/kitty/kitty.conf $HOME/.config/kitty/
 
 ln -s $PWD/.zshrc $HOME/
+
+mkdir $HOME/.config/nvim
+ln -s $PWD/config/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -s $PWD/config/nvim/init.bundles.vim $HOME/.config/nvim/init.bundles.vim
