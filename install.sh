@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir $HOME/.config/i3
 ln -s $PWD/config/i3/config $HOME/.config/i3/
 ln -s $PWD/config/i3/configure_monitors.sh $HOME/.config/i3/
