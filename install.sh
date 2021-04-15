@@ -5,3 +5,5 @@ git clone https://github.com/Massolari/i3scripts $HOME/.config/i3/i3scripts
 
 mkdir $HOME/.config/kitty
 ln -s $PWD/config/kitty/kitty.conf $HOME/.config/kitty/
+
+ln -s $PWD/.zshrc $HOME/
