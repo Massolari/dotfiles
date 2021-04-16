@@ -1,0 +1,2 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.yarn/bin:$HOME/development/flutter/bin:$HOME/development/go/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/bin:/snap/bin"
+ANDROID_HOME="$HOME/Android/Sdk"
