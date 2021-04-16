@@ -624,7 +624,6 @@ lua <<EOF
    local opts = { noremap=true, silent=true }
    buf_set_keymap('n', '<leader>ca', "<cmd>lua require'fzf_lsp'.code_action_call{}<CR>", opts)
    buf_set_keymap('n', '<leader>cd', "<cmd>lua require'fzf_lsp'.diagnostic_call{}<CR>", opts)
-   buf_set_keymap('n', '<leader>cf', "<cmd>lua vim.lsp.buf.formatting_sync(nil, 1000)<CR>", opts)
    buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf_lsp'.document_symbol_call{}<CR>", opts)
    buf_set_keymap('n', '<leader>cp', "<cmd>lua require'fzf_lsp'.workspace_symbol_call{}<CR>", opts)
    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -644,9 +643,9 @@ lua <<EOF
    -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<CR>', opts)
    -- Set some keybinds conditional on server capabilities
    if client.resolved_capabilities.document_formatting then
-     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+     buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
    elseif client.resolved_capabilities.document_range_formatting then
-     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+     buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
    end
 
    -- Set autocommands conditional on server_capabilities
@@ -656,7 +655,7 @@ lua <<EOF
        hi LspReferenceText cterm=bold ctermbg=red guibg=black
        hi LspReferenceWrite cterm=bold ctermbg=red guibg=black
        augroup lsp_document_highlight
-         autocmd!
+         autocmd! * <buffer>
          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
        augroup END
