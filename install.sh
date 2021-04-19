@@ -34,7 +34,7 @@ for pkg in "${SNAPS[@]}"; do
 done
 
 # environment
-sudo ln -s $PWD/etc/environment /etc
+sudo ln -s $PWD/.xsessionrc $HOME
 
 # bin
 mkdir $HOME/bin
