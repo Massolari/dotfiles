@@ -117,3 +117,7 @@ Plug 'akinsho/nvim-toggleterm.lua'
 
 " Palenight
 Plug 'drewtempelmeyer/palenight.vim'
+
+" Lista de diagnostics
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/lsp-trouble.nvim'
