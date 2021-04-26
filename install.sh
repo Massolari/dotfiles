@@ -40,6 +40,7 @@ sudo ln -s $PWD/.xsessionrc $HOME
 mkdir $HOME/bin
 ln -s $PWD/bin/rofi_run $HOME/bin
 ln -s $PWD/bin/zcalendar $HOME/bin
+ln -s $PWD/bin/update $HOME/bin
 
 # docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
