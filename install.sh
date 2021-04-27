@@ -74,7 +74,8 @@ mv nvim.appimage $HOME/bin/nvim
 mkdir $HOME/.config/nvim
 ln -s $PWD/config/nvim/init.vim $HOME/.config/nvim/init.vim
 ln -s $PWD/config/nvim/init.bundles.vim $HOME/.config/nvim/init.bundles.vim
-ln -s $PWD/config/nvim/lua $HOME/.config/nvim/
+mkdir $HOME/.config/nvim/lua
+ln -s $PWD/config/nvim/lua/config.lua $HOME/.config/nvim/lua/
 
 # Elixir language server
 curl -fLO https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
