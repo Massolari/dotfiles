@@ -116,4 +116,13 @@ require"toggleterm".setup{
     direction = 'horizontal'
 }
 
-require'trouble'.setup{}
+require'trouble'.setup{
+    auto_preview = false,
+    signs = {
+        -- icons / text used for a diagnostic
+        error = " - Err - ",
+        warning = " - War - ",
+        hint = " - Hin - ",
+        information = " - Inf - "
+    },
+}
