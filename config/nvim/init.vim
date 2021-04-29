@@ -745,19 +745,19 @@ noremap <leader>; mpA;<Esc>`p
 noremap <leader>, mpA,<Esc>`p
 
 " Abrir configurações do vim
-nnoremap <leader>ov :e ~/.vimrc<CR>
+nnoremap <leader>ov :exe 'edit' stdpath('config').'/init.vim'<CR>
 
 " Abrir configurações do vim personalizadas
-nnoremap <leader>om :e ~/.vim/.myvimrc<CR>
+nnoremap <leader>om :exe 'edit' stdpath('config').'/myinit.vim'<CR>
 
 " Abrir configurações de plugins do vim
-nnoremap <leader>ob :e ~/.vimrc.bundles<CR>
+nnoremap <leader>ob :exe 'edit' stdpath('config').'/init.bundles.vim'<CR>
 
 " Abrir configurações de plugins do vim
-nnoremap <leader>ou :e ~/.vim/.myvimrc.bundles<CR>
+nnoremap <leader>ou :exe 'edit' stdpath('config').'/myinit.bundles.vim'<CR>
 
 " Atualizar configurações do nvim
-nnoremap <leader>os :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>os :exe 'source' stdpath('config').'/init.vim'<CR>
 
 " Alterar locationlist
 nnoremap <leader>l :call LListToggle()<CR>
