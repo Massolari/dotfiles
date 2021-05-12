@@ -62,8 +62,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 
 " Engine de snippets
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'SirVer/ultisnips'
 
 " Biblioteca de snippets
@@ -121,3 +119,6 @@ Plug 'drewtempelmeyer/palenight.vim'
 " Lista de diagnostics
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-trouble.nvim'
+
+" Gerenciador de tarefas
+Plug 'dhruvasagar/vim-dotoo'

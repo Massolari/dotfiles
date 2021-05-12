@@ -435,6 +435,8 @@ set completeopt=menuone,noselect
 let g:lexima_no_default_rules = v:true
 call lexima#set_default_rules()
 
+" Arquivo do Dotoo
+let g:dotoo#agenda#files = ['~/dotoo-files/*.dotoo']
 "*****************************************************************************
 "" Comandos
 "*****************************************************************************

@@ -61,6 +61,13 @@ local servers = { "cssls", "gopls", "html", "jsonls", "tsserver", "vimls", "yaml
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
@@ -94,7 +101,7 @@ require'compe'.setup {
         nvim_lsp = true;
         nvim_lua = true;
         tabnine = true;
-        vsnip = false;
+        ultisnips = true;
     };
 }
 
