@@ -114,7 +114,7 @@ let g:vimwiki_folding='list'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Sneak como easymotion
-let g:sneak#label=1
+" let g:sneak#label=1
 
 " Desabilitar preprocessadores para deixar arquivos .vue mais rapidos
 let g:vue_disable_pre_processors=1

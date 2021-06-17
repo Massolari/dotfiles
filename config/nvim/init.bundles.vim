@@ -27,7 +27,8 @@ Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 
 " Habilita a busca rapida usando duas letras
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
+Plug 'ggandor/lightspeed.nvim'
 
 " Mostra um git diff na coluna de número
 Plug 'airblade/vim-gitgutter'
