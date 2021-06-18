@@ -27,11 +27,11 @@ Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 
 " Habilita a busca rapida usando duas letras
-" Plug 'justinmk/vim-sneak'
 Plug 'ggandor/lightspeed.nvim'
 
 " Mostra um git diff na coluna de número
-Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 " Mostra linhas de indentação
 Plug 'Yggdroot/indentLine'

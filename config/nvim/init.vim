@@ -624,10 +624,6 @@ nnoremap <leader>gb :Git blame<CR>
 nnoremap <leader>gc :Git commit<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gg :Gclog<CR>
-nnoremap <leader>ghu :GitGutterUndoHunk<CR>
-nnoremap <leader>ghv :GitGutterPreviewHunk<CR>
-nnoremap <leader>ghn :GitGutterNextHunk<CR>
-nnoremap <leader>ghp :GitGutterPrevHunk<CR>
 nnoremap <leader>gl :Git pull<CR>
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gs :Git<CR>
