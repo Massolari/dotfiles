@@ -390,17 +390,6 @@ let g:user_emmet_mode='iv'
 " Diretórios à ignorar ao procurar arquivos
 let Grep_Skip_Dirs = '.git node_modules cache elm-stuff'
 
-" Comando do fzf
-let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'app/cache/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-
-" Se o rg está instalado usar outro comando para o FZF
-if executable('rg')
-    let ignored_files = '--glob "!.git/*" --glob "!node_modules/*" --glob "!app/cache/*" --glob "!app/logs/*" --glob "!web/uploads/*" --glob "!web/bundles/*" --glob "!tags" --glob "!web/css/*" --glob "!web/js/*" --glob "!var/logs/*" --glob "!var/cache/*" --glob "!elm-stuff/*"'
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --no-ignore --follow '.ignored_files
-    set grepprg=rg\ --vimgrep
-    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --no-ignore --follow '.ignored_files.' --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
 " Pasta para snippets
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
@@ -691,10 +680,10 @@ nnoremap <leader>bs :w<CR>
 nnoremap <silent> <leader>pf :Files<CR>
 
 " Procurar nos arquivos
-nnoremap <leader>ps :Find 
+nnoremap <leader>ps :Rg 
 
 " Procurar texto do cursor nos arquivos
-nnoremap <leader>pe :Find <c-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>pe :Rg <c-r>=expand("<cword>")<CR><CR>
 
 " Fechar janela
 nnoremap <leader>wc :q<CR>
