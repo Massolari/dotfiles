@@ -2,13 +2,21 @@
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-" Buscador de arquivos na pasta atual
-if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-endif
+" Depencia para vários plugins (funções úteis em lua)
+Plug 'nvim-lua/plenary.nvim'
+
+" Buscador
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" if isdirectory('/usr/local/opt/fzf')
+"   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" else
+"   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+"   Plug 'junegunn/fzf.vim'
+" endif
+" " Comandos de LSP com fzf
+" Plug 'gfanto/fzf-lsp.nvim'
 
 " Sintasse para várias linguagens
 " Plug 'sheerun/vim-polyglot'
@@ -30,7 +38,6 @@ Plug 'morhetz/gruvbox'
 Plug 'ggandor/lightspeed.nvim'
 
 " Mostra um git diff na coluna de número
-Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
 " Mostra linhas de indentação
@@ -105,8 +112,6 @@ Plug 'ryanoasis/vim-devicons'
 " Informações de LSP na statusline
 Plug 'nvim-lua/lsp-status.nvim'
 
-" Comandos de LSP com fzf
-Plug 'gfanto/fzf-lsp.nvim'
 
 " Ícones no completion
 Plug 'onsails/lspkind-nvim'

@@ -664,7 +664,7 @@ nnoremap <leader>ac :tabclose<CR>
 nnoremap <leader>ba ggVG
 
 " Abrir arquivo na lista de buffers
-nnoremap <silent> <leader>bb :Buffers<CR>
+nnoremap <silent> <leader>bb :Telescope buffers<CR>
 
 " Fechar buffer atual
 noremap <leader>bd :bp\|bd #<CR>
@@ -673,10 +673,10 @@ noremap <leader>bd :bp\|bd #<CR>
 nnoremap <leader>bs :w<CR>
 
 " Procurar arquivo na pasta atual
-nnoremap <silent> <leader>pf :Files<CR>
+nnoremap <silent> <leader>pf :Telescope find_files<CR>
 
 " Procurar nos arquivos
-nnoremap <leader>ps :Rg 
+nnoremap <leader>ps :Telescope live_grep<CR>
 
 " Procurar texto do cursor nos arquivos
 nnoremap <leader>pe :Rg <c-r>=expand("<cword>")<CR><CR>
