@@ -6,20 +6,16 @@ Plug 'xolox/vim-session'
 Plug 'nvim-lua/plenary.nvim'
 
 " Buscador
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" if isdirectory('/usr/local/opt/fzf')
-"   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" else
-"   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-"   Plug 'junegunn/fzf.vim'
-" endif
-" " Comandos de LSP com fzf
-" Plug 'gfanto/fzf-lsp.nvim'
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
+endif
+" Comandos de LSP com fzf
+Plug 'ojroques/nvim-lspfuzzy'
 
 " Sintasse para várias linguagens
-" Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " Exibe espaços vazios no final da linha
