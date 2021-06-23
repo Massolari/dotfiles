@@ -580,29 +580,7 @@ augroup END
 "" Mapeamentos
 "*****************************************************************************
 
-" Ir para modo normal no terminal de forma rapida
-tnoremap jk <C-\><C-n>
-tnoremap kj <C-\><C-n>
-
-" Navegar pelo histórico de comando levando em consideração o que foi digitado
-cnoremap <C-k> <up>
-cnoremap <C-j> <down>
-
-" Mover no modo insert sem as setas
-inoremap <C-b> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
-
 lua require('config')
-
-" Diagnostics
-nnoremap <silent> <leader>cd <cmd>LspTroubleToggle<CR>
-
-" scroll down hover doc
-nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-" scroll up hover doc
-nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <C-Space> compe#complete()
