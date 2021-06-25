@@ -1,32 +1,49 @@
 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
 
+local function set_keymaps(mode, list)
+    for _, map in pairs(list) do
+        set_keymap(mode, unpack(map))
+    end
+end
+
+
 local opts = { noremap=true, silent=true }
 
-local function setup()
-    -- Ir para modo normal no terminal de forma rapida
-    set_keymap('t', 'jk', '<c-\\><c-n>', opts)
-    set_keymap('t', 'kj', '<C-\\><C-n>', opts)
-
-
+command = {
     -- Navegar pelo histórico de comando levando em consideração o que foi digitado
-    set_keymap('c', '<c-k>', '<Up>', {})
-    set_keymap('c', '<c-j>', '<Down>', {})
+    {'<c-k>', '<Up>', {}},
+    {'<c-j>', '<Down>', {}}
+}
 
+insert = {
     -- Mover no modo insert sem as setas
-    set_keymap('i', '<c-b>', '<left>', opts)
-    set_keymap('i', '<c-j>', '<down>', opts)
-    set_keymap('i', '<c-k>', '<up>', opts)
-    set_keymap('i', '<c-l>', '<right>', opts)
+    {'<c-b>', '<left>', opts},
+    {'<c-j>', '<down>', opts},
+    {'<c-k>', '<up>', opts},
+    {'<c-l>', '<right>', opts}
+}
 
+normal = {
     -- Diagnostics
-    set_keymap('n', '<leader>cd', '<cmd>Trouble<cr>', opts)
+    {'<leader>cd', '<cmd>Trouble<cr>', opts},
 
-    set_keymap('n', '<c-f>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
-    set_keymap('n', '<c-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
+    -- Rolar texto do janela do lspsaga
+    {'<c-f>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts},
+    {'<c-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts}
+}
 
-    -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})<CR>', opts)
-    -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<CR>', opts)
+terminal = {
+    -- Ir para modo normal no terminal de forma rapida
+    {'jk', '<c-\\><c-n>', opts},
+    {'kj', '<C-\\><C-n>', opts}
+}
+
+local function setup()
+    set_keymaps('t', terminal)
+    set_keymaps('i', insert)
+    set_keymaps('c', command)
+    set_keymaps('n', normal)
 end
 
 local function lsp(client)
