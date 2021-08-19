@@ -70,29 +70,29 @@ require'lspconfig'.elixirls.setup {
     }
 }
 
--- require'compe'.setup {
---     source = {
---         path = true;
---         buffer = true;
---         calc = true;
---         nvim_lsp = true;
---         nvim_lua = true;
---         tabnine = true;
---         ultisnips = true;
---     };
--- }
-
-vim.g.coq_settings = {
-    auto_start = true,
-    keymap = {
-        recommended = false,
-        jump_to_mark = "<c-t>",
-        bigger_preview = "<c-s>",
-    },
-    clients = {
-        ['tabnine.enabled'] = true
-    }
+require'compe'.setup {
+    source = {
+        path = true;
+        buffer = true;
+        calc = true;
+        nvim_lsp = true;
+        nvim_lua = true;
+        tabnine = true;
+        ultisnips = true;
+    };
 }
+
+-- vim.g.coq_settings = {
+--     auto_start = true,
+--     keymap = {
+--         recommended = false,
+--         jump_to_mark = "<c-t>",
+--         bigger_preview = "<c-s>",
+--     },
+--     clients = {
+--         ['tabnine.enabled'] = true
+--     }
+-- }
 
 local saga = require 'lspsaga'
 saga.init_lsp_saga()

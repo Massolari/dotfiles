@@ -92,14 +92,14 @@ Plug 'neovim/nvim-lspconfig'
 
 
 " Autocompletion framework for built-in LSP
-" Plug 'hrsh7th/nvim-compe'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'hrsh7th/nvim-compe'
+" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 " 9000+ Snippets
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 
 " TabNine
 " Plug 'aca/completion-tabnine', { 'do': './install.sh' }
-" Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
+Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 " Plugin LSP com base no cliente lsp do neovim
 Plug 'glepnir/lspsaga.nvim'
