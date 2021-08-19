@@ -70,16 +70,28 @@ require'lspconfig'.elixirls.setup {
     }
 }
 
-require'compe'.setup {
-    source = {
-        path = true;
-        buffer = true;
-        calc = true;
-        nvim_lsp = true;
-        nvim_lua = true;
-        tabnine = true;
-        ultisnips = true;
-    };
+-- require'compe'.setup {
+--     source = {
+--         path = true;
+--         buffer = true;
+--         calc = true;
+--         nvim_lsp = true;
+--         nvim_lua = true;
+--         tabnine = true;
+--         ultisnips = true;
+--     };
+-- }
+
+vim.g.coq_settings = {
+    auto_start = true,
+    keymap = {
+        recommended = false,
+        jump_to_mark = "<c-t>",
+        bigger_preview = "<c-s>",
+    },
+    clients = {
+        ['tabnine.enabled'] = true
+    }
 }
 
 local saga = require 'lspsaga'
@@ -120,6 +132,11 @@ require'lightspeed'.setup {
    limit_ft_matches = 5,
    full_inclusive_prefix_key = '<c-x>',
 }
+for _, key in ipairs({'f', 'F', 't', 'T'}) do
+    vim.api.nvim_del_keymap('o', key)
+    vim.api.nvim_del_keymap('x', key)
+    vim.api.nvim_del_keymap('n', key)
+end
 
 require('gitsigns').setup {
   numhl = false,

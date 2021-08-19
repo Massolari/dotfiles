@@ -426,6 +426,7 @@ call lexima#set_default_rules()
 
 " Arquivo do Dotoo
 let g:dotoo#agenda#files = ['~/dotoo-files/*.dotoo']
+
 "*****************************************************************************
 "" Comandos
 "*****************************************************************************
@@ -583,10 +584,10 @@ augroup END
 lua require('config')
 
 " Use <c-space> for trigger completion.
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <C-y> compe#confirm()
-inoremap <silent><expr> <C-e> compe#close('<C-e>')
-inoremap <silent><expr> <CR> lexima#expand('<LT>CR>', 'i')
+" inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <C-y> compe#confirm()
+" inoremap <silent><expr> <C-e> compe#close('<C-e>')
+" inoremap <silent><expr> <CR> lexima#expand('<LT>CR>', 'i')
 
 " Code action
 vnoremap <leader>ca :lua require'fzf_lsp'.range_code_action_call{}<CR>
