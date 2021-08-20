@@ -193,17 +193,6 @@ let g:ale_linters_ignore = {'typescript': ['eslint']}
 " Embelezar o código ao salvar
 let g:ale_fix_on_save=1
 
-" Branch do git na statusbar
-" let g:lightline = {
-"             \     'active': {
-"             \         'left': [ ['mode', 'paste'], ['gitbranch', 'lspstatus', 'method', 'readonly', 'relativepath', 'modified'] ]
-"             \ },
-"             \     'component_function': {
-"             \         'gitbranch': 'fugitive#head',
-"             \         'lspstatus': 'LspStatus'
-"             \     }
-"             \ }
-
 " Configuração do which-key
 call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -489,15 +478,6 @@ function! LListToggle()
         lopen 10
         let g:llist_win = bufnr("$")
     endif
-endfunction
-
-" Statusline
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ''
 endfunction
 
 "*****************************************************************************

@@ -132,7 +132,7 @@ gls.mid[1] = {
             if current_function == nil then
                 return ''
             end
-            return '(' .. vim.b.lsp_current_function .. ')'
+            return ' (' .. vim.b.lsp_current_function .. ')'
         end
     },
     condition = function ()
@@ -145,7 +145,7 @@ gls.mid[1] = {
     -- icon = ' LSP:',
     highlight = {colors.cyan,colors.bg,'bold'},
     separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
+    separator_highlight = {'NONE', colors.bg},
   }
 }
 
@@ -158,6 +158,8 @@ gls.right[1] = {
     highlight = {colors.green,colors.bg,'bold'}
   }
 }
+
+vim.cmd([[highlight Statusline guifg=]] .. colors.bg)
 
 gls.right[2] = {
   FileFormat = {
