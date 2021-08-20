@@ -303,6 +303,7 @@ highlight QuickScopePrimary guifg='#7a7608'
 highlight QuickScopeSecondary guifg='#e27bed'
 
 " Configuração da statusbar
+let g:bubbly_tabline = 0
 let g:bubbly_palette = {
     \ 'background': 'NONE',
     \ 'foreground': 'Black',

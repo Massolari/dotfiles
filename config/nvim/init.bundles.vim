@@ -133,3 +133,6 @@ Plug 'dhruvasagar/vim-dotoo'
 
 " Mostrar o que há nos registradores
 Plug 'tversteeg/registers.nvim'
+
+" Buffers no topo
+Plug 'akinsho/nvim-bufferline.lua'

@@ -30,7 +30,11 @@ normal = {
 
     -- Rolar texto do janela do lspsaga
     {'<c-f>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts},
-    {'<c-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts}
+    {'<c-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts},
+
+    -- Navegar pelos buffers
+    {'<tab>', "<cmd>BufferLineCycleNext<CR>", opts},
+    {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
 }
 
 terminal = {

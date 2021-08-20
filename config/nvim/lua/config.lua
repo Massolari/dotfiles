@@ -166,3 +166,5 @@ require('gitsigns').setup {
 require'lspfuzzy'.setup{}
 
 require'indent_blankline'.setup()
+
+require'bufferline'.setup()
