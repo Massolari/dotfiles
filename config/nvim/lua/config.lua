@@ -5,6 +5,9 @@ lsp_status.register_progress()
 
 local nvim_lsp = require("lspconfig")
 
+
+local spaceline = require("eviline")
+
 local mappings = require("mappings")
 mappings.setup()
 

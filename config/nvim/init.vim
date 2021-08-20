@@ -303,76 +303,76 @@ highlight QuickScopePrimary guifg='#7a7608'
 highlight QuickScopeSecondary guifg='#e27bed'
 
 " Configuração da statusbar
-let g:bubbly_tabline = 0
-let g:bubbly_palette = {
-    \ 'background': 'NONE',
-    \ 'foreground': 'Black',
-    \ 'brightgreen': '#afdf00',
-    \ 'darkblue': '#0087af',
-    \ 'brightred': '#df0000',
-    \ 'lightpurple': '#fd99ff',
-    \ 'gruvboxyellow': '#b8bb26',
-    \ 'gruvboxgray': '#665f4e',
-    \ 'gruvboxgreen': '#8ec07c',
-    \ 'gruvboxorange': '#fabd2f',
-    \ }
+" let g:bubbly_tabline = 0
+" let g:bubbly_palette = {
+"     \ 'background': 'NONE',
+"     \ 'foreground': 'Black',
+"     \ 'brightgreen': '#afdf00',
+"     \ 'darkblue': '#0087af',
+"     \ 'brightred': '#df0000',
+"     \ 'lightpurple': '#fd99ff',
+"     \ 'gruvboxyellow': '#b8bb26',
+"     \ 'gruvboxgray': '#665f4e',
+"     \ 'gruvboxgreen': '#8ec07c',
+"     \ 'gruvboxorange': '#fabd2f',
+"     \ }
 
-let g:bubbly_colors = {
-    \ 'mode': {
-        \ 'normal': { 'background': 'brightgreen', 'foreground': 'black' },
-        \ 'insert': { 'background': 'white', 'foreground': 'darkblue' },
-        \ 'visual': { 'background': 'brightred', 'foreground': 'white' },
-        \ 'visualblock': { 'background': 'brightred', 'foreground': 'white' },
-        \ 'command': { 'background': 'brightred', 'foreground': 'white' },
-        \ 'replace': { 'background': 'yellow', 'foreground': 'black' },
-        \ },
-    \ 'path': {
-        \ 'readonly': { 'background' : 'lightgrey', 'foreground' : 'foreground' },
-        \ 'unmodifiable': { 'background' : 'darkgrey', 'foreground' : 'foreground' },
-        \ 'path': { 'background' : 'white', 'foreground' : 'black' },
-        \ 'modified': { 'background' : 'lightgrey', 'foreground' : 'foreground' },
-        \ },
-    \ 'branch': { 'background': 'gruvboxgreen', 'foreground': 'gruvboxgray' },
-    \ 'filetype': { 'background': 'gruvboxorange', 'foreground': 'foreground' },
-    \ 'tabline': {
-        \ 'active': { 'background': 'white', 'foreground' : 'foreground' },
-        \ 'inactive': { 'background': 'lightgrey', 'foreground' : 'foreground' },
-        \ 'close': 'darkgrey'
-        \ },
-    \ 'builtinlsp': {
-        \ 'current_function': { 'background': 'darkblue', 'foreground': 'white' }
-    \ },
-    \ 'lsp_status': {
-        \ 'diagnostics': {
-            \ 'warning': { 'background': 'gruvboxyellow', 'foreground': 'foreground' },
-            \ 'hint': { 'background': 'darkblue', 'foreground': 'white' },
-            \ }
-        \ }
-    \ }
+" let g:bubbly_colors = {
+"     \ 'mode': {
+"         \ 'normal': { 'background': 'brightgreen', 'foreground': 'black' },
+"         \ 'insert': { 'background': 'white', 'foreground': 'darkblue' },
+"         \ 'visual': { 'background': 'brightred', 'foreground': 'white' },
+"         \ 'visualblock': { 'background': 'brightred', 'foreground': 'white' },
+"         \ 'command': { 'background': 'brightred', 'foreground': 'white' },
+"         \ 'replace': { 'background': 'yellow', 'foreground': 'black' },
+"         \ },
+"     \ 'path': {
+"         \ 'readonly': { 'background' : 'lightgrey', 'foreground' : 'foreground' },
+"         \ 'unmodifiable': { 'background' : 'darkgrey', 'foreground' : 'foreground' },
+"         \ 'path': { 'background' : 'white', 'foreground' : 'black' },
+"         \ 'modified': { 'background' : 'lightgrey', 'foreground' : 'foreground' },
+"         \ },
+"     \ 'branch': { 'background': 'gruvboxgreen', 'foreground': 'gruvboxgray' },
+"     \ 'filetype': { 'background': 'gruvboxorange', 'foreground': 'foreground' },
+"     \ 'tabline': {
+"         \ 'active': { 'background': 'white', 'foreground' : 'foreground' },
+"         \ 'inactive': { 'background': 'lightgrey', 'foreground' : 'foreground' },
+"         \ 'close': 'darkgrey'
+"         \ },
+"     \ 'builtinlsp': {
+"         \ 'current_function': { 'background': 'darkblue', 'foreground': 'white' }
+"     \ },
+"     \ 'lsp_status': {
+"         \ 'diagnostics': {
+"             \ 'warning': { 'background': 'gruvboxyellow', 'foreground': 'foreground' },
+"             \ 'hint': { 'background': 'darkblue', 'foreground': 'white' },
+"             \ }
+"         \ }
+"     \ }
 
-let g:bubbly_symbols = {
-    \ 'lsp_status': {
-        \ 'diagnostics': {
-            \ 'error': ' %d',
-            \ 'warning': ' %d',
-            \ 'hint': '❗ %d',
-            \ 'info': '🛈 %d',
-            \ }
-        \ }
-    \ }
-let g:bubbly_statusline = [
-    \ 'mode',
-    \ 'truncate',
-    \ 'branch',
-    \ 'path',
-    \ 'signify',
-    \ 'builtinlsp.current_function',
-    \ 'lsp_status.diagnostics',
-    \ 'lsp_status.messages',
-    \ 'divisor',
-    \ 'filetype',
-    \ 'progress'
-    \ ]
+" let g:bubbly_symbols = {
+"     \ 'lsp_status': {
+"         \ 'diagnostics': {
+"             \ 'error': ' %d',
+"             \ 'warning': ' %d',
+"             \ 'hint': '❗ %d',
+"             \ 'info': '🛈 %d',
+"             \ }
+"         \ }
+"     \ }
+" let g:bubbly_statusline = [
+"     \ 'mode',
+"     \ 'truncate',
+"     \ 'branch',
+"     \ 'path',
+"     \ 'signify',
+"     \ 'builtinlsp.current_function',
+"     \ 'lsp_status.diagnostics',
+"     \ 'lsp_status.messages',
+"     \ 'divisor',
+"     \ 'filetype',
+"     \ 'progress'
+"     \ ]
 
 " Realçar linha onde o cursor está
 set cursorline

@@ -80,7 +80,8 @@ Plug 'metakirby5/codi.vim'
 
 " Status bar
 " Plug 'itchyny/lightline.vim'
-Plug 'datwaft/bubbly.nvim'
+" Plug 'datwaft/bubbly.nvim'
+Plug 'glepnir/galaxyline.nvim', { 'branch': 'main' }
 
 " Guia de atalhos
 Plug 'liuchengxu/vim-which-key'
