@@ -619,9 +619,9 @@ nnoremap <silent><leader>t :<c-u>exe v:count1 . "ToggleTerm"<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Abrir NERDTree com F3
-nnoremap <F3> :NERDTreeToggle<CR>
-nnoremap <F2> :NERDTreeFind<CR>
+" Explorador de arquivos
+nnoremap <F3> :NvimTreeToggle<CR>
+nnoremap <F2> :NvimTreeFindFile<CR>
 
 " Ir para o normal mode mais rapidamente
 imap jk <Esc>

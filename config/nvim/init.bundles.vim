@@ -37,7 +37,7 @@ Plug 'ggandor/lightspeed.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 
 " Mostra linhas de indentação
-Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Auto-fechamento de delimitadores
 Plug 'cohama/lexima.vim'
@@ -60,7 +60,8 @@ Plug 'unblevable/quick-scope'
 Plug 'wellle/targets.vim'
 
 " Explorador de arquivos
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Warper para comandos do git
 Plug 'tpope/vim-fugitive'
@@ -103,6 +104,9 @@ Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 " Plugin LSP com base no cliente lsp do neovim
 Plug 'glepnir/lspsaga.nvim'
+
+" Assinaturas de funções ao digitar
+Plug 'ray-x/lsp_signature.nvim'
 
 " Ícones
 Plug 'ryanoasis/vim-devicons'

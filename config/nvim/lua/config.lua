@@ -97,6 +97,8 @@ require'compe'.setup {
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 
+require'lsp_signature'.setup()
+
 require('lspkind').init()
 
 require'nvim-treesitter.configs'.setup {
@@ -162,3 +164,5 @@ require('gitsigns').setup {
 }
 
 require'lspfuzzy'.setup{}
+
+require'indent_blankline'.setup()
