@@ -1,37 +1,27 @@
 "*****************************************************************************
 "" Configuração do Vim-Plug
 "*****************************************************************************
-let vimplug_exists=expand('~/.local/share/nvim/site/autoload/plug.vim')
+let packer_exists=expand('~/.local/share/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua')
 
-if !filereadable(vimplug_exists)
-    if !executable("curl")
-        echoerr "You have to install curl or first install vim-plug yourself!"
+if !filereadable(packer_exists)
+    if !executable("git")
+        echoerr "You have to install git or first install packer yourself!"
         execute "q!"
     endif
-    echo "Installing Vim-Plug..."
+    echo "Installing Packer..."
     echo ""
-    !\curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let g:not_finish_vimplug = "yes"
+    !\git clone https://github.com/wbthomason/packer.nvim "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/packer/start/packer.nvim
 
-    autocmd VimEnter * PlugInstall
-endif
-
-" Required:
-call plug#begin(stdpath('data') . '/plugged')
-
-" Arquivo de plugins
-let s:bundles_file = stdpath('config') . '/init.bundles.vim'
-if filereadable(s:bundles_file)
-    exec "source" s:bundles_file
+    autocmd VimEnter * PackerInstall
 endif
 
 " Arquivo de plugins do usuário
-let s:bundles_user_file = stdpath('config') . '/myinit.bundles.vim'
-if filereadable(s:bundles_user_file)
-    exec "source" s:bundles_user_file
-endif
+" let s:bundles_user_file = stdpath('config') . '/myinit.bundles.vim'
+" if filereadable(s:bundles_user_file)
+"     exec "source" s:bundles_user_file
+" endif
 
-call plug#end()
+lua require('plugins')
 
 "*****************************************************************************
 "" Configurações básicas
