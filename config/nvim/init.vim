@@ -688,7 +688,7 @@ nnoremap <leader>ov :exe 'edit' stdpath('config').'/init.vim'<CR>
 nnoremap <leader>om :exe 'edit' stdpath('config').'/myinit.vim'<CR>
 
 " Abrir configurações de plugins do vim
-nnoremap <leader>ob :exe 'edit' stdpath('config').'/init.bundles.vim'<CR>
+nnoremap <leader>op :exe 'edit' stdpath('config').'/lua/plugins.lua'<CR>
 
 " Abrir configurações de plugins do vim
 nnoremap <leader>ou :exe 'edit' stdpath('config').'/myinit.bundles.vim'<CR>

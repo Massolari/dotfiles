@@ -10,13 +10,13 @@ end
 
 local opts = { noremap=true, silent=true }
 
-command = {
+local command = {
     -- Navegar pelo histórico de comando levando em consideração o que foi digitado
     {'<c-k>', '<Up>', {}},
     {'<c-j>', '<Down>', {}}
 }
 
-insert = {
+local insert = {
     -- Mover no modo insert sem as setas
     {'<c-b>', '<left>', opts},
     {'<c-j>', '<down>', opts},
@@ -24,7 +24,7 @@ insert = {
     {'<c-l>', '<right>', opts}
 }
 
-normal = {
+local normal = {
     -- Diagnostics
     {'<leader>cd', '<cmd>Trouble<cr>', opts},
 
@@ -37,7 +37,7 @@ normal = {
     {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
 }
 
-terminal = {
+local terminal = {
     -- Ir para modo normal no terminal de forma rapida
     {'jk', '<c-\\><c-n>', opts},
     {'kj', '<C-\\><C-n>', opts}
