@@ -19,8 +19,8 @@ return require('packer').startup(function(use)
   }
 
   -- Buscador
-  use { 'junegunns/fzf' }
-  use { 'junegunns/fzf.vim', requires = { 'junegunns/fzf' } }
+  use { 'junegunn/fzf' }
+  use { 'junegunn/fzf.vim', requires = { 'junegunn/fzf' } }
 
   -- Comandos de LSP com fzf
   use {
