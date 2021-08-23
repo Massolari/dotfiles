@@ -29,11 +29,22 @@ return require('packer').startup(function(use)
           {'junegunn/fzf'},
           {'junegunn/fzf.vim'},  -- to enable preview (optional)
       },
+      config = function ()
+          require'lspfuzzy'.setup{}
+      end
   }
   -- Sintasse para várias linguagens
   use {
       'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+      run = ':TSUpdate',
+      config = function ()
+          require'nvim-treesitter.configs'.setup {
+              ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+              highlight = {
+                  enable = true,              -- false will disable the whole extension
+              },
+          }
+      end
   }
 
   -- Exibe espaços vazios no final da linha
@@ -46,7 +57,25 @@ return require('packer').startup(function(use)
   use 'mattn/emmet-vim'
 
   -- Habilita a busca rapida usando duas letras
-  use 'ggandor/lightspeed.nvim'
+  use {
+      'ggandor/lightspeed.nvim',
+      config = function ()
+          require'lightspeed'.setup {
+              jump_to_first_match = true,
+              jump_on_partial_input_safety_timeout = 400,
+              highlight_unique_chars = false,
+              grey_out_search_area = true,
+              match_only_the_start_of_same_char_seqs = true,
+              limit_ft_matches = 5,
+              full_inclusive_prefix_key = '<c-x>',
+          }
+          -- for _, key in ipairs({'f', 'F', 't', 'T'}) do
+          --     vim.api.nvim_del_keymap('o', key)
+          --     vim.api.nvim_del_keymap('x', key)
+          --     vim.api.nvim_del_keymap('n', key)
+          -- end
+      end
+  }
 
   -- Tema gruvbox
   use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
@@ -55,11 +84,41 @@ return require('packer').startup(function(use)
   -- Mostra um git diff na coluna de número e comandos para hunks
   use {
     'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
-    config = function() require('gitsigns').setup() end
+    config = function()
+        require'gitsigns'.setup {
+            numhl = false,
+            linehl = false,
+            keymaps = {
+                -- Default keymap options
+                noremap = true,
+                buffer = true,
+
+                ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+                ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+                ['n <leader>ghu'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+                ['v <leader>ghu'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+                ['n <leader>ghv'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+
+                -- Text objects
+                ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+                ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+            },
+            current_line_blame = true,
+            current_line_blame_opts = {
+                delay = 0
+            }
+        }
+    end
   }
 
   -- Mostra linhas de indentação
-  use "lukas-reineke/indent-blankline.nvim"
+  use {
+      'lukas-reineke/indent-blankline.nvim',
+      config = function ()
+          require'indent_blankline'.setup()
+      end
+  }
 
   -- Auto-fechamento de delimitadores
   use 'cohama/lexima.vim'
@@ -113,36 +172,89 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
 
   -- Autocompletion framework for built-in LSP
-  use 'hrsh7th/nvim-compe'
+  use {
+      'hrsh7th/nvim-compe',
+      config = function ()
+          require'compe'.setup {
+              source = {
+                  path = true;
+                  buffer = true;
+                  calc = true;
+                  nvim_lsp = true;
+                  nvim_lua = true;
+                  tabnine = true;
+                  ultisnips = true;
+              };
+          }
+      end
+  }
 
   -- TabNine
   use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
   --
   -- Plugin LSP com base no cliente lsp do neovim
-  use { 'glepnir/lspsaga.nvim', requires = {'neovim/nvim-lspconfig'} }
+  use {
+      'glepnir/lspsaga.nvim',
+      requires = {'neovim/nvim-lspconfig'},
+      config = function ()
+          require 'lspsaga'.init_lsp_saga()
+      end
+  }
 
   -- Assinaturas de funções ao digitar
-  use 'ray-x/lsp_signature.nvim'
+  use {
+      'ray-x/lsp_signature.nvim',
+      config = function ()
+          require'lsp_signature'.setup()
+      end
+  }
 
   -- Ícones
   -- use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
 
   -- Informações de LSP na statusline
-  use 'nvim-lua/lsp-status.nvim'
+  use {
+      'nvim-lua/lsp-status.nvim',
+      config = function ()
+          require'lsp-status'.register_progress()
+      end
+  }
 
   -- Ícones no completion
-  use 'onsails/lspkind-nvim'
+  use {
+      'onsails/lspkind-nvim',
+      config = function ()
+          require'lspkind'.init()
+      end
+  }
 
   -- Alternador de terminal
-  use 'akinsho/nvim-toggleterm.lua'
+  use {
+      'akinsho/nvim-toggleterm.lua',
+      config = function ()
+          require'toggleterm'.setup{
+              open_mapping = [[<c-\>]],
+              shade_terminals = false,
+              direction = 'horizontal'
+          }
+      end
+  }
 
   -- Lista de diagnostics
   use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
-          require("trouble").setup {
+          require'trouble'.setup {
+              auto_preview = false,
+              signs = {
+                  -- icons / text used for a diagnostic
+                  error = " - Err - ",
+                  warning = " - War - ",
+                  hint = " - Hin - ",
+                  information = " - Inf - "
+              },
               -- your configuration comes here
               -- or leave it empty to use the default settings
               -- refer to the configuration section below
@@ -154,5 +266,11 @@ return require('packer').startup(function(use)
   use 'tversteeg/registers.nvim'
 
   -- Buffers no topo
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+  use {
+      'akinsho/bufferline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function()
+          require'bufferline'.setup()
+      end
+  }
 end)
