@@ -20,14 +20,19 @@ return require('packer').startup(function(use)
 
   -- Buscador
   use { 'junegunn/fzf' }
-  use { 'junegunn/fzf.vim', requires = { 'junegunn/fzf' } }
+  use {
+      'junegunn/fzf.vim',
+      requires = { 'junegunn/fzf' },
+      opt = true,
+      cmd = { 'Files', 'Buffers', 'Rg' }
+  }
 
   -- Comandos de LSP com fzf
   use {
       'ojroques/nvim-lspfuzzy',
       requires = {
           {'junegunn/fzf'},
-          {'junegunn/fzf.vim'},  -- to enable preview (optional)
+          {'junegunn/fzf.vim'},
       },
       config = function ()
           require'lspfuzzy'.setup{}
@@ -51,10 +56,18 @@ return require('packer').startup(function(use)
   use 'bronson/vim-trailing-whitespace'
 
   -- Adicionar comentários com 'gcc'
-  use 'tpope/vim-commentary'
+  use {
+      'tpope/vim-commentary',
+      opt = true,
+      keys = 'gcc',
+  }
 
   -- Habilita o uso do emmet (<C-y>,)
-  use 'mattn/emmet-vim'
+  use {
+      'mattn/emmet-vim',
+      opt = true,
+      keys = { 'i', '<c-y>,' },
+  }
 
   -- Habilita a busca rapida usando duas letras
   use {
@@ -166,7 +179,11 @@ return require('packer').startup(function(use)
   use 'liuchengxu/vim-which-key'
 
   -- Cliente REST
-  use 'diepm/vim-rest-console'
+  use {
+      'diepm/vim-rest-console',
+      opt = true,
+      ft = 'rest',
+  }
 
   -- LSP do Nvim
   use 'neovim/nvim-lspconfig'
@@ -198,7 +215,9 @@ return require('packer').startup(function(use)
       requires = {'neovim/nvim-lspconfig'},
       config = function ()
           require 'lspsaga'.init_lsp_saga()
-      end
+      end,
+      opt = true,
+      module = 'lspsaga',
   }
 
   -- Assinaturas de funções ao digitar
@@ -238,7 +257,8 @@ return require('packer').startup(function(use)
               shade_terminals = false,
               direction = 'horizontal'
           }
-      end
+      end,
+      cmd = 'ToggleTerm',
   }
 
   -- Lista de diagnostics
@@ -259,7 +279,8 @@ return require('packer').startup(function(use)
               -- or leave it empty to use the default settings
               -- refer to the configuration section below
           }
-      end
+      end,
+      cmd = 'Trouble',
   }
 
   -- Mostrar o que há nos registradores
