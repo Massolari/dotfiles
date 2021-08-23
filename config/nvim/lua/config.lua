@@ -4,7 +4,6 @@ local lsp_status = require('lsp-status')
 local nvim_lsp = require("lspconfig")
 
 local mappings = require("mappings")
-mappings.setup()
 
 local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end

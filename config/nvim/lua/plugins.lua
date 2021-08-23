@@ -69,11 +69,11 @@ return require('packer').startup(function(use)
               limit_ft_matches = 5,
               full_inclusive_prefix_key = '<c-x>',
           }
-          -- for _, key in ipairs({'f', 'F', 't', 'T'}) do
-          --     vim.api.nvim_del_keymap('o', key)
-          --     vim.api.nvim_del_keymap('x', key)
-          --     vim.api.nvim_del_keymap('n', key)
-          -- end
+          for _, key in ipairs({'f', 'F', 't', 'T'}) do
+              vim.api.nvim_del_keymap('o', key)
+              vim.api.nvim_del_keymap('x', key)
+              vim.api.nvim_del_keymap('n', key)
+          end
       end
   }
 

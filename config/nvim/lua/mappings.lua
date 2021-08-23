@@ -76,7 +76,8 @@ end
 
 local M = {
     lsp = lsp,
-    setup = setup
 }
+
+setup()
 
 return M
