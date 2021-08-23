@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Sessões
+  use 'xolox/vim-misc'
   use {
       'xolox/vim-session',
       requires = { 'xolox/vim-misc' },
