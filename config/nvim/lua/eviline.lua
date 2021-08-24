@@ -4,7 +4,7 @@ local condition = require('galaxyline.condition')
 local gls = gl.section
 
 local getFileName = function()
-    return vim.fn.expand("%")
+    return vim.fn.expand("%:h") .. '/'
 end
 
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
@@ -64,8 +64,7 @@ gls.left[3] ={
 
 gls.left[4] = {
   FileName = {
-    -- provider = 'FileName',
-    provider = getFileName,
+    provider = { getFileName, 'FileName' },
     condition = condition.buffer_not_empty,
     highlight = {colors.magenta,colors.bg,'bold'},
     separator_highlight = {'NONE',colors.bg},
@@ -231,7 +230,7 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
   SFileName = {
-    provider =  getFileName,
+    provider =  { getFileName, 'SFileName' },
     condition = condition.buffer_not_empty,
     highlight = {colors.fg,colors.bg,'bold'}
   }
