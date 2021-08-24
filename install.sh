@@ -73,7 +73,6 @@ chmod +x nvim.appimage
 mv nvim.appimage $HOME/bin/nvim
 mkdir $HOME/.config/nvim
 ln -s $PWD/config/nvim/init.vim $HOME/.config/nvim/init.vim
-ln -s $PWD/config/nvim/init.bundles.vim $HOME/.config/nvim/init.bundles.vim
 mkdir $HOME/.config/nvim/lua
 ln -s $PWD/config/nvim/lua/plugins.lua $HOME/.config/nvim/lua/
 ln -s $PWD/config/nvim/lua/eviline.lua $HOME/.config/nvim/lua/
