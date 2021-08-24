@@ -60,7 +60,7 @@ return require('packer').startup(function(use)
   use {
       'tpope/vim-commentary',
       opt = true,
-      keys = 'gcc',
+      keys = 'gc',
   }
 
   -- Habilita o uso do emmet (<C-y>,)
@@ -115,8 +115,8 @@ return require('packer').startup(function(use)
                 ['n <leader>ghv'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
 
                 -- Text objects
-                ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-                ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+                -- ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+                -- ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
             },
             current_line_blame = true,
             current_line_blame_opts = {
@@ -153,6 +153,7 @@ return require('packer').startup(function(use)
       opt = true,
       cmd = {'NvimTreeToggle', 'NvimTreeFindFile'}
   }
+
   -- Warper para comandos do git
   use {
       'tpope/vim-fugitive',
@@ -208,7 +209,7 @@ return require('packer').startup(function(use)
   }
 
   -- TabNine
-  use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
+  use { 'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe' }
   --
   -- Plugin LSP com base no cliente lsp do neovim
   use {
