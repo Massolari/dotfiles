@@ -483,7 +483,7 @@ augroup END
 " Identação no javascript
 augroup vimrc-javascript
     autocmd!
-    autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+    autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
 augroup END
 
 " Identação no Dart
