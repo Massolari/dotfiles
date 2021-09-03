@@ -7,7 +7,6 @@ local function set_keymaps(mode, list)
     end
 end
 
-
 local opts = { noremap=true, silent=true }
 
 local command = {
@@ -35,6 +34,18 @@ local normal = {
     -- Navegar pelos buffers
     {'<tab>', "<cmd>BufferLineCycleNext<CR>", opts},
     {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
+
+    -- Alternar para arquivo
+    {'<leader>bb', "<cmd>lua require'fzf-lua'.buffers()<CR>", opts},
+
+    -- Abrir arquivo
+    {'<leader>pf', "<cmd>lua require'fzf-lua'.files()<CR>", opts},
+
+    -- Procurar em arquivos
+    {'<leader>ps', "<cmd>FzfLua grep<CR>", opts},
+
+    -- Procurar em arquivos palavra sob o cursor
+    {'<leader>pe', "<cmd>lua require'fzf-lua'.grep_cword()<CR>", opts},
 }
 
 local terminal = {
@@ -51,17 +62,18 @@ local function setup()
 end
 
 local function lsp(client)
-    buf_set_keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap('n', '<leader>co', "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
-    buf_set_keymap('n', '<leader>cp', "<cmd>lua vim.lsp.buf.workspace_symbol('')<CR>", opts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>ca', "<cmd>lua require'fzf-lua'.lsp_code_actions()<CR>", opts)
+    buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols()<CR>", opts)
+    buf_set_keymap('n', '<leader>cp', "<cmd>lua require'fzf-lua'.lsp_workspace_symbols('')<CR>", opts)
+    -- buf_set_keymap('n', 'gd', "<cmd>lua require'fzf-lua'.lsp_definitions()<CR>", opts)
+    buf_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
     -- buf_set_keymap('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
     buf_set_keymap('n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', 'gi', "<cmd>lua require'fzf-lua'.lsp_implementations()<CR>", opts)
     buf_set_keymap('n', '<leader>cs', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
-    buf_set_keymap('n', 'gy', "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap('n', 'gy', "<cmd>lua require'fzf-lua'.lsp_typedefs()<CR>", opts)
     buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'gr', "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap('n', 'gr', "<cmd>lua require'fzf-lua'.lsp_references()<CR>", opts)
     -- buf_set_keymap('n', '<leader>ce', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>', opts)
     buf_set_keymap('n', '<leader>ce', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", opts)
     buf_set_keymap('n', '[d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)

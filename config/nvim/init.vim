@@ -1,5 +1,5 @@
 "*****************************************************************************
-"" Configuração do Vim-Plug
+"" Configuração do Packer
 "*****************************************************************************
 let packer_exists=expand('~/.local/share/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua')
 
@@ -97,40 +97,11 @@ let maplocalleader="\\"
 " Habilitar itablico do gruvbox
 let g:gruvbox_italic = 1
 
-" Vimwiki fold list
-let g:vimwiki_folding='list'
-
 " Desabilitar editorconfig para fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" Sneak como easymotion
-" let g:sneak#label=1
-
 " Desabilitar preprocessadores para deixar arquivos .vue mais rapidos
 let g:vue_disable_pre_processors=1
-
-" Configuração do vdebug
-let g:vdebug_options = {
-            \   "path_maps" : {"/var/www/html": "/home/douglasmassolari/PCP"},
-            \   "server" : '172.17.0.1',
-            \   "port" : 9001
-            \}
-
-" Vdebug mappings
-let g:vdebug_keymap = {
-            \    "run" : "<Leader>dr",
-            \    "run_to_cursor" : "<leader>dc",
-            \    "step_over" : "<F8>",
-            \    "step_into" : "<F12>",
-            \    "step_out" : "<F10>",
-            \    "close" : "<Leader>ds",
-            \    "detach" : "<Leader>dd",
-            \    "set_breakpoint" : "<Leader>db",
-            \    "eval_under_cursor" : "E"
-            \}
-
-" Usar deoplete desde a inicialização
-let g:deoplete#enable_at_startup = 1
 
 " Ao abrir o tagbar atribuir o foco à ele
 let g:tagbar_autofocus = 1
@@ -163,25 +134,6 @@ set mouse=a
 
 " Mostra os números da linha de forma relativa e o número atual da linha
 set number relativenumber
-
-" Desabilitar LSP do ALE
-let g:ale_disable_lsp=0
-
-" Configurações para o ALE embelezar o código
-let g:ale_fixers = {
-            \   'php': [ 'phpcbf' ],
-            \   'typescript': [ 'tslint' ],
-            \   'sql': [ 'pgformatter' ],
-            \   'javascript': [ 'eslint' ],
-            \   'dart': [ 'dartfmt' ],
-            \   'go': [ 'gofmt' ]
-            \ }
-
-" Desabilitar eslint para typescript, usando tslint
-let g:ale_linters_ignore = {'typescript': ['eslint']}
-
-" Embelezar o código ao salvar
-let g:ale_fix_on_save=1
 
 " Configuração do which-key
 call which_key#register('<Space>', "g:which_key_map")
@@ -281,78 +233,6 @@ colorscheme gruvbox
 highlight QuickScopePrimary guifg='#7a7608'
 highlight QuickScopeSecondary guifg='#e27bed'
 
-" Configuração da statusbar
-" let g:bubbly_tabline = 0
-" let g:bubbly_palette = {
-"     \ 'background': 'NONE',
-"     \ 'foreground': 'Black',
-"     \ 'brightgreen': '#afdf00',
-"     \ 'darkblue': '#0087af',
-"     \ 'brightred': '#df0000',
-"     \ 'lightpurple': '#fd99ff',
-"     \ 'gruvboxyellow': '#b8bb26',
-"     \ 'gruvboxgray': '#665f4e',
-"     \ 'gruvboxgreen': '#8ec07c',
-"     \ 'gruvboxorange': '#fabd2f',
-"     \ }
-
-" let g:bubbly_colors = {
-"     \ 'mode': {
-"         \ 'normal': { 'background': 'brightgreen', 'foreground': 'black' },
-"         \ 'insert': { 'background': 'white', 'foreground': 'darkblue' },
-"         \ 'visual': { 'background': 'brightred', 'foreground': 'white' },
-"         \ 'visualblock': { 'background': 'brightred', 'foreground': 'white' },
-"         \ 'command': { 'background': 'brightred', 'foreground': 'white' },
-"         \ 'replace': { 'background': 'yellow', 'foreground': 'black' },
-"         \ },
-"     \ 'path': {
-"         \ 'readonly': { 'background' : 'lightgrey', 'foreground' : 'foreground' },
-"         \ 'unmodifiable': { 'background' : 'darkgrey', 'foreground' : 'foreground' },
-"         \ 'path': { 'background' : 'white', 'foreground' : 'black' },
-"         \ 'modified': { 'background' : 'lightgrey', 'foreground' : 'foreground' },
-"         \ },
-"     \ 'branch': { 'background': 'gruvboxgreen', 'foreground': 'gruvboxgray' },
-"     \ 'filetype': { 'background': 'gruvboxorange', 'foreground': 'foreground' },
-"     \ 'tabline': {
-"         \ 'active': { 'background': 'white', 'foreground' : 'foreground' },
-"         \ 'inactive': { 'background': 'lightgrey', 'foreground' : 'foreground' },
-"         \ 'close': 'darkgrey'
-"         \ },
-"     \ 'builtinlsp': {
-"         \ 'current_function': { 'background': 'darkblue', 'foreground': 'white' }
-"     \ },
-"     \ 'lsp_status': {
-"         \ 'diagnostics': {
-"             \ 'warning': { 'background': 'gruvboxyellow', 'foreground': 'foreground' },
-"             \ 'hint': { 'background': 'darkblue', 'foreground': 'white' },
-"             \ }
-"         \ }
-"     \ }
-
-" let g:bubbly_symbols = {
-"     \ 'lsp_status': {
-"         \ 'diagnostics': {
-"             \ 'error': ' %d',
-"             \ 'warning': ' %d',
-"             \ 'hint': '❗ %d',
-"             \ 'info': '🛈 %d',
-"             \ }
-"         \ }
-"     \ }
-" let g:bubbly_statusline = [
-"     \ 'mode',
-"     \ 'truncate',
-"     \ 'branch',
-"     \ 'path',
-"     \ 'signify',
-"     \ 'builtinlsp.current_function',
-"     \ 'lsp_status.diagnostics',
-"     \ 'lsp_status.messages',
-"     \ 'divisor',
-"     \ 'filetype',
-"     \ 'progress'
-"     \ ]
-
 " Realçar linha onde o cursor está
 set cursorline
 
@@ -361,26 +241,11 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" Validar xml com o nsjusecase.xsd
-let g:ale_xml_xmllint_options = "--noout --schema vendor/nasajon/mdatransformer/schemas/nsjusecase.xsd %"
-
 " Usar o emmet apenas no modo visual ou no modo inserção
 let g:user_emmet_mode='iv'
 
-" Diretórios à ignorar ao procurar arquivos
-let Grep_Skip_Dirs = '.git node_modules cache elm-stuff'
-
 " Pasta para snippets
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-
-" Impedir que caracteres sejam escondidos em arquivos markdown
-let g:indentLine_fileTypeExclude = ['markdown']
-
-" Impedir que o indentline funcione no terminal
-let g:indentLine_bufTypeExclude = ['terminal']
-
-" Variáveis usadas para reutilizar o terminal
-let s:current_terminal = 1
 
 " Não redimensionar janelas abertas ao abrir ou fechar janelas
 set noequalalways
@@ -404,9 +269,9 @@ set completeopt=menuone,noselect
 let g:lexima_no_default_rules = v:true
 call lexima#set_default_rules()
 
-" Arquivo do Dotoo
-let g:dotoo#agenda#files = ['~/dotoo-files/*.dotoo']
-
+" Fold com treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 "*****************************************************************************
 "" Comandos
 "*****************************************************************************
@@ -514,22 +379,16 @@ augroup enable-cr-quickfix
 augroup END
 
 " Abrir todos os foldings quando entrar em um arquivo
-" augroup openfold
-"     autocmd!
-"     autocmd BufEnter,FocusGained * norm zR
-" augroup END
+augroup openfold
+    autocmd!
+    autocmd BufEnter,FocusGained * norm zR
+augroup END
 
 " Ativa o número da linha relativo apenas quando o buffer estiver em foco e no normal mode
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-" Desabilita conceal (esconder textos) em arquivos markdown
-augroup markdown-noindent
-    autocmd!
-    autocmd FileType markdown setlocal conceallevel=0
 augroup END
 
 augroup LuaHighlight
@@ -561,9 +420,6 @@ inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <C-y> compe#confirm()
 inoremap <silent><expr> <C-e> compe#close('<C-e>')
 inoremap <silent><expr> <CR> lexima#expand('<LT>CR>', 'i')
-
-" Code action
-vnoremap <leader>ca :lua require'fzf_lsp'.range_code_action_call{}<CR>
 
 " Gerencias sessões
 nnoremap <leader>so :OpenSession<Space>
@@ -615,23 +471,11 @@ nnoremap <leader>ac :tabclose<CR>
 " Selecionar todo o arquivo
 nnoremap <leader>ba ggVG
 
-" Abrir arquivo na lista de buffers
-nnoremap <silent> <leader>bb :Buffers<CR>
-
 " Fechar buffer atual
 noremap <leader>bd :bp\|bd #<CR>
 
 " Salvar buffer
 nnoremap <leader>bs :w<CR>
-
-" Procurar arquivo na pasta atual
-nnoremap <silent> <leader>pf :Files<CR>
-
-" Procurar nos arquivos
-nnoremap <leader>ps :Rg 
-
-" Procurar texto do cursor nos arquivos
-nnoremap <leader>pe :Rg <c-r>=expand("<cword>")<CR><CR>
 
 " Fechar janela
 nnoremap <leader>wc :q<CR>

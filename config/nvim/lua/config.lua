@@ -1,5 +1,3 @@
-vim.lsp.set_log_level("debug")
-
 local lsp_status = require('lsp-status')
 local nvim_lsp = require("lspconfig")
 

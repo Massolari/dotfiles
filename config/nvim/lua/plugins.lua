@@ -9,6 +9,9 @@ vim.cmd [[packadd matchit]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  --
+  -- Ícones
+  use 'kyazdani42/nvim-web-devicons'
 
   -- Sessões
   use 'xolox/vim-misc'
@@ -20,25 +23,32 @@ return require('packer').startup(function(use)
   }
 
   -- Buscador
-  use { 'junegunn/fzf' }
+  use { 'junegunn/fzf', run = './install --bin', }
   use {
-      'junegunn/fzf.vim',
-      requires = { 'junegunn/fzf' },
-      opt = true,
-      cmd = { 'Files', 'Buffers', 'Rg' }
+      'ibhagwan/fzf-lua',
+      requires = {
+          'vijaymarupudi/nvim-fzf',
+          'kyazdani42/nvim-web-devicons'
+      }
   }
+  -- use {
+  --     'junegunn/fzf.vim',
+  --     requires = { 'junegunn/fzf' },
+  --     opt = true,
+  --     cmd = { 'Files', 'Buffers', 'Rg' }
+  -- }
 
   -- Comandos de LSP com fzf
-  use {
-      'ojroques/nvim-lspfuzzy',
-      requires = {
-          {'junegunn/fzf'},
-          {'junegunn/fzf.vim'},
-      },
-      config = function ()
-          require'lspfuzzy'.setup{}
-      end
-  }
+  -- use {
+  --     'ojroques/nvim-lspfuzzy',
+  --     requires = {
+  --         {'junegunn/fzf'},
+  --         {'junegunn/fzf.vim'},
+  --     },
+  --     config = function ()
+  --         require'lspfuzzy'.setup{}
+  --     end
+  -- }
   -- Sintasse para várias linguagens
   use {
       'nvim-treesitter/nvim-treesitter',
@@ -91,8 +101,9 @@ return require('packer').startup(function(use)
       end
   }
 
-  -- Tema gruvbox
-  use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+  -- Temas
+  use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
+  use 'joshdick/onedark.vim'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
@@ -230,9 +241,6 @@ return require('packer').startup(function(use)
       end
   }
 
-  -- Ícones
-  -- use 'ryanoasis/vim-devicons'
-  use 'kyazdani42/nvim-web-devicons'
 
   -- Informações de LSP na statusline
   use {
