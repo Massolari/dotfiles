@@ -13,6 +13,9 @@ return require('packer').startup(function(use)
   -- Ícones
   use 'kyazdani42/nvim-web-devicons'
 
+  -- Editorconfig
+  use 'editorconfig/editorconfig-vim'
+
   -- Sessões
   use 'xolox/vim-misc'
   use {

@@ -345,30 +345,10 @@ augroup vimrc-remember-cursor-position
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-" Identação no javascript
-augroup vimrc-javascript
-    autocmd!
-    autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
-    autocmd FileType typescript set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
-    autocmd FileType typescriptreact set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
-augroup END
-
-" Identação no Dart
-augroup vimrc-dart
-    autocmd!
-    autocmd FileType dart set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
-augroup END
-
 " Corrigir sintaxe nos arquivos .vue
 augroup vue-syntax
     autocmd!
     autocmd FileType vue syntax sync fromstart
-augroup END
-
-" Configuração de comentário para twig
-augroup twig-comment
-    autocmd!
-    autocmd FileType html.twig setlocal commentstring={#\ %s\ #}
 augroup END
 
 " Sempre que entrar na janela de quickfix retirar o mapeamento customizado do Enter
@@ -414,12 +394,6 @@ augroup END
 "*****************************************************************************
 
 lua require('config')
-
-" Use <c-space> for trigger completion.
-" inoremap <silent><expr> <C-Space> compe#complete()
-" inoremap <silent><expr> <C-y> compe#confirm()
-" inoremap <silent><expr> <C-e> compe#close('<C-e>')
-" inoremap <silent><expr> <CR> lexima#expand('<LT>CR>', 'i')
 
 " Gerencias sessões
 nnoremap <leader>so :OpenSession<Space>
