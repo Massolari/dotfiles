@@ -46,6 +46,18 @@ local normal = {
 
     -- Procurar em arquivos palavra sob o cursor
     {'<leader>pe', "<cmd>lua require'fzf-lua'.grep_cword()<CR>", opts},
+
+    -- Git log
+    {'<leader>gg', "<cmd>lua require'fzf-lua'.git_commits()<CR>", opts},
+
+    -- Git branch
+    {'<leader>gr', "<cmd>lua require'fzf-lua'.git_branches()<CR>", opts},
+
+    -- Colorschemes
+    {'<leader>ec', "<cmd>lua require'fzf-lua'.colorschemes()<CR>", opts},
+
+    -- FZF Lines
+    {'<c-_>', "<cmd>lua require'fzf-lua'.blines()<CR>", opts},
 }
 
 local terminal = {

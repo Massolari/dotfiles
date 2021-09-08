@@ -29,7 +29,10 @@ return require('packer').startup(function(use)
       requires = {
           'vijaymarupudi/nvim-fzf',
           'kyazdani42/nvim-web-devicons'
-      }
+      },
+      config = function ()
+          require'fzf-lua'.setup({ fzf_layout = 'default' })
+      end
   }
   -- use {
   --     'junegunn/fzf.vim',
