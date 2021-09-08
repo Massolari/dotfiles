@@ -416,10 +416,10 @@ augroup END
 lua require('config')
 
 " Use <c-space> for trigger completion.
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <C-y> compe#confirm()
-inoremap <silent><expr> <C-e> compe#close('<C-e>')
-inoremap <silent><expr> <CR> lexima#expand('<LT>CR>', 'i')
+" inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <C-y> compe#confirm()
+" inoremap <silent><expr> <C-e> compe#close('<C-e>')
+" inoremap <silent><expr> <CR> lexima#expand('<LT>CR>', 'i')
 
 " Gerencias sessões
 nnoremap <leader>so :OpenSession<Space>

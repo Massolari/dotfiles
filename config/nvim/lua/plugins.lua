@@ -203,25 +203,90 @@ return require('packer').startup(function(use)
 
   -- Autocompletion framework for built-in LSP
   use {
-      'hrsh7th/nvim-compe',
+      "hrsh7th/nvim-cmp",
+      requires = {
+          "hrsh7th/vim-vsnip",
+          "quangnguyen30192/cmp-nvim-ultisnips",
+          "hrsh7th/cmp-nvim-lsp"
+          -- "hrsh7th/cmp-buffer",
+      },
       config = function ()
-          require'compe'.setup {
-              source = {
-                  path = true;
-                  buffer = true;
-                  calc = true;
-                  nvim_lsp = true;
-                  nvim_lua = true;
-                  tabnine = true;
-                  ultisnips = true;
-              };
-          }
-      end
+          local cmp = require'cmp'
+          local lspkind = require'lspkind'
+
+          local t = function(str)
+              return vim.api.nvim_replace_termcodes(str, true, true, true)
+          end
+
+          local check_back_space = function()
+              local col = vim.fn.col(".") - 1
+              return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
+          end
+
+          cmp.setup({
+              snippet = {
+                  expand = function(args)
+                      vim.fn["UltiSnips#Anon"](args.body)
+                  end,
+              },
+              mapping = {
+                  ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                  ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                  ['<C-Space>'] = cmp.mapping.complete(),
+                  ['<C-e>'] = cmp.mapping.close(),
+                  ['<CR>'] = cmp.mapping.confirm({
+                      behavior = cmp.ConfirmBehavior.Replace,
+                      select = true,
+                  })
+              },
+              formatting = {
+                  format = function(entry, vim_item)
+                      vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+                      vim_item.menu = ({
+                          path = "[Path]",
+                          buffer = "[Buffer]",
+                          calc = "[Calc]",
+                          nvim_lsp = "[LSP]",
+                          cmp_tabnine = "[TabNine]",
+                          ultisnips = "[UltiSnips]",
+                          emoji = "[Emoji]",
+                      })[entry.source.name]
+                      return vim_item
+                  end
+              },
+              sources = {
+                  { name = 'path' },
+                  { name = 'buffer' },
+                  { name = 'calc' },
+                  { name = 'nvim_lsp' },
+                  { name = 'cmp_tabnine' },
+                  { name = 'ultisnips' },
+                  { name = 'emoji' },
+              }
+          })
+      end,
   }
+  -- use {
+  --     'hrsh7th/nvim-compe',
+  --     config = function ()
+  --         require'compe'.setup {
+  --             source = {
+  --                 path = true;
+  --                 buffer = true;
+  --                 calc = true;
+  --                 nvim_lsp = true;
+  --                 nvim_lua = true;
+  --                 tabnine = true;
+  --                 ultisnips = true;
+  --             };
+  --         }
+  --     end
+  -- }
 
   -- TabNine
-  use { 'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe' }
-  --
+  -- use { 'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe' }
+    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+
   -- Plugin LSP com base no cliente lsp do neovim
   use {
       'glepnir/lspsaga.nvim',
