@@ -53,6 +53,9 @@ local normal = {
     -- Git branch
     {'<leader>gr', "<cmd>lua require'fzf-lua'.git_branches()<CR>", opts},
 
+    -- Git checkout -b
+    {'<leader>gk', "<cmd>lua require'mappings'.checkout_new_branch()<CR>", opts},
+
     -- Colorschemes
     {'<leader>ec', "<cmd>lua require'fzf-lua'.colorschemes()<CR>", opts},
 
@@ -98,8 +101,20 @@ local function lsp(client)
     end
 end
 
+local function checkout_new_branch()
+    local branch_name = vim.fn.input("New branch name> ")
+    if branch_name == "" then
+        return
+    end
+    vim.cmd('echo "\r"')
+    vim.cmd("echohl Directory")
+    vim.cmd(":Git checkout -b " .. branch_name)
+    vim.cmd("echohl None")
+end
+
 local M = {
     lsp = lsp,
+    checkout_new_branch = checkout_new_branch,
 }
 
 setup()
