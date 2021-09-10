@@ -83,7 +83,7 @@ return require('packer').startup(function(use)
   use {
       'mattn/emmet-vim',
       opt = true,
-      keys = { 'i', '<c-y>,' },
+      keys = { '<c-y>,' },
   }
 
   -- Habilita a busca rapida usando duas letras
