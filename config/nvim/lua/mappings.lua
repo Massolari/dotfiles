@@ -81,7 +81,7 @@ end
 
 local function lsp(client)
     buf_set_keymap('n', '<leader>ca', "<cmd>lua require'fzf-lua'.lsp_code_actions()<CR>", opts)
-    buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols()<CR>", opts)
+    buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols({ fzf_cli_args = '--with-nth 2,-1' })<CR>", opts)
     buf_set_keymap('n', '<leader>cp', "<cmd>lua require'fzf-lua'.lsp_workspace_symbols('')<CR>", opts)
     -- buf_set_keymap('n', 'gd', "<cmd>lua require'fzf-lua'.lsp_definitions()<CR>", opts)
     buf_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
