@@ -53,6 +53,9 @@ local normal = {
     -- Git branch
     {'<leader>gr', "<cmd>lua require'fzf-lua'.git_branches()<CR>", opts},
 
+    -- Git push
+    {'<leader>gp', "<cmd>Git -c push.default=current push<CR>", opts},
+
     -- Git checkout -b
     {'<leader>gk', "<cmd>lua require'mappings'.checkout_new_branch()<CR>", opts},
 
