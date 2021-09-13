@@ -214,6 +214,7 @@ return require('packer').startup(function(use)
 
   -- LSP do Nvim
   use 'neovim/nvim-lspconfig'
+  use 'kabouzeid/nvim-lspinstall'
 
   -- Autocompletion framework for built-in LSP
   use {
