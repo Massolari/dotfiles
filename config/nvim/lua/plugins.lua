@@ -110,6 +110,14 @@ return require('packer').startup(function(use)
   -- Temas
   use {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
   use 'joshdick/onedark.vim'
+  use 'dracula/vim'
+  use 'altercation/vim-colors-solarized'
+  use 'tomasr/molokai'
+  use 'arcticicestudio/nord-vim'
+  use 'NLKNguyen/papercolor-theme'
+  use 'sainnhe/sonokai'
+  use 'cocopon/iceberg.vim'
+  use 'drewtempelmeyer/palenight.vim'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
