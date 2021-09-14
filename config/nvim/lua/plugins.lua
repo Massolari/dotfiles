@@ -65,6 +65,8 @@ return require('packer').startup(function(use)
   -- Habilita o uso do emmet (<C-y>,)
   use {
     'mattn/emmet-vim',
+    opt = true,
+    keys = '<c-y>,'
   }
 
   -- Habilita a busca rapida usando duas letras
@@ -172,12 +174,7 @@ return require('packer').startup(function(use)
   }
 
   -- Engine de snippets
-  use {
-    'SirVer/ultisnips',
-    config = function()
-      vim.g.UltiSnipsExpandTrigger = "<c-y>"
-    end
-  }
+  use 'SirVer/ultisnips'
 
   -- Biblioteca de snippets
   use 'honza/vim-snippets'
@@ -230,6 +227,7 @@ return require('packer').startup(function(use)
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.close(),
+          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         },
         formatting = {
           format = function(entry, vim_item)
