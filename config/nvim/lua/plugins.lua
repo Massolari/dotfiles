@@ -138,7 +138,9 @@ return require('packer').startup(function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function ()
-      require'indent_blankline'.setup()
+      require'indent_blankline'.setup{
+        show_current_context = true
+      }
     end
   }
 
@@ -216,15 +218,6 @@ return require('packer').startup(function(use)
     config = function ()
       local cmp = require'cmp'
       local lspkind = require'lspkind'
-
-      local t = function(str)
-        return vim.api.nvim_replace_termcodes(str, true, true, true)
-      end
-
-      local check_back_space = function()
-        local col = vim.fn.col(".") - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
-      end
 
       cmp.setup({
         snippet = {
