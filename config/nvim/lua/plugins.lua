@@ -37,24 +37,7 @@ return require('packer').startup(function(use)
           require'fzf-lua'.setup({ fzf_layout = 'default' })
       end
   }
-  -- use {
-  --     'junegunn/fzf.vim',
-  --     requires = { 'junegunn/fzf' },
-  --     opt = true,
-  --     cmd = { 'Files', 'Buffers', 'Rg' }
-  -- }
 
-  -- Comandos de LSP com fzf
-  -- use {
-  --     'ojroques/nvim-lspfuzzy',
-  --     requires = {
-  --         {'junegunn/fzf'},
-  --         {'junegunn/fzf.vim'},
-  --     },
-  --     config = function ()
-  --         require'lspfuzzy'.setup{}
-  --     end
-  -- }
   -- Sintasse para várias linguagens
   use {
       'nvim-treesitter/nvim-treesitter',
@@ -104,7 +87,9 @@ return require('packer').startup(function(use)
               vim.api.nvim_del_keymap('x', key)
               vim.api.nvim_del_keymap('n', key)
           end
-      end
+      end,
+      opt = true,
+      keys = { 'S', 's' }
   }
 
   -- Temas
@@ -229,15 +214,6 @@ return require('packer').startup(function(use)
           local cmp = require'cmp'
           local lspkind = require'lspkind'
 
-          local t = function(str)
-              return vim.api.nvim_replace_termcodes(str, true, true, true)
-          end
-
-          local check_back_space = function()
-              local col = vim.fn.col(".") - 1
-              return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
-          end
-
           cmp.setup({
               snippet = {
                   expand = function(args)
@@ -249,10 +225,6 @@ return require('packer').startup(function(use)
                   ['<C-f>'] = cmp.mapping.scroll_docs(4),
                   ['<C-Space>'] = cmp.mapping.complete(),
                   ['<C-e>'] = cmp.mapping.close(),
-                  ['<CR>'] = cmp.mapping.confirm({
-                      behavior = cmp.ConfirmBehavior.Replace,
-                      select = true,
-                  })
               },
               formatting = {
                   format = function(entry, vim_item)
@@ -281,25 +253,8 @@ return require('packer').startup(function(use)
           })
       end,
   }
-  -- use {
-  --     'hrsh7th/nvim-compe',
-  --     config = function ()
-  --         require'compe'.setup {
-  --             source = {
-  --                 path = true;
-  --                 buffer = true;
-  --                 calc = true;
-  --                 nvim_lsp = true;
-  --                 nvim_lua = true;
-  --                 tabnine = true;
-  --                 ultisnips = true;
-  --             };
-  --         }
-  --     end
-  -- }
 
   -- TabNine
-  -- use { 'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe' }
     use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
 
   -- Plugin LSP com base no cliente lsp do neovim
@@ -348,6 +303,7 @@ return require('packer').startup(function(use)
               direction = 'horizontal'
           }
       end,
+      opt = true,
       cmd = 'ToggleTerm',
   }
 
@@ -370,6 +326,7 @@ return require('packer').startup(function(use)
               -- refer to the configuration section below
           }
       end,
+      opt = true,
       cmd = 'Trouble',
   }
 
