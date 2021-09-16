@@ -103,6 +103,8 @@ return require('packer').startup(function(use)
   use 'sainnhe/sonokai'
   use 'cocopon/iceberg.vim'
   use 'drewtempelmeyer/palenight.vim'
+  use 'flrnd/plastic.vim'
+  use 'projekt0n/github-nvim-theme'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
