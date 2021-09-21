@@ -65,8 +65,11 @@ return require('packer').startup(function(use)
   -- Habilita o uso do emmet (<C-y>,)
   use {
     'mattn/emmet-vim',
-    opt = true,
-    keys = '<c-y>,'
+    config = function ()
+      -- Usar o emmet apenas no modo visual ou no modo inserção
+      vim.g.user_emmet_mode = 'iv'
+      vim.g.user_emmet_leader_key = '<C-g>'
+    end,
   }
 
   -- Habilita a busca rapida usando duas letras
@@ -88,8 +91,6 @@ return require('packer').startup(function(use)
         vim.api.nvim_del_keymap('n', key)
       end
     end,
-    opt = true,
-    keys = { 'S', 's' }
   }
 
   -- Temas
@@ -172,7 +173,7 @@ return require('packer').startup(function(use)
   use {
     'tpope/vim-fugitive',
     opt = true,
-    cmd = {'Git', 'Gdiff', 'Gclog', 'Gwrite'}
+    cmd = {'G', 'Git', 'Gdiff', 'Gclog', 'Gwrite'}
   }
 
   -- Engine de snippets
@@ -229,7 +230,7 @@ return require('packer').startup(function(use)
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.close(),
-          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-y>'] = cmp.mapping.confirm(),
         },
         formatting = {
           format = function(entry, vim_item)

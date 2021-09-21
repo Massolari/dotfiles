@@ -241,9 +241,6 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" Usar o emmet apenas no modo visual ou no modo inserção
-let g:user_emmet_mode='iv'
-
 " Pasta para snippets
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
@@ -270,8 +267,8 @@ let g:lexima_no_default_rules = v:true
 call lexima#set_default_rules()
 
 " Fold com treesitter
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
 "*****************************************************************************
 "" Comandos
 "*****************************************************************************
