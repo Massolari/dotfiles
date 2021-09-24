@@ -9,6 +9,23 @@ end
 
 local opts = { noremap=true, silent=true }
 
+local function command_with_args(prompt, default, completion, command)
+  local input = vim.fn.input(prompt, '', completion)
+  if input == '' and default ~= nil then
+    input = default
+  end
+  vim.cmd(":" .. command .. " " .. input)
+end
+
+local function move_block(is_up)
+  local direction = '>+1'
+  if is_up then
+    direction = '<-2'
+  end
+  vim.cmd(":m '" .. direction)
+  vim.cmd('gv=gv')
+end
+
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
   {'<c-k>', '<Up>', {}},
@@ -20,7 +37,11 @@ local insert = {
   {'<c-b>', '<left>', opts},
   {'<c-j>', '<down>', opts},
   {'<c-k>', '<up>', opts},
-  {'<c-l>', '<right>', opts}
+  {'<c-l>', '<right>', opts},
+
+  -- Ir para o normal mode mais rapidamente
+  { 'jk', '<Esc>', opts },
+  { 'kj', '<Esc>', opts },
 }
 
 local normal = {
@@ -64,6 +85,108 @@ local normal = {
 
   -- FZF Lines
   {'<c-_>', "<cmd>lua require'fzf-lua'.blines()<CR>", opts},
+
+  -- Gerencias sessões
+  {
+    '<leader>so',
+    "<cmd>lua require'mappings'.command_with_args('Open session> ', 'default', 'customlist,xolox#session#complete_names', 'OpenSession')<CR>",
+    opts
+  },
+  {
+    '<leader>ss',
+    "<cmd>lua require'mappings'.command_with_args('Save session> ', 'default', 'customlist,xolox#session#complete_names_with_suggestions', 'SaveSession')<CR>",
+    opts
+  },
+  {'<leader>sc', "<cmd>CloseSession<CR>", opts},
+
+  -- Git
+  { '<leader>gb', '<cmd>Git blame<CR> ', opts},
+  { '<leader>gc', '<cmd>Git commit<CR> ', opts},
+  { '<leader>gd', '<cmd>Gdiff<CR> ', opts},
+  { '<leader>gl', '<cmd>Git pull<CR> ', opts},
+  { '<leader>gs', '<cmd>Git<CR> ', opts},
+  { '<leader>gw', '<cmd>Gwrite<CR> ', opts},
+
+  -- Dividir a tela mais rapidamente
+  { '<leader>h', '<cmd>split<CR> ', opts},
+  { '<leader>v', '<cmd>vsplit<CR> ', opts},
+  { '<leader>=', '<c-w>=', opts},
+
+  -- Abrir terminal
+  { '<leader>t', '<cmd>exe v:count1 . "ToggleTerm"<CR>' , opts},
+
+  -- Toda a vez que pular para próxima palavra buscada o cursor fica no centro da tela
+  { 'n', 'nzzzv', opts },
+  { 'N', 'Nzzzv', opts },
+
+  -- Explorador de arquivos
+  { '<F3>', '<cmd>NvimTreeToggle<CR>' , opts},
+  { '<F2>', '<cmd>NvimTreeFindFile<CR>' , opts},
+
+  -- Abas
+  { '<leader>aa', '<cmd>tabnew<CR>' , opts},
+  { '<leader>an', '<cmd>tabnext<CR>' , opts},
+  { '<leader>ap', '<cmd>tabprevious<CR>' , opts},
+  { '<leader>ac', '<cmd>tabclose<CR>' , opts},
+
+  -- Selecionar todo o arquivo
+  { '<leader>ba', 'ggVG', opts },
+
+  -- Buffers
+  { '<leader>bd', '<cmd>bp|bd #<CR>' , opts},
+  { '<leader>bs', '<cmd>w<CR>' , opts},
+  { '<leader>wc', '<cmd>q<CR>' , opts},
+
+
+  -- Mover cursor para outra janela divida
+  { '<C-j>', '<C-w>j', opts },
+  { '<C-k>', '<C-w>k', opts },
+  { '<C-l>', '<C-w>l', opts },
+  { '<C-h>', '<C-w>h', opts },
+
+  -- Limpar seleção da pesquisa
+  { '<leader><leader>', '<cmd>noh<cr>' , opts},
+
+  -- Alterar de arquivo mais rapidamente
+  { '<leader><Tab>', '', opts },
+
+  -- Limpar espaços em branco nos finais da linha
+  { '<F5>', 'mp<cmd>%s/\\s\\+$/<CR>`p' , opts},
+
+  -- Enter no modo normal funciona como no modo inserção
+  { '<CR>', 'i<CR><Esc>', opts },
+
+  -- Identar arquivo
+  { '<leader>i', 'mpgg=G`p', opts },
+
+  -- Chamar função que alterna o quickfix
+  { '<leader>q', '<cmd>call QFixToggle()<CR>' , opts},
+  -- Alterar locationlist
+  { '<leader>l', '<cmd>call LListToggle()<CR>' , opts},
+
+  -- Setas redimensionam janelas adjacentes
+  { '<left>', '<cmd>vertical resize -5<cr>' , opts},
+  { '<right>', '<cmd>vertical resize +5<cr>' , opts},
+  { '<up>', '<cmd>resize -5<cr>' , opts},
+  { '<down>', '<cmd>resize +5<cr>' , opts},
+
+  -- Ponto e vírgula no final da linha
+  { '<leader>;', 'mpA;<Esc>`p', opts },
+  -- Vírgula no final da linha
+  { '<leader>,', 'mpA,<Esc>`p', opts },
+
+  -- Abrir configurações do vim
+  { '<leader>ov', "<cmd>exe 'edit' stdpath('config').'/init.vim'<CR>" , opts},
+
+  -- Abrir configurações de plugins do vim
+  { '<leader>op', "<cmd>exe 'edit' stdpath('config').'/lua/plugins.lua'<CR>" , opts},
+
+  -- Atualizar configurações do nvim
+  { '<leader>os', "<cmd>exe 'source' stdpath('config').'/init.vim'<CR>" , opts},
+
+  -- Pular para a próxima função do Elm
+  { ']]', "<cmd>call search('^\\w\\+\\s:\\s', 'w')<CR>" , opts},
+  { '[[', "<cmd>call search('^\\w\\+\\s:\\s', 'bW')<CR>" , opts},
 }
 
 local terminal = {
@@ -72,11 +195,20 @@ local terminal = {
   {'kj', '<C-\\><C-n>', opts}
 }
 
+local visual = {
+  {'<', '<gv', opts},
+  {'>', '>gv', opts},
+  { '//', 'y/<C-R>"<CR>', opts },
+  {'K', ":m '<-2<CR>gv=gv", opts},
+  {'J', ":m '>+1<CR>gv=gv", opts},
+}
+
 local function setup()
   set_keymaps('t', terminal)
   set_keymaps('i', insert)
   set_keymaps('c', command)
   set_keymaps('n', normal)
+  set_keymaps('v', visual)
 end
 
 local function lsp(client)
@@ -118,6 +250,8 @@ end
 local M = {
   lsp = lsp,
   checkout_new_branch = checkout_new_branch,
+  command_with_args = command_with_args,
+  move_block = move_block,
 }
 
 setup()

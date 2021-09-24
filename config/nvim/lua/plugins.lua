@@ -21,8 +21,8 @@ return require('packer').startup(function(use)
   use {
     'xolox/vim-session',
     requires = { 'xolox/vim-misc' },
-    opt = true,
-    cmd = {'SaveSession', 'OpenSession', 'DeleteSession', 'CloseSession'}
+    -- opt = true,
+    -- cmd = {'SaveSession', 'OpenSession', 'DeleteSession', 'CloseSession'}
   }
 
   -- Buscador
@@ -230,7 +230,7 @@ return require('packer').startup(function(use)
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.close(),
-          ['<C-y>'] = cmp.mapping.confirm(),
+          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         },
         formatting = {
           format = function(entry, vim_item)
