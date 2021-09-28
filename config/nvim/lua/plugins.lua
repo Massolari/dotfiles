@@ -268,7 +268,8 @@ return require('packer').startup(function(use)
 
   -- Plugin LSP com base no cliente lsp do neovim
   use {
-    'glepnir/lspsaga.nvim',
+    -- 'glepnir/lspsaga.nvim',
+    'tami5/lspsaga.nvim',
     requires = {'neovim/nvim-lspconfig'},
     config = function ()
       require 'lspsaga'.init_lsp_saga()
