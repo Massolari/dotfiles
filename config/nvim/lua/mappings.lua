@@ -48,10 +48,6 @@ local normal = {
   -- Diagnostics
   {'<leader>cd', '<cmd>Trouble<cr>', opts},
 
-  -- Rolar texto do janela do lspsaga
-  {'<c-f>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts},
-  {'<c-b>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts},
-
   -- Navegar pelos buffers
   {'<tab>', "<cmd>BufferLineCycleNext<CR>", opts},
   {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
@@ -212,26 +208,21 @@ local function setup()
 end
 
 local function lsp(client)
-  -- buf_set_keymap('n', '<leader>ca', "<cmd>lua require'fzf-lua'.lsp_code_actions()<CR>", opts)
-  -- buf_set_keymap('n', '<leader>ca', "<cmd>CodeActionMenu<CR>", opts)
-  buf_set_keymap('n', '<leader>ca', "<cmd>lua require'lspsaga.codeaction'.code_action()<CR>", opts)
+  buf_set_keymap('n', '<leader>ca', "<cmd>lua require'fzf-lua'.lsp_code_actions()<CR>", opts)
   buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols({ fzf_cli_args = '--with-nth 2,-1' })<CR>", opts)
   buf_set_keymap('n', '<leader>cp', "<cmd>lua require'fzf-lua'.lsp_workspace_symbols('')<CR>", opts)
-  -- buf_set_keymap('n', 'gd', "<cmd>lua require'fzf-lua'.lsp_definitions()<CR>", opts)
-  -- buf_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap('n', 'gd', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
-  -- buf_set_keymap('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap('n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-  buf_set_keymap('n', 'gi', "<cmd>lua require'fzf-lua'.lsp_implementations()<CR>", opts)
-  buf_set_keymap('n', '<leader>cs', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
+  buf_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap('n', 'gi', "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  buf_set_keymap('n', '<leader>cs', "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap('n', 'gy', "<cmd>lua require'fzf-lua'.lsp_typedefs()<CR>", opts)
-  -- buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>cr', "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
+  buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gr', "<cmd>lua require'fzf-lua'.lsp_references()<CR>", opts)
-  -- buf_set_keymap('n', '<leader>ce', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>', opts)
-  buf_set_keymap('n', '<leader>ce', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", opts)
-  buf_set_keymap('n', '[d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
-  buf_set_keymap('n', ']d', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
+  buf_set_keymap('n', '<leader>ce', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>', opts)
+  buf_set_keymap('n', ']d', "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  buf_set_keymap('n', '[d', "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  buf_set_keymap('n', ']e', "<cmd>lua vim.lsp.diagnostic.goto_next({ severity = 'Error' })<CR>", opts)
+  buf_set_keymap('n', '[e', "<cmd>lua vim.lsp.diagnostic.goto_prev({ severity = 'Error' })<CR>", opts)
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)

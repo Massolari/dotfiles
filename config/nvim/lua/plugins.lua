@@ -266,18 +266,6 @@ return require('packer').startup(function(use)
   -- TabNine
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
 
-  -- Plugin LSP com base no cliente lsp do neovim
-  use {
-    -- 'glepnir/lspsaga.nvim',
-    'tami5/lspsaga.nvim',
-    requires = {'neovim/nvim-lspconfig'},
-    config = function ()
-      require 'lspsaga'.init_lsp_saga()
-    end,
-    opt = true,
-    module = 'lspsaga',
-  }
-
   -- Assinaturas de funções ao digitar
   use {
     'ray-x/lsp_signature.nvim',
@@ -349,6 +337,14 @@ return require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require'bufferline'.setup()
+    end
+  }
+
+  -- Mostrar lampada se existir code action
+  use {
+    'kosayoda/nvim-lightbulb',
+    config = function()
+      vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
     end
   }
 end)
