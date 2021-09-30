@@ -17,9 +17,9 @@ local on_attach = function(client, bufnr)
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
-        hi LspReferenceRead cterm=bold ctermbg=red guibg=black
-        hi LspReferenceText cterm=bold ctermbg=red guibg=black
-        hi LspReferenceWrite cterm=bold ctermbg=red guibg=black
+        hi LspReferenceRead cterm=bold ctermbg=darkyellow guibg=darkyellow
+        hi LspReferenceText cterm=bold ctermbg=darkyellow guibg=darkyellow
+        hi LspReferenceWrite cterm=bold ctermbg=darkyellow guibg=darkyellow
         augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()

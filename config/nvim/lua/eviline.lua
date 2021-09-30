@@ -3,6 +3,18 @@ local colors = require('galaxyline.theme').default
 local condition = require('galaxyline.condition')
 local gls = gl.section
 
+if vim.opt.background:get() == 'light' then
+  colors.bg = '#fbf1c7'
+  colors.fg = '#282828'
+  colors.yellow = '#d79921'
+  colors.green = '#98971a'
+  colors.blue = '#458588'
+  colors.red = '#cc241d'
+  colors.magenta = '#b16286'
+  colors.violet = '#8f3f71'
+  colors.cyan = '#689d6a'
+end
+
 local getFileName = function()
     return vim.fn.expand("%:h") .. '/'
 end

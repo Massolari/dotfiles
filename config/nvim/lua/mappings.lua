@@ -26,11 +26,25 @@ local function move_block(is_up)
   vim.cmd('gv=gv')
 end
 
+local fzf_color = 'dark'
+local fzf_bat_theme = 'gruvbox-dark'
+if vim.opt.background:get() == 'light' then
+  -- fzf_color = 'fg:#3c3836,bg:#fbf1c7,hl:#b57614,fg+:#3c3836,bg+:#ebdbb2,hl+:#b57614,info:#076678,prompt:#665c54,spinner:#b57614,pointer:#076678,marker:#af3a03,header:#bdae93'
+  fzf_color = 'light'
+  fzf_bat_theme = 'gruvbox-light'
+end
+local fzf_args = '--color ' .. fzf_color
+local fzf_opts = { fzf_args = fzf_args, ['previewers.bat.theme'] = fzf_bat_theme }
+
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
   {'<c-k>', '<Up>', {}},
   {'<c-j>', '<Down>', {}}
 }
+
+local function fzf_lua (command)
+  require'fzf-lua'[command](fzf_opts)
+end
 
 local insert = {
   -- Mover no modo insert sem as setas
@@ -45,6 +59,9 @@ local insert = {
 }
 
 local normal = {
+  -- Copiar linha completa com Y
+  -- {'Y', 'yy', opts},
+
   -- Diagnostics
   {'<leader>cd', '<cmd>Trouble<cr>', opts},
 
@@ -53,22 +70,22 @@ local normal = {
   {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
 
   -- Alternar para arquivo
-  {'<leader>bb', "<cmd>lua require'fzf-lua'.buffers()<CR>", opts},
+  {'<leader>bb', "<cmd>lua require'mappings'.fzf_lua('buffers')<CR>", opts},
 
   -- Abrir arquivo
-  {'<leader>pf', "<cmd>lua require'fzf-lua'.files()<CR>", opts},
+  {'<leader>pf', "<cmd>lua require'mappings'.fzf_lua('files')<CR>", opts},
 
   -- Procurar em arquivos
   {'<leader>ps', "<cmd>FzfLua grep<CR>", opts},
 
   -- Procurar em arquivos palavra sob o cursor
-  {'<leader>pe', "<cmd>lua require'fzf-lua'.grep_cword()<CR>", opts},
+  {'<leader>pe', "<cmd>lua require'mappings'.fzf_lua('grep_cword')<CR>", opts},
 
   -- Git log
-  {'<leader>gg', "<cmd>lua require'fzf-lua'.git_commits()<CR>", opts},
+  {'<leader>gg', "<cmd>lua require'mappings'.fzf_lua('git_commits')<CR>", opts},
 
   -- Git branch
-  {'<leader>gr', "<cmd>lua require'fzf-lua'.git_branches()<CR>", opts},
+  {'<leader>gr', "<cmd>lua require'mappings'.fzf_lua('git_branches')<CR>", opts},
 
   -- Git push
   {'<leader>gp', "<cmd>Git -c push.default=current push<CR>", opts},
@@ -77,10 +94,10 @@ local normal = {
   {'<leader>gk', "<cmd>lua require'mappings'.checkout_new_branch()<CR>", opts},
 
   -- Colorschemes
-  {'<leader>ec', "<cmd>lua require'fzf-lua'.colorschemes()<CR>", opts},
+  {'<leader>ec', "<cmd>lua require'mappings'.fzf_lua('colorschemes')<CR>", opts},
 
   -- FZF Lines
-  {'<c-_>', "<cmd>lua require'fzf-lua'.blines()<CR>", opts},
+  {'<c-_>', "<cmd>lua require'mappings'.fzf_lua('blines')<CR>", opts},
 
   -- Gerencias sessões
   {
@@ -208,16 +225,17 @@ local function setup()
 end
 
 local function lsp(client)
-  buf_set_keymap('n', '<leader>ca', "<cmd>lua require'fzf-lua'.lsp_code_actions()<CR>", opts)
-  buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols({ fzf_cli_args = '--with-nth 2,-1' })<CR>", opts)
-  buf_set_keymap('n', '<leader>cp', "<cmd>lua require'fzf-lua'.lsp_workspace_symbols()<CR>", opts)
+  -- buf_set_keymap('n', '<leader>ca', "<cmd>lua require'mappings'.fzf_lua('lsp_code_actions')<CR>", opts)
+  buf_set_keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols({ fzf_cli_args = '--with-nth 2,-1', fzf_args = ".. fzf_args .. " })<CR>", opts)
+  buf_set_keymap('n', '<leader>cp', "<cmd>lua require'mappings'.fzf_lua('lsp_workspace_symbols')<CR>", opts)
   buf_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap('n', 'gi', "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   buf_set_keymap('n', '<leader>cs', "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap('n', 'gy', "<cmd>lua require'fzf-lua'.lsp_typedefs()<CR>", opts)
+  buf_set_keymap('n', 'gy', "<cmd>lua require'mappings'.fzf_lua('lsp_typedefs')<CR>", opts)
   buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gr', "<cmd>lua require'fzf-lua'.lsp_references()<CR>", opts)
+  buf_set_keymap('n', 'gr', "<cmd>lua require'mappings'.fzf_lua('lsp_references')<CR>", opts)
   buf_set_keymap('n', '<leader>ce', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>', opts)
   buf_set_keymap('n', ']d', "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap('n', '[d', "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
@@ -247,6 +265,7 @@ local M = {
   checkout_new_branch = checkout_new_branch,
   command_with_args = command_with_args,
   move_block = move_block,
+  fzf_lua = fzf_lua,
 }
 
 setup()

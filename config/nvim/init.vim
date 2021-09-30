@@ -26,60 +26,8 @@ lua require('plugins')
 "*****************************************************************************
 "" Configurações básicas
 "*****************************************************************************"
-"" Encoding
-set fileencoding=utf-8
-set fileencodings=utf-8
-set bomb
-set binary
 
-" Comportamento do Tab
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
-set expandtab
-
-" Busca
-set ignorecase
-set smartcase
-if has('nvim')
-    set inccommand=split
-endif
-
-" Configurações do Swap file
-set nobackup
-set noswapfile
-set nowritebackup
-
-set fileformats=unix,dos,mac
-
-if exists('$SHELL')
-    set shell=$SHELL
-else
-    set shell=/bin/sh
-endif
-
-" Exibição de caracteres especiais
-set listchars=tab:↦\ ,nbsp:␣
-
-" Gerenciamento de sessão
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-
-" Opções para o vim-rest-console
-let g:vrc_curl_opts = {
-            \ '-sS': '',
-            \ '--connect-timeout': 10,
-            \ '-i': '',
-            \ '--max-time': 60,
-            \ '-k': '',
-            \}
-
-" Formatar resposta em JSON
-let g:vrc_auto_format_response_patterns = {
-            \ 'json': 'python3 -m json.tool',
-            \ }
+lua require('settings')
 
 " Permitir que parâmetros GET sejam declarados em linhas sequenciais
 let g:vrc_split_request_body = 0
@@ -93,9 +41,6 @@ let mapleader="\<Space>"
 
 " Configuração de local leader
 let maplocalleader="\\"
-
-" Habilitar itablico do gruvbox
-let g:gruvbox_italic = 1
 
 " Desabilitar editorconfig para fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -227,6 +172,8 @@ let g:which_key_map.w = {
 set timeoutlen=500
 
 " Tema do gruvbox
+" Habilitar itablico do gruvbox
+let g:gruvbox_italic = 1
 colorscheme gruvbox
 
 " Sobrescrevendo cor do quick-scope porque ela some no tema do vscode
