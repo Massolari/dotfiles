@@ -171,11 +171,6 @@ let g:which_key_map.w = {
 " Diminuir o tempo para mostrar o which-key (Default: 1000)
 set timeoutlen=500
 
-" Gruvbox
-let g:gruvbox_italic = 1
-" let g:gruvbox_contrast_light = 'hard'
-colorscheme gruvbox
-
 " Sobrescrevendo cor do quick-scope porque ela some no tema do vscode
 highlight QuickScopePrimary guifg='#7a7608'
 highlight QuickScopeSecondary guifg='#e27bed'

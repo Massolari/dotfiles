@@ -1,4 +1,7 @@
 -- Tema claro
+vim.g.gruvbox_italic = 1
+vim.g.material_style = 'lighter'
+vim.cmd('colorscheme toast')
 vim.opt.background = 'light'
 
 -- Encoding

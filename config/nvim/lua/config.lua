@@ -4,29 +4,39 @@ local nvim_lsp = require("lspconfig")
 local mappings = require("mappings")
 
 local on_attach = function(client, bufnr)
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    lsp_status.on_attach(client)
-    client.config.capabilities = vim.tbl_extend('keep', client.config.capabilities or {}, lsp_status.capabilities)
+  lsp_status.on_attach(client)
+  client.config.capabilities = vim.tbl_extend('keep', client.config.capabilities or {}, lsp_status.capabilities)
 
-    -- Mappings.
-    mappings.lsp(client)
+  -- Mappings.
+  mappings.lsp(client)
 
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-        hi LspReferenceRead cterm=bold ctermbg=darkyellow guibg=darkyellow
-        hi LspReferenceText cterm=bold ctermbg=darkyellow guibg=darkyellow
-        hi LspReferenceWrite cterm=bold ctermbg=darkyellow guibg=darkyellow
-        augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]], false)
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    if vim.opt.background:get() ~= 'light' then
+      vim.api.nvim_exec([[
+      hi LspReferenceRead cterm=bold ctermbg=black guibg=black
+      hi LspReferenceText cterm=bold ctermbg=black guibg=black
+      hi LspReferenceWrite cterm=bold ctermbg=black guibg=black
+      ]], false)
+    else
+      vim.api.nvim_exec([[
+      hi LspReferenceRead cterm=bold ctermbg=lightyellow guibg=lightyellow
+      hi LspReferenceText cterm=bold ctermbg=lightyellow guibg=lightyellow
+      hi LspReferenceWrite cterm=bold ctermbg=lightyellow guibg=lightyellow
+      ]], false)
     end
+    vim.api.nvim_exec([[
+    augroup lsp_document_highlight
+    autocmd! * <buffer>
+    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    augroup END
+    ]], false)
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -37,8 +47,8 @@ local function setup_servers()
   local servers = require'lspinstall'.installed_servers()
   for _, server in pairs(servers) do
     nvim_lsp[server].setup{
-        capabilities = capabilities,
-        on_attach = on_attach
+      capabilities = capabilities,
+      on_attach = on_attach
     }
   end
 end

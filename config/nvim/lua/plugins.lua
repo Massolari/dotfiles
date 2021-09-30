@@ -106,6 +106,8 @@ return require('packer').startup(function(use)
   use 'drewtempelmeyer/palenight.vim'
   use 'flrnd/plastic.vim'
   use 'projekt0n/github-nvim-theme'
+  use 'marko-cerovac/material.nvim'
+  use 'jsit/toast.vim'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
