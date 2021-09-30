@@ -34,11 +34,7 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons'
     },
     config = function ()
-      require'fzf-lua'.setup({
-        -- fzf_args = '--color fg:#3c3836,bg:#fbf1c7,hl:#b57614,fg+:#3c3836,bg+:#ebdbb2,hl+:#b57614,info:#076678,prompt:#665c54,spinner:#b57614,pointer:#076678,marker:#af3a03,header:#bdae93',
-        fzf_layout = 'default',
-        -- ['previewers.bat.theme'] = 'gruvbox-light'
-      })
+      require'fzf-lua'.setup({ fzf_layout = 'default' })
     end
   }
 
