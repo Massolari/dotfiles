@@ -150,5 +150,4 @@ vim.g.neon_bold = true
 -- -- Tokyonight
 vim.g.tokyonight_style = 'day'
 
-vim.cmd('colorscheme one-nvim')
-
+vim.cmd('colorscheme github_light')

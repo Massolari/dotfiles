@@ -97,7 +97,7 @@ return require('packer').startup(function(use)
   use 'morhetz/gruvbox'
   use 'Th3Whit3Wolf/one-nvim'
   use 'dracula/vim'
-  use 'altercation/vim-colors-solarized'
+  use 'ishan9299/nvim-solarized-lua'
   use 'tomasr/molokai'
   use 'arcticicestudio/nord-vim'
   use 'NLKNguyen/papercolor-theme'
@@ -112,6 +112,7 @@ return require('packer').startup(function(use)
   use 'rafamadriz/neon'
   use 'Pocco81/Catppuccino.nvim'
   use 'folke/tokyonight.nvim'
+  use 'sainnhe/edge'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks

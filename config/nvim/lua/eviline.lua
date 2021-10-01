@@ -4,11 +4,15 @@ local condition = require('galaxyline.condition')
 local gls = gl.section
 
 
-local function get_color(highlight_group, type)
-  return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(highlight_group)), type .. '#')
+local function get_color(highlight_group, type, fallback)
+  local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(highlight_group)), type .. '#')
+  if color == '' then
+    return fallback
+  end
+  return color
 end
 
-colors.bg = get_color('CursorLine', 'bg')
+colors.bg = get_color('CursorLine', 'bg', colors.bg)
 colors.fg = get_color('Normal', 'fg')
 colors.yellow = get_color('Search', 'fg')
 -- colors.green = '#98971a'
@@ -172,7 +176,7 @@ gls.left[2] = {
       --   }
       -- }
 
-      vim.cmd([[highlight Statusline guifg=]] .. colors.bg)
+      vim.cmd([[highlight Statusline guibg=]] .. colors.bg)
 
       -- gls.right[2] = {
         --   FileFormat = {
