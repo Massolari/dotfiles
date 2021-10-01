@@ -27,8 +27,6 @@ lua require('plugins')
 "" Configurações básicas
 "*****************************************************************************"
 
-lua require('settings')
-
 " Permitir que parâmetros GET sejam declarados em linhas sequenciais
 let g:vrc_split_request_body = 0
 
@@ -208,6 +206,8 @@ set completeopt=menuone,noselect
 let g:lexima_no_default_rules = v:true
 call lexima#set_default_rules()
 
+lua require('settings')
+
 " Fold com treesitter
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
@@ -345,7 +345,4 @@ lua require('config')
 "*****************************************************************************
 
 " Arquivo de configurações do usuário
-let s:user_file = stdpath('config') . '/myinit.vim'
-if filereadable(s:user_file)
-    exec "source" s:user_file
-endif
+lua require('user')

@@ -95,7 +95,7 @@ return require('packer').startup(function(use)
 
   -- Temas
   use 'morhetz/gruvbox'
-  use 'joshdick/onedark.vim'
+  use 'Th3Whit3Wolf/one-nvim'
   use 'dracula/vim'
   use 'altercation/vim-colors-solarized'
   use 'tomasr/molokai'
@@ -108,6 +108,10 @@ return require('packer').startup(function(use)
   use 'projekt0n/github-nvim-theme'
   use 'marko-cerovac/material.nvim'
   use 'jsit/toast.vim'
+  use 'Th3Whit3Wolf/space-nvim'
+  use 'rafamadriz/neon'
+  use 'Pocco81/Catppuccino.nvim'
+  use 'folke/tokyonight.nvim'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
@@ -349,4 +353,6 @@ return require('packer').startup(function(use)
       vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
     end
   }
+
+  require'user.plugins'.setup(use)
 end)

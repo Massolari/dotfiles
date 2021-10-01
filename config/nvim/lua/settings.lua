@@ -1,9 +1,3 @@
--- Tema claro
-vim.g.gruvbox_italic = 1
-vim.g.material_style = 'lighter'
-vim.cmd('colorscheme toast')
-vim.opt.background = 'light'
-
 -- Encoding
 vim.opt.fileencoding = 'utf-8'
 vim.opt.fileformats = { 'unix','dos','mac' }
@@ -48,3 +42,22 @@ vim.g.vrc_curl_opts = {
 vim.g.vrc_auto_format_response_patterns = {
   json = 'python3 -m json.tool',
 }
+
+-- Tema
+vim.opt.background = 'light'
+
+-- -- Gruvbox
+vim.g.gruvbox_italic = 1
+
+-- -- Material
+vim.g.material_style = 'lighter'
+
+-- -- Neon
+vim.g.neon_style = 'light'
+vim.g.neon_bold = true
+
+-- -- Tokyonight
+vim.g.tokyonight_style = 'day'
+
+vim.cmd('colorscheme one-nvim')
+

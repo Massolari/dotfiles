@@ -76,7 +76,7 @@ local normal = {
   {'<leader>pf', "<cmd>lua require'mappings'.fzf_lua('files')<CR>", opts},
 
   -- Procurar em arquivos
-  {'<leader>ps', "<cmd>FzfLua grep<CR>", opts},
+  {'<leader>ps', "<cmd>lua require'mappings'.fzf_lua('grep')<CR>", opts},
 
   -- Procurar em arquivos palavra sob o cursor
   {'<leader>pe', "<cmd>lua require'mappings'.fzf_lua('grep_cword')<CR>", opts},
@@ -190,6 +190,8 @@ local normal = {
 
   -- Abrir configurações do vim
   { '<leader>ov', "<cmd>exe 'edit' stdpath('config').'/init.vim'<CR>" , opts},
+  { '<leader>oui', "<cmd>exe 'edit' stdpath('config').'/lua/user/init.lua'<CR>" , opts},
+  { '<leader>oup', "<cmd>exe 'edit' stdpath('config').'/lua/user/plugins.lua'<CR>" , opts},
 
   -- Abrir configurações de plugins do vim
   { '<leader>op', "<cmd>exe 'edit' stdpath('config').'/lua/plugins.lua'<CR>" , opts},
