@@ -189,7 +189,7 @@ local normal = {
   { '<leader>,', 'mpA,<Esc>`p', opts },
 
   -- Abrir configurações do vim
-  { '<leader>ov', "<cmd>exe 'edit' stdpath('config').'/init.vim'<CR>" , opts},
+  { '<leader>oi', "<cmd>exe 'edit' stdpath('config').'/init.vim'<CR>" , opts},
   { '<leader>oui', "<cmd>exe 'edit' stdpath('config').'/lua/user/init.lua'<CR>" , opts},
   { '<leader>oup', "<cmd>exe 'edit' stdpath('config').'/lua/user/plugins.lua'<CR>" , opts},
 
