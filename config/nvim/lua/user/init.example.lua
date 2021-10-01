@@ -1,0 +1,2 @@
+-- Duplique esse arquivo e renomeie a cópia para init.lua
+-- Coloque suas configurações personalizadas aqui

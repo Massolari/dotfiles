@@ -354,7 +354,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  local user_file = vim.fn.stdpath('config') .. '/lua/plugins.lua'
+  local user_file = vim.fn.stdpath('config') .. '/lua/user/plugins.lua'
   if vim.fn.filereadable(user_file) > 0 then
     require'user.plugins'.setup(use)
   end
