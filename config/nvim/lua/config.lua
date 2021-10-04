@@ -3,6 +3,28 @@ local nvim_lsp = require("lspconfig")
 
 local mappings = require("mappings")
 
+
+vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+  {"🭽", "FloatBorder"},
+
+  {"▔", "FloatBorder"},
+
+  {"🭾", "FloatBorder"},
+
+  {"▕", "FloatBorder"},
+
+  {"🭿", "FloatBorder"},
+
+  {"▁", "FloatBorder"},
+
+  {"🭼", "FloatBorder"},
+
+  {"▏", "FloatBorder"},
+}
+
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -37,6 +59,15 @@ local on_attach = function(client, bufnr)
     augroup END
     ]], false)
   end
+
+  vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
+  vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+      prefix = 'x', -- Could be '●', '▎', '■'
+    },
+  })
+
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -69,3 +100,11 @@ function _G.lsp_reinstall_all()
 end
 
 vim.cmd 'command! -nargs=0 LspReinstallAll call v:lua.lsp_reinstall_all()'
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Information = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+
