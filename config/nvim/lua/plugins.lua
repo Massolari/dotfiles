@@ -106,7 +106,7 @@ return require('packer').startup(function(use)
   use 'drewtempelmeyer/palenight.vim'
   use 'flrnd/plastic.vim'
   use 'projekt0n/github-nvim-theme'
-  use 'marko-cerovac/material.nvim'
+  use 'hzchirs/vim-material'
   use 'jsit/toast.vim'
   use 'Th3Whit3Wolf/space-nvim'
   use 'rafamadriz/neon'

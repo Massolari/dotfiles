@@ -27,36 +27,8 @@ lua require('plugins')
 "" Configurações básicas
 "*****************************************************************************"
 
-" Pasta para snippets
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-
-" Não redimensionar janelas abertas ao abrir ou fechar janelas
-set noequalalways
-
-" Espaço maior para mensagens
-set cmdheight=2
-
-" Diminuir tempo de atualização
-set updatetime=300
-
-" Não passar as mensagems para o |ins-completion-menu|
-set shortmess+=c
-
-" Deixar a coluna de sinais sempre aberta
-set signcolumn=yes
-
-" Autocomplete melhor
-set completeopt=menuone,noselect
-
-" Configurar o lexima com o compe
-let g:lexima_no_default_rules = v:true
-call lexima#set_default_rules()
-
 lua require('settings')
 
-" Fold com treesitter
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
 "*****************************************************************************
 "" Comandos
 "*****************************************************************************
@@ -71,10 +43,6 @@ command! Transparent hi Normal guibg=NONE ctermbg=NONE
 "" Configurações visuais
 "*****************************************************************************
 
-set t_Co=256
-set guioptions=egmrti
-
-let g:CSApprox_loaded = 1
 if $COLORTERM == 'gnome-terminal'
   set term=gnome-256color
 else

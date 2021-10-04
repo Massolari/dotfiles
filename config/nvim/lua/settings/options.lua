@@ -53,9 +53,27 @@ vim.opt.timeoutlen = 500
 -- Realçar linha onde o cursor está
 vim.opt.cursorline = true
 
+-- Não redimensionar janelas abertas ao abrir ou fechar janelas
+vim.opt.equalalways = false
+
+-- Espaço maior para mensagens
+vim.opt.cmdheight = 2
+
+-- Diminuir tempo de atualização
+vim.opt.updatetime = 300
+
+-- Não passar as mensagems para o |ins-completion-menu|
+vim.opt.shortmess:append('c')
+
+-- Deixar a coluna de sinais sempre aberta
+vim.opt.signcolumn = 'yes'
+
+-- Autocomplete melhor
+vim.opt.completeopt = { 'menuone', 'noselect' }
+
 -- Melhora as cores
 vim.opt.termguicolors = true
 
-
 -- Tema
 vim.opt.background = 'light'
+
