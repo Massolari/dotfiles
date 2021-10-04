@@ -18,7 +18,7 @@ vim.g.tokyonight_style = 'day'
 -- vim.cmd('colorscheme github_light')
 require'github-theme'.setup({
   theme_style = 'light',
-  dark_float = true,
+  -- dark_float = true,
   comment_style = 'italic',
   function_style = 'italic',
   keyword_style = 'italic'
