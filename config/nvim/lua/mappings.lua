@@ -202,6 +202,10 @@ local normal = {
   -- Pular para a próxima função do Elm
   { ']]', "<cmd>call search('^\\w\\+\\s:\\s', 'w')<CR>" , opts},
   { '[[', "<cmd>call search('^\\w\\+\\s:\\s', 'bW')<CR>" , opts},
+
+  -- Whichkey
+  { '<leader>', "<cmd>WhichKey '<space>'<CR>", opts },
+  { '<localleader>', "<cmd>WhichKey '\\'<CR>", opts },
 }
 
 local terminal = {
