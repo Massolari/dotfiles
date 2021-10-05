@@ -127,4 +127,4 @@ if filereadable(s:user_file)
   lua require('user')
 endif
 
-lua require('settings.theme')
+lua require('theme')
