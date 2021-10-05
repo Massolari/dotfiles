@@ -72,7 +72,7 @@ curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimag
 chmod +x nvim.appimage
 mv nvim.appimage $HOME/bin/nvim
 mkdir $HOME/.config/nvim
-ln -s $PWD/config/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -s $PWD/config/nvim/init.lua $HOME/.config/nvim/
 ln -s $PWD/config/nvim/lua/ $HOME/.config/nvim/
 
 # Elixir language server

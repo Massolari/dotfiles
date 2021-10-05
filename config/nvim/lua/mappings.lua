@@ -164,9 +164,10 @@ local normal = {
   { '<leader>i', 'mpgg=G`p', opts },
 
   -- Chamar função que alterna o quickfix
-  { '<leader>q', '<cmd>call QFixToggle()<CR>' , opts},
+  { '<leader>q', "<cmd>lua require'functions'.toggle_quickfix()<CR>" , opts},
   -- Alterar locationlist
-  { '<leader>l', '<cmd>call LListToggle()<CR>' , opts},
+  -- { '<leader>l', '<cmd>call LListToggle()<CR>' , opts},
+  { '<leader>l', "<cmd>lua require'functions'.toggle_location_list()<CR>" , opts},
 
   -- Setas redimensionam janelas adjacentes
   { '<left>', '<cmd>vertical resize -5<cr>' , opts},
