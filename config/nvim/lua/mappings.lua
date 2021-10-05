@@ -17,15 +17,6 @@ local function command_with_args(prompt, default, completion, command)
   vim.cmd(":" .. command .. " " .. input)
 end
 
-local function move_block(is_up)
-  local direction = '>+1'
-  if is_up then
-    direction = '<-2'
-  end
-  vim.cmd(":m '" .. direction)
-  vim.cmd('gv=gv')
-end
-
 local fzf_color = 'dark'
 local fzf_bat_theme = 'gruvbox-dark'
 if vim.opt.background:get() == 'light' then
@@ -270,7 +261,6 @@ local M = {
   lsp = lsp,
   checkout_new_branch = checkout_new_branch,
   command_with_args = command_with_args,
-  move_block = move_block,
   fzf_lua = fzf_lua,
 }
 

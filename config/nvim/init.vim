@@ -40,32 +40,8 @@ command! Bdall %bd|e#|bd#
 command! Transparent hi Normal guibg=NONE ctermbg=NONE
 
 "*****************************************************************************
-"" Configurações visuais
-"*****************************************************************************
-
-if $COLORTERM == 'gnome-terminal'
-  set term=gnome-256color
-else
-  if $TERM == 'xterm' && has('vim')
-    set term=xterm-256color
-  endif
-endif
-
-if &term =~ '256color'
-  set t_ut=
-endif
-
-"*****************************************************************************
 "" Funções
 "*****************************************************************************
-if !exists('*s:setupWrapping')
-  function s:setupWrapping()
-    set wrap
-    set wm=2
-    set textwidth=79
-  endfunction
-endif
-
 " Função para alterar o quickfix
 function! QFixToggle()
   if exists("g:qfix_win")
@@ -96,12 +72,6 @@ endfunction
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-
-" Corrigir sintaxe nos arquivos .vue
-augroup vue-syntax
-  autocmd!
-  autocmd FileType vue syntax sync fromstart
 augroup END
 
 " Sempre que entrar na janela de quickfix retirar o mapeamento customizado do Enter
@@ -135,13 +105,6 @@ augroup format-on-save
   autocmd BufWrite * silent! lua vim.lsp.buf.formatting_sync(nil, 1000)
 augroup END
 
-" Reconhecer .exs como elixir
-augroup exs-filetype
-  autocmd!
-  autocmd BufRead,BufNewFile *.exs		set filetype=elixir
-augroup END
-
-
 "*****************************************************************************
 "" Mapeamentos
 "*****************************************************************************
@@ -163,3 +126,5 @@ let s:user_file = stdpath('config') . '/lua/user/init.lua'
 if filereadable(s:user_file)
   lua require('user')
 endif
+
+lua require('settings.theme')
