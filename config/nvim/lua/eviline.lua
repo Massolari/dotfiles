@@ -14,7 +14,8 @@ end
 
 colors.bg = get_color('CursorLine', 'bg', colors.bg)
 colors.fg = get_color('Normal', 'fg')
-colors.yellow = get_color('Search', 'fg')
+colors.yellow = 'DarkYellow'
+-- colors.yellow = get_color('Search', 'fg', colors.yellow)
 -- colors.green = '#98971a'
 -- colors.blue = '#458588'
 -- colors.red = '#cc241d'
@@ -176,7 +177,9 @@ gls.left[2] = {
       --   }
       -- }
 
+      print(colors.bg)
       vim.cmd([[highlight Statusline guibg=]] .. colors.bg)
+      vim.cmd([[highlight Statusline guifg=]] .. colors.bg)
 
       -- gls.right[2] = {
         --   FileFormat = {
