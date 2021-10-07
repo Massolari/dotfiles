@@ -113,6 +113,7 @@ return require('packer').startup(function(use)
   use 'Pocco81/Catppuccino.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/edge'
+  use 'junegunn/seoul256.vim'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
