@@ -18,14 +18,10 @@ local function command_with_args(prompt, default, completion, command)
 end
 
 local fzf_color = 'dark'
-local fzf_bat_theme = 'gruvbox-dark'
 if vim.opt.background:get() == 'light' then
-  -- fzf_color = 'fg:#3c3836,bg:#fbf1c7,hl:#b57614,fg+:#3c3836,bg+:#ebdbb2,hl+:#b57614,info:#076678,prompt:#665c54,spinner:#b57614,pointer:#076678,marker:#af3a03,header:#bdae93'
   fzf_color = 'light'
-  fzf_bat_theme = 'gruvbox-light'
 end
 local fzf_args = '--color ' .. fzf_color
-local fzf_opts = { fzf_args = fzf_args, ['previewers.bat.theme'] = fzf_bat_theme }
 
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
@@ -34,7 +30,7 @@ local command = {
 }
 
 local function fzf_lua (command)
-  require'fzf-lua'[command](fzf_opts)
+  require'fzf-lua'[command]({ fzf_args = fzf_args })
 end
 
 local insert = {
