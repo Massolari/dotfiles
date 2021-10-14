@@ -24,10 +24,3 @@ vim.g.tokyonight_style = 'day'
 
 -- Github
 vim.g.function_style = 'italic'
-
--- Colorscheme
--- vim.cmd('colorscheme github_light')
-
-
--- vim.opt.background = 'dark'
--- vim.cmd('colorscheme gruvbox')

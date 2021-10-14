@@ -1,5 +1,5 @@
 if vim.g.colors_name == nil then
-  vim.cmd('colorscheme seoul256-light')
+  vim.cmd('colorscheme gruvbox')
 end
 
 vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]

@@ -6,7 +6,7 @@ vim.cmd [[packadd matchit]]
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
 
-return require('packer').startup(function(use)
+return require'packer'.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   --
@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons'
     },
     config = function ()
-      require'fzf-lua'.setup({ fzf_layout = 'default' })
+      require'fzf-lua'.setup { fzf_layout = 'default' }
     end
   }
 
@@ -85,7 +85,7 @@ return require('packer').startup(function(use)
         limit_ft_matches = 5,
         full_inclusive_prefix_key = '<c-x>',
       }
-      for _, key in ipairs({'f', 'F', 't', 'T'}) do
+      for _, key in ipairs {'f', 'F', 't', 'T'} do
         vim.api.nvim_del_keymap('o', key)
         vim.api.nvim_del_keymap('x', key)
         vim.api.nvim_del_keymap('n', key)

@@ -177,7 +177,6 @@ gls.left[2] = {
       --   }
       -- }
 
-      print(colors.bg)
       vim.cmd([[highlight Statusline guibg=]] .. colors.bg)
       vim.cmd([[highlight Statusline guifg=]] .. colors.bg)
 
