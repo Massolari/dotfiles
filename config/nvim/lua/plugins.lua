@@ -164,7 +164,12 @@ return require'packer'.startup(function(use)
   }
 
   -- Auto-fechamento de delimitadores
-  use 'cohama/lexima.vim'
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require'nvim-autopairs'.setup()
+    end
+  }
 
   -- Operação com delimitadores
   use 'tpope/vim-surround'
@@ -229,8 +234,11 @@ return require'packer'.startup(function(use)
     requires = {
       "hrsh7th/vim-vsnip",
       "quangnguyen30192/cmp-nvim-ultisnips",
-      "hrsh7th/cmp-nvim-lsp"
-      -- "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-emoji",
     },
     config = function ()
       local cmp = require'cmp'
@@ -274,6 +282,8 @@ return require'packer'.startup(function(use)
           { name = 'emoji' },
         }
       })
+
+      require'nvim-autopairs.completion.cmp'.setup()
     end,
   }
 
