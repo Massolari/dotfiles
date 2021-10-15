@@ -178,7 +178,7 @@ local normal = {
   { '<leader>op', "<cmd>exe 'edit' stdpath('config').'/lua/plugins.lua'<CR>" , opts},
 
   -- Atualizar configurações do nvim
-  { '<leader>os', "<cmd>exe 'source' stdpath('config').'/init.vim'<CR>" , opts},
+  { '<leader>os', "<cmd>exe 'source' stdpath('config').'/init.lua'<CR>" , opts},
 
   -- Pular para a próxima função do Elm
   { ']]', "<cmd>call search('^\\w\\+\\s:\\s', 'w')<CR>" , opts},
