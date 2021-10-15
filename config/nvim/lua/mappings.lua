@@ -29,10 +29,6 @@ local command = {
   {'<c-j>', '<Down>', {}}
 }
 
-local function fzf_lua (command)
-  require'fzf-lua'[command]({ fzf_args = fzf_args })
-end
-
 local insert = {
   -- Mover no modo insert sem as setas
   {'<c-b>', '<left>', opts},
@@ -57,22 +53,22 @@ local normal = {
   {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
 
   -- Alternar para arquivo
-  {'<leader>bb', "<cmd>lua require'mappings'.fzf_lua('buffers')<CR>", opts},
+  {'<leader>bb', "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts},
 
   -- Abrir arquivo
-  {'<leader>pf', "<cmd>lua require'mappings'.fzf_lua('files')<CR>", opts},
+  {'<leader>pf', "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts},
 
   -- Procurar em arquivos
-  {'<leader>ps', "<cmd>lua require'mappings'.fzf_lua('grep')<CR>", opts},
+  {'<leader>ps', "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts},
 
   -- Procurar em arquivos palavra sob o cursor
-  {'<leader>pe', "<cmd>lua require'mappings'.fzf_lua('grep_cword')<CR>", opts},
+  {'<leader>pe', "<cmd>lua require'telescope.builtin'.grep_string()<CR>", opts},
 
   -- Git log
-  {'<leader>gg', "<cmd>lua require'mappings'.fzf_lua('git_commits')<CR>", opts},
+  {'<leader>gg', "<cmd>lua require'telescope.builtin'.git_commits()<CR>", opts},
 
   -- Git branch
-  {'<leader>gr', "<cmd>lua require'mappings'.fzf_lua('git_branches')<CR>", opts},
+  {'<leader>gr', "<cmd>lua require'telescope.builtin'.git_branches()<CR>", opts},
 
   -- Git push
   {'<leader>gp', "<cmd>Git -c push.default=current push<CR>", opts},
@@ -81,10 +77,7 @@ local normal = {
   {'<leader>gk', "<cmd>lua require'mappings'.checkout_new_branch()<CR>", opts},
 
   -- Colorschemes
-  {'<leader>ec', "<cmd>lua require'mappings'.fzf_lua('colorschemes')<CR>", opts},
-
-  -- FZF Lines
-  {'<c-_>', "<cmd>lua require'mappings'.fzf_lua('blines')<CR>", opts},
+  {'<leader>ec', "<cmd>lua require'telescope.builtin'.colorscheme()<CR>", opts},
 
   -- Gerencias sessões
   {
@@ -219,17 +212,17 @@ local function setup()
 end
 
 local function lsp(client)
-  -- buf_set_keymap('n', '<leader>ca', "<cmd>lua require'mappings'.fzf_lua('lsp_code_actions')<CR>", opts)
-  buf_set_keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap('n', '<leader>co', "<cmd>lua require'fzf-lua'.lsp_document_symbols({ fzf_cli_args = '--with-nth 2,-1', fzf_args = '".. fzf_args .. "' })<CR>", opts)
-  buf_set_keymap('n', '<leader>cp', "<cmd>lua require'mappings'.fzf_lua('lsp_workspace_symbols')<CR>", opts)
+  -- buf_set_keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  buf_set_keymap('n', '<leader>ca', "<cmd>lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_dropdown({}))<CR>", opts)
+  buf_set_keymap('n', '<leader>co', "<cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>", opts)
+  buf_set_keymap('n', '<leader>cp', "<cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols()<CR>", opts)
   buf_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   buf_set_keymap('n', '<leader>cs', "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap('n', 'gy', "<cmd>lua require'mappings'.fzf_lua('lsp_typedefs')<CR>", opts)
+  buf_set_keymap('n', 'gy', "<cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", opts)
   buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gr', "<cmd>lua require'mappings'.fzf_lua('lsp_references')<CR>", opts)
+  buf_set_keymap('n', 'gr', "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", opts)
   buf_set_keymap('n', '<leader>ce', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'single' })<CR>", opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
@@ -258,7 +251,6 @@ local M = {
   lsp = lsp,
   checkout_new_branch = checkout_new_branch,
   command_with_args = command_with_args,
-  fzf_lua = fzf_lua,
 }
 
 setup()

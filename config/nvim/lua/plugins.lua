@@ -26,15 +26,21 @@ return require'packer'.startup(function(use)
   }
 
   -- Buscador
-  use { 'junegunn/fzf', run = './install --bin', }
   use {
-    'ibhagwan/fzf-lua',
-    requires = {
-      'vijaymarupudi/nvim-fzf',
-      'kyazdani42/nvim-web-devicons'
-    },
-    config = function ()
-      require'fzf-lua'.setup { fzf_layout = 'default' }
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require'telescope'.setup {
+        defaults = {
+          mappings = {
+            i = {
+              ['<c-j>'] = require'telescope.actions'.move_selection_next,
+              ['<c-k>'] = require'telescope.actions'.move_selection_previous,
+              ['<esc>'] = require'telescope.actions'.close,
+            }
+          }
+        }
+      }
     end
   }
 
