@@ -48,13 +48,13 @@ local on_attach = function(client, bufnr)
       hi LspReferenceRead cterm=bold ctermbg=black guibg=black
       hi LspReferenceText cterm=bold ctermbg=black guibg=black
       hi LspReferenceWrite cterm=bold ctermbg=black guibg=black
-      ]], false)
+        ]], false)
     else
       vim.api.nvim_exec([[
       hi LspReferenceRead cterm=bold ctermbg=lightyellow guibg=lightyellow
       hi LspReferenceText cterm=bold ctermbg=lightyellow guibg=lightyellow
       hi LspReferenceWrite cterm=bold ctermbg=lightyellow guibg=lightyellow
-      ]], false)
+        ]], false)
     end
     vim.api.nvim_exec([[
     augroup lsp_document_highlight
@@ -62,7 +62,7 @@ local on_attach = function(client, bufnr)
     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     augroup END
-    ]], false)
+      ]], false)
   end
 
   vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
@@ -78,30 +78,20 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
 
-local function setup_servers()
-  require'lspinstall'.setup() -- important
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    nvim_lsp[server].setup{
-      capabilities = capabilities,
-      on_attach = on_attach
-    }
-  end
-end
+local lsp_installer = require("nvim-lsp-installer")
 
-setup_servers()
+lsp_installer.on_server_ready(function(server)
+  local opts = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+  -- (optional) Customize the options passed to the server
+  -- if server.name == "tsserver" then
+  --     opts.root_dir = function() ... end
+  -- end
 
-function _G.lsp_reinstall_all()
-  local lspinstall = require'lspinstall'
-  for _, server in ipairs(lspinstall.installed_servers()) do
-    lspinstall.install_server(server)
-  end
-end
-
-vim.cmd 'command! -nargs=0 LspReinstallAll call v:lua.lsp_reinstall_all()'
+  -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+  server:setup(opts)
+  vim.cmd [[ do User LspAttachBuffers ]]
+end)
