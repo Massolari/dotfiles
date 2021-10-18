@@ -59,7 +59,7 @@ local normal = {
   {'<leader>pf', "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts},
 
   -- Procurar em arquivos
-  {'<leader>ps', "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts},
+  {'<leader>ps', "<cmd>lua require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For> ')})<CR>", opts},
 
   -- Procurar em arquivos palavra sob o cursor
   {'<leader>pe', "<cmd>lua require'telescope.builtin'.grep_string()<CR>", opts},
