@@ -106,3 +106,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias luamake=/Users/douglasmassolari/lua-language-server/3rd/luamake/luamake
+
+alias nvid=/Users/douglasmassolari/neovide/target/release/neovide

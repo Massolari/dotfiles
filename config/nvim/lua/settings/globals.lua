@@ -20,3 +20,8 @@ vim.g.tokyonight_style = 'day'
 
 -- Github
 vim.g.function_style = 'italic'
+
+-- Neovide
+vim.g.neovide_floating_blur = 0
+vim.g.neovide_window_floating_opacity = 1
+vim.g.neovide_cursor_vfx_mode = 'ripple'

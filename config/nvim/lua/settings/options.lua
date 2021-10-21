@@ -77,3 +77,5 @@ vim.opt.termguicolors = true
 -- Tema
 vim.opt.background = 'light'
 
+-- Font
+vim.opt.guifont = 'JetBrainsMono Nerd Font'

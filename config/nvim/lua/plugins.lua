@@ -62,10 +62,16 @@ return require'packer'.startup(function(use)
   use 'bronson/vim-trailing-whitespace'
 
   -- Adicionar comentários com 'gcc'
+  -- use {
+  --   'tpope/vim-commentary',
+  --   opt = true,
+  --   keys = 'gc',
+  -- }
   use {
-    'tpope/vim-commentary',
-    opt = true,
-    keys = 'gc',
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
   }
 
   -- Habilita o uso do emmet (<C-y>,)
@@ -186,9 +192,7 @@ return require'packer'.startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons',
     config = function ()
       require'nvim-tree'.setup{}
-    end,
-    opt = true,
-    cmd = {'NvimTreeToggle', 'NvimTreeFindFile'}
+    end
   }
 
   -- Warper para comandos do git
