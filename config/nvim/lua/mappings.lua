@@ -17,12 +17,6 @@ local function command_with_args(prompt, default, completion, command)
   vim.cmd(":" .. command .. " " .. input)
 end
 
-local fzf_color = 'dark'
-if vim.opt.background:get() == 'light' then
-  fzf_color = 'light'
-end
-local fzf_args = '--color ' .. fzf_color
-
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
   {'<c-k>', '<Up>', {}},
@@ -223,11 +217,11 @@ local function lsp(client)
   buf_set_keymap('n', 'gy', "<cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", opts)
   buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gr', "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", opts)
-  buf_set_keymap('n', '<leader>ce', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'single' })<CR>", opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']e', "<cmd>lua vim.lsp.diagnostic.goto_next({ severity = 'Error' })<CR>", opts)
-  buf_set_keymap('n', '[e', "<cmd>lua vim.lsp.diagnostic.goto_prev({ severity = 'Error' })<CR>", opts)
+  buf_set_keymap('n', '<leader>ce', "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line', border = 'single' })<CR>", opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ float =  { show_header = true, border = "single" }})<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ float =  { show_header = true, border = "single" }})<CR>', opts)
+  buf_set_keymap('n', ']e', "<cmd>lua vim.diagnostic.goto_next({ float =  { show_header = true, border = 'single' }, severity = 'Error' })<CR>", opts)
+  buf_set_keymap('n', '[e', "<cmd>lua vim.diagnostic.goto_prev({ float =  { show_header = true, border = 'single' }, severity = 'Error' })<CR>", opts)
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)

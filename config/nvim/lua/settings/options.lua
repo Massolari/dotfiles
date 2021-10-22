@@ -26,9 +26,6 @@ end
 -- Idioma para correção ortográfica
 vim.opt.spelllang = 'pt'
 
--- Permitir trocar de buffer sem salvar
-vim.opt.hidden = true
-
 -- Número mínimo de linha que deverão ser mostradas antes e depois do cursor
 vim.opt.scrolloff = 5
 
