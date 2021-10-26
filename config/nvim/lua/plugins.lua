@@ -203,7 +203,8 @@ return require'packer'.startup(function(use)
   }
 
   -- Engine de snippets
-  use 'SirVer/ultisnips'
+  -- use 'SirVer/ultisnips'
+  use 'L3MON4D3/LuaSnip'
 
   -- Biblioteca de snippets
   use 'honza/vim-snippets'
@@ -236,8 +237,9 @@ return require'packer'.startup(function(use)
   use {
     "hrsh7th/nvim-cmp",
     requires = {
-      "hrsh7th/vim-vsnip",
-      "quangnguyen30192/cmp-nvim-ultisnips",
+      -- "hrsh7th/vim-vsnip",
+      -- "quangnguyen30192/cmp-nvim-ultisnips",
+      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
@@ -251,7 +253,8 @@ return require'packer'.startup(function(use)
       cmp.setup({
         snippet = {
           expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
+            -- vim.fn["UltiSnips#Anon"](args.body)
+            require'luasnip'.lsp_expand(args.body)
           end,
         },
         mapping = {
@@ -277,17 +280,24 @@ return require'packer'.startup(function(use)
           end
         },
         sources = {
+          { name = 'nvim_lsp' },
+          { name = 'cmp_tabnine' },
+          { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer' },
           { name = 'calc' },
-          { name = 'nvim_lsp' },
-          { name = 'cmp_tabnine' },
-          { name = 'ultisnips' },
+          -- { name = 'ultisnips' },
           { name = 'emoji' },
+        },
+        experimental = {
+          native_menu = false,
+          ghost_text = true
         }
       })
 
-      require'nvim-autopairs.completion.cmp'.setup()
+      require'nvim-autopairs.completion.cmp'.setup{
+        map_complete = false
+      }
     end,
   }
 
