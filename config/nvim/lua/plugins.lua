@@ -407,4 +407,6 @@ return require'packer'.startup(function(use)
   if vim.fn.filereadable(user_file) > 0 then
     require'user.plugins'.setup(use)
   end
+
+  use 'github/copilot.vim'
 end)
