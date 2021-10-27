@@ -1,6 +1,8 @@
 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
 
+local wk = require'which-key'
+
 local function set_keymaps(mode, list)
   for _, map in pairs(list) do
     set_keymap(mode, unpack(map))
@@ -17,10 +19,15 @@ local function command_with_args(prompt, default, completion, command)
   vim.cmd(":" .. command .. " " .. input)
 end
 
+-- wk.register({
+--   ['<c-k>'] = {'<Up>', 'Comando anterior'},
+--   ['<c-j>'] = {'<Down>', 'Próximo comando'}
+-- }, { mode = 'c', silent = false })
+
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
-  {'<c-k>', '<Up>', {}},
-  {'<c-j>', '<Down>', {}}
+  -- {'<c-k>', '<Up>', {}},
+  -- {'<c-j>', '<Down>', {}}
 }
 
 local insert = {
@@ -179,8 +186,8 @@ local normal = {
   { '[[', "<cmd>call search('^\\w\\+\\s:\\s', 'bW')<CR>" , opts},
 
   -- Whichkey
-  { '<leader>', "<cmd>WhichKey '<space>'<CR>", opts },
-  { '<localleader>', "<cmd>WhichKey '\\'<CR>", opts },
+  -- { '<leader>', "<cmd>WhichKey '<space>'<CR>", opts },
+  -- { '<localleader>', "<cmd>WhichKey '\\'<CR>", opts },
 }
 
 local terminal = {

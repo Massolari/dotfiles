@@ -220,7 +220,12 @@ return require'packer'.startup(function(use)
   }
 
   -- Guia de atalhos
-  use 'liuchengxu/vim-which-key'
+  use {
+    'folke/which-key.nvim',
+    config = function()
+      require'which-key'.setup()
+    end
+  }
 
   -- Cliente REST
   use {
@@ -384,7 +389,7 @@ return require'packer'.startup(function(use)
   }
 
   -- Mostrar o que há nos registradores
-  use 'tversteeg/registers.nvim'
+  -- use 'tversteeg/registers.nvim'
 
   -- Buffers no topo
   use {
