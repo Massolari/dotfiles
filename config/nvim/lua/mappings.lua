@@ -36,8 +36,11 @@ local insert = {
 }
 
 local normal = {
-  -- Copiar linha completa com Y
-  -- {'Y', 'yy', opts},
+  -- Desfazer mapeamentos do lightspeed
+  {'f', 'f', {}},
+  {'F', 'F', {}},
+  {'t', 't', {}},
+  {'T', 'T', {}},
 
   -- Diagnostics
   {'<leader>cd', '<cmd>Trouble<cr>', opts},

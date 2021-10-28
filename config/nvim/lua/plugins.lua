@@ -85,14 +85,7 @@ return require'packer'.startup(function(use)
   }
 
   -- Habilita a busca rapida usando duas letras
-  use {
-    'ggandor/lightspeed.nvim',
-    config = function ()
-      for _, key in ipairs {'f', 'F', 't', 'T'} do
-        vim.cmd('silent! unmap ' .. key)
-      end
-    end,
-  }
+  use 'ggandor/lightspeed.nvim'
 
   -- Temas
   use 'morhetz/gruvbox'
