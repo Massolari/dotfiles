@@ -98,9 +98,7 @@ return require'packer'.startup(function(use)
         full_inclusive_prefix_key = '<c-x>',
       }
       for _, key in ipairs {'f', 'F', 't', 'T'} do
-        vim.api.nvim_del_keymap('o', key)
-        vim.api.nvim_del_keymap('x', key)
-        vim.api.nvim_del_keymap('n', key)
+        vim.cmd('silent! unmap ' .. key)
       end
     end,
   }
@@ -303,7 +301,6 @@ return require'packer'.startup(function(use)
           { name = 'path' },
           { name = 'buffer' },
           { name = 'calc' },
-          -- { name = 'ultisnips' },
           { name = 'emoji' },
         },
         experimental = {
@@ -311,10 +308,6 @@ return require'packer'.startup(function(use)
           ghost_text = true
         }
       })
-
-      require'nvim-autopairs.completion.cmp'.setup{
-        map_complete = false
-      }
     end,
   }
 
