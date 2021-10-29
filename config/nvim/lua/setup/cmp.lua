@@ -16,10 +16,18 @@ local sources ={
 local disabled_sources = vim.g.disabled_cmp_sources or {}
 local enabled_sources = {}
 for _, source in ipairs(sources) do
-  if not disabled_sources[source.name] then
+  local is_disabled = false
+  for _, disabled in ipairs(disabled_sources) do
+    if source.name == disabled then
+      is_disabled = true
+      break
+    end
+  end
+  if not is_disabled then
     table.insert(enabled_sources, source)
   end
 end
+
 
 cmp.setup({
   snippet = {
