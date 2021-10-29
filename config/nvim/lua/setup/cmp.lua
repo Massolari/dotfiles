@@ -75,10 +75,6 @@ cmp.setup({
     end
   },
   sources = enabled_sources,
-  experimental = {
-    native_menu = false,
-    ghost_text = true
-  }
 })
 
 
