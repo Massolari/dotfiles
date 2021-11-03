@@ -93,7 +93,7 @@ local normal = {
   { '<leader>gb', '<cmd>Git blame<CR> ', opts},
   { '<leader>gc', '<cmd>Git commit<CR> ', opts},
   { '<leader>gd', '<cmd>Gdiff<CR> ', opts},
-  { '<leader>gl', '<cmd>Git pull<CR> ', opts},
+  { '<leader>gl', '<cmd>Git pull --rebase<CR> ', opts},
   { '<leader>gs', '<cmd>Git<CR> ', opts},
   { '<leader>gw', '<cmd>Gwrite<CR> ', opts},
 
