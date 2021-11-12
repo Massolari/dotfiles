@@ -104,7 +104,6 @@ return require'packer'.startup(function(use)
   use 'jsit/toast.vim'
   use 'Th3Whit3Wolf/space-nvim'
   use 'rafamadriz/neon'
-  use 'Pocco81/Catppuccino.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/edge'
   use 'junegunn/seoul256.vim'

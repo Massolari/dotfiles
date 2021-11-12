@@ -90,6 +90,24 @@ lsp_installer.on_server_ready(function(server)
   -- if server.name == "tsserver" then
   --     opts.root_dir = function() ... end
   -- end
+  -- if server.name == "tailwindcss" then
+  --   opts.settings = {
+  --     tailwindCSS = {
+  --       -- includeLanguages = {
+  --       --   elm = "html"
+  --       -- },
+  --       experimental = {
+  --         classRegex = "\\bclass\\s+\"([^\"]*)\""
+  --       }
+  --     }
+  --   }
+  --   opts.init_options = {
+  --     userLanguages = {
+  --       elm = "html"
+  --     }
+  --   }
+  --   opts.filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte", "elm" }
+  -- end
 
   -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
   server:setup(opts)
