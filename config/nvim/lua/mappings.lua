@@ -103,6 +103,9 @@ local normal = {
   -- Vimgrep
   {'<leader>eg', "<cmd>lua require'mappings'.vim_grep()<CR>", opts},
 
+  -- Fechar
+  { '<leader>eq', '<cmd>q<CR>' , opts},
+
 
   -- Gerencias sessões
   {
@@ -153,7 +156,9 @@ local normal = {
   -- Buffers
   { '<leader>bd', '<cmd>bp|bd #<CR>' , opts},
   { '<leader>bs', '<cmd>w<CR>' , opts},
-  { '<leader>wc', '<cmd>q<CR>' , opts},
+
+  -- Window
+  { '<leader>wc', '<c-w>c' , opts},
 
 
   -- Mover cursor para outra janela divida
