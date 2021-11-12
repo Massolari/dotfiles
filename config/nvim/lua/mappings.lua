@@ -43,8 +43,11 @@ local insert = {
 }
 
 local normal = {
-  -- Copiar linha completa com Y
-  -- {'Y', 'yy', opts},
+  -- Desfazer mapeamentos do lightspeed
+  {'f', 'f', {}},
+  {'F', 'F', {}},
+  {'t', 't', {}},
+  {'T', 'T', {}},
 
   -- Diagnostics
   {'<leader>cd', '<cmd>Trouble<cr>', opts},
@@ -97,7 +100,7 @@ local normal = {
   { '<leader>gb', '<cmd>Git blame<CR> ', opts},
   { '<leader>gc', '<cmd>Git commit<CR> ', opts},
   { '<leader>gd', '<cmd>Gdiff<CR> ', opts},
-  { '<leader>gl', '<cmd>Git pull<CR> ', opts},
+  { '<leader>gl', '<cmd>Git pull --rebase<CR> ', opts},
   { '<leader>gs', '<cmd>Git<CR> ', opts},
   { '<leader>gw', '<cmd>Gwrite<CR> ', opts},
 

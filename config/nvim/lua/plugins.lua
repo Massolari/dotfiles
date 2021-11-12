@@ -85,25 +85,7 @@ return require'packer'.startup(function(use)
   }
 
   -- Habilita a busca rapida usando duas letras
-  use {
-    'ggandor/lightspeed.nvim',
-    config = function ()
-      require'lightspeed'.setup {
-        jump_to_first_match = true,
-        jump_on_partial_input_safety_timeout = 400,
-        highlight_unique_chars = false,
-        grey_out_search_area = true,
-        match_only_the_start_of_same_char_seqs = true,
-        limit_ft_matches = 5,
-        full_inclusive_prefix_key = '<c-x>',
-      }
-      for _, key in ipairs {'f', 'F', 't', 'T'} do
-        vim.api.nvim_del_keymap('o', key)
-        vim.api.nvim_del_keymap('x', key)
-        vim.api.nvim_del_keymap('n', key)
-      end
-    end,
-  }
+  use 'ggandor/lightspeed.nvim'
 
   -- Temas
   use 'morhetz/gruvbox'
@@ -122,7 +104,6 @@ return require'packer'.startup(function(use)
   use 'jsit/toast.vim'
   use 'Th3Whit3Wolf/space-nvim'
   use 'rafamadriz/neon'
-  use 'Pocco81/Catppuccino.nvim'
   use 'folke/tokyonight.nvim'
   use 'sainnhe/edge'
   use 'junegunn/seoul256.vim'
@@ -250,77 +231,7 @@ return require'packer'.startup(function(use)
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-emoji",
-    },
-    config = function ()
-      local cmp = require'cmp'
-      local lspkind = require'lspkind'
-      local luasnip = require'luasnip'
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            -- vim.fn["UltiSnips#Anon"](args.body)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = {
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = function(fallback)
-            if luasnip.jumpable(1) then
-            -- if luasnip.expand_or_jumpable() then
-              -- vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-              vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-next', true, true, true), '')
-            else
-              fallback()
-            end
-          end,
-          ['<S-Tab>'] = function(fallback)
-            if luasnip.jumpable(-1) then
-              vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
-            else
-              fallback()
-            end
-          end,
-        },
-        formatting = {
-          format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
-            vim_item.menu = ({
-              path = "[Path]",
-              buffer = "[Buffer]",
-              calc = "[Calc]",
-              nvim_lsp = "[LSP]",
-              cmp_tabnine = "[TabNine]",
-              ultisnips = "[UltiSnips]",
-              emoji = "[Emoji]",
-            })[entry.source.name]
-            return vim_item
-          end
-        },
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'cmp_tabnine' },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'buffer' },
-          { name = 'calc' },
-          -- { name = 'ultisnips' },
-          { name = 'emoji' },
-        },
-        experimental = {
-          native_menu = false,
-          ghost_text = true
-        }
-      })
-
-      require'nvim-autopairs.completion.cmp'.setup{
-        map_complete = false
-      }
-    end,
+    }
   }
 
   -- TabNine
@@ -412,4 +323,6 @@ return require'packer'.startup(function(use)
   if vim.fn.filereadable(user_file) > 0 then
     require'user.plugins'.setup(use)
   end
+
+  use 'github/copilot.vim'
 end)
