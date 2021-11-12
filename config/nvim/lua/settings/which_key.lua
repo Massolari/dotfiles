@@ -31,7 +31,8 @@ vim.g.which_key_map = {
   },
   e = {
     name = '+Editor',
-    c = 'Temas (colorscheme)'
+    c = 'Temas (colorscheme)',
+    g = 'Buscar com vimgrep',
   },
   g = {
     name = '+Git',
