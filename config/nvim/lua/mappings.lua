@@ -17,6 +17,30 @@ local function command_with_args(prompt, default, completion, command)
   vim.cmd(":" .. command .. " " .. input)
 end
 
+-- Get the user input for what he wants to search for with vimgrep
+-- if it's empty, abort, if it's not empty get the user input for the target folder, if
+-- it's not specified, defaults to `git ls-files`
+local function vim_grep()
+  local input = vim.fn.input('Search for: ', '')
+  if input == '' then
+    print('Aborted')
+    return
+  end
+
+  local target = vim.fn.input('Target folder/files (git ls-files): ')
+  if target == '' then
+    target = '`git ls-files`'
+  end
+
+  local status, err = pcall(vim.cmd, ':vimgrep /' .. input .. '/gj ' .. target)
+  if status == false then
+    print(err)
+    return
+  end
+  vim.cmd(':copen')
+end
+
+
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
   {'<c-k>', '<Up>', {}},
@@ -75,6 +99,10 @@ local normal = {
 
   -- Colorschemes
   {'<leader>ec', "<cmd>lua require'telescope.builtin'.colorscheme()<CR>", opts},
+
+  -- Vimgrep
+  {'<leader>eg', "<cmd>lua require'mappings'.vim_grep()<CR>", opts},
+
 
   -- Gerencias sessões
   {
@@ -248,6 +276,7 @@ local M = {
   lsp = lsp,
   checkout_new_branch = checkout_new_branch,
   command_with_args = command_with_args,
+  vim_grep = vim_grep,
 }
 
 setup()
