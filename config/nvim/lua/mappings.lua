@@ -217,6 +217,10 @@ local normal = {
   -- Whichkey
   { '<leader>', "<cmd>WhichKey '<space>'<CR>", opts },
   { '<localleader>', "<cmd>WhichKey '\\'<CR>", opts },
+
+  -- Mover de forma natural em wrap
+  { 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true } },
+  { 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true } },
 }
 
 local terminal = {
