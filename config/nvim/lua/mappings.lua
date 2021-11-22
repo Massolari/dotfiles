@@ -70,8 +70,8 @@ local normal = {
   {'<leader>cd', '<cmd>Trouble<cr>', opts},
 
   -- Navegar pelos buffers
-  {'<tab>', "<cmd>BufferLineCycleNext<CR>", opts},
-  {'<s-tab>', "<cmd>BufferLineCyclePrev<CR>", opts},
+  {'<c-n>', "<cmd>BufferLineCycleNext<CR>", opts},
+  {'<c-p>', "<cmd>BufferLineCyclePrev<CR>", opts},
 
   -- Alternar para arquivo
   {'<leader>bb', "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts},
