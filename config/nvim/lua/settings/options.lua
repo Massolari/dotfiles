@@ -13,8 +13,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = 'split'
 
--- Arquivo swap
-vim.opt.swapfile = false
+-- Desabilitar safewrite
+vim.opt.backupcopy = 'yes'
 
 local envShell = os.getenv('SHELL')
 if envShell ~= "" then
