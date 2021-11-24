@@ -109,3 +109,5 @@ alias luamake=/Users/douglasmassolari/lua-language-server/3rd/luamake/luamake
 
 alias nvid=/Users/douglasmassolari/neovide/target/release/neovide
 alias lg=lazygit
+alias lvim=$HOME/.local/bin/lvim
+[ -f "/Users/douglasmassolari/.ghcup/env" ] && source "/Users/douglasmassolari/.ghcup/env" # ghcup-env

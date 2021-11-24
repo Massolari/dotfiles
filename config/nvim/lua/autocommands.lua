@@ -10,6 +10,7 @@ augroup enable-cr-quickfix
   " In the quickfix window, <CR> is used to jump to the error under the cursor, so undefine the mapping there.
   autocmd!
   autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+  autocmd BufReadPost quickfix let g:quickfix_win = bufnr('$')
 augroup END
 
 " Abrir todos os foldings quando entrar em um arquivo

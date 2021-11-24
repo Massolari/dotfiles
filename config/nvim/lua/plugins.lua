@@ -266,9 +266,7 @@ return require'packer'.startup(function(use)
         shade_terminals = false,
         direction = 'horizontal'
       }
-    end,
-    opt = true,
-    cmd = 'ToggleTerm',
+    end
   }
 
   -- Lista de diagnostics

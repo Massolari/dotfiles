@@ -85,10 +85,7 @@ vim.g.which_key_map = {
   },
   t = {
     f = 'Abrir terminal flutuante',
-    n = 'Próximo (next) terminal',
-    o = 'Abrir terminal',
-    p = 'Terminal anterior (previous)',
-    t = 'Esconder/mostrar terminal atual',
+    t = 'Abrir terminal',
   },
   v = 'Dividir verticalmente',
   w = {

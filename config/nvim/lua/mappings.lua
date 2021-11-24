@@ -10,7 +10,11 @@ end
 local opts = { noremap=true, silent=true }
 
 local function command_with_args(prompt, default, completion, command)
-  local input = vim.fn.input(prompt, '', completion)
+  local status, input = pcall(vim.fn.input, prompt, '', completion)
+  if status == false then
+    return
+  end
+
   if input == '' and default ~= nil then
     input = default
   end
@@ -21,13 +25,18 @@ end
 -- if it's empty, abort, if it's not empty get the user input for the target folder, if
 -- it's not specified, defaults to `git ls-files`
 local function vim_grep()
-  local input = vim.fn.input('Search for: ', '')
-  if input == '' then
+  local status, input = pcall(vim.fn.input, 'Search for: ', '')
+  if status == false or input == '' then
     print('Aborted')
     return
   end
 
-  local target = vim.fn.input('Target folder/files (git ls-files): ')
+  local status, target = pcall(vim.fn.input, 'Target folder/files (git ls-files): ', '', 'file')
+  if status == false then
+    print('Aborted')
+    return
+  end
+  -- local target = vim.fn.input('Target folder/files (git ls-files): ', '', 'file')
   if target == '' then
     target = '`git ls-files`'
   end
@@ -40,6 +49,12 @@ local function vim_grep()
   vim.cmd(':copen')
 end
 
+local Terminal = require'toggleterm.terminal'.Terminal
+local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
+
+function lazygit_toggle()
+  lazygit:toggle()
+end
 
 local command = {
   -- Navegar pelo histórico de comando levando em consideração o que foi digitado
@@ -97,6 +112,9 @@ local normal = {
   -- Git checkout -b
   {'<leader>gk', "<cmd>lua require'mappings'.checkout_new_branch()<CR>", opts},
 
+  -- Lazygit
+  {'<leader>gy', "<cmd>lua require'mappings'.lazygit_toggle()<CR>", opts},
+
   -- Colorschemes
   {'<leader>ec', "<cmd>lua require'telescope.builtin'.colorscheme()<CR>", opts},
 
@@ -134,7 +152,10 @@ local normal = {
   { '<leader>=', '<c-w>=', opts},
 
   -- Abrir terminal
-  { '<leader>t', '<cmd>exe v:count1 . "ToggleTerm"<CR>' , opts},
+  { '<leader>tt', '<cmd>exe v:count1 . "ToggleTerm"<CR>' , opts},
+
+  -- Abrir terminal flutuante
+  { '<leader>tf', '<cmd>exe v:count1 . "ToggleTerm direction=float"<CR>' , opts},
 
   -- Toda a vez que pular para próxima palavra buscada o cursor fica no centro da tela
   { 'n', 'nzzzv', opts },
@@ -286,6 +307,7 @@ local M = {
   checkout_new_branch = checkout_new_branch,
   command_with_args = command_with_args,
   vim_grep = vim_grep,
+  lazygit_toggle = lazygit_toggle,
 }
 
 setup()
