@@ -300,7 +300,7 @@ local function lsp(client, bufnr)
   end
   if format_command ~= nil then
     code_mappings = vim.tbl_extend('force', code_mappings, {
-      f = { 'Formatar código', format_command }
+      f = { format_command, 'Formatar código' }
     })
   end
 
