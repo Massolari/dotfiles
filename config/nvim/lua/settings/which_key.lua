@@ -1,5 +1,5 @@
 -- Which-key
-vim.g.which_key_map = {
+vim.g.which_key_leader_map = {
   [','] = '"," no fim da linha',
   [';'] = '";" no fim da linha',
   ['<Tab>'] = 'Alterar para arquivo anterior',
@@ -7,9 +7,10 @@ vim.g.which_key_map = {
   a = {
     name = '+Aba',
     a = 'Abrir uma nova',
+    c = 'Fechar (close)',
+    j = 'Pular (jump) para buffer',
     n = 'Ir para a próxima (next)',
     p = 'Ir para a anterior (previous)',
-    c = 'Fechar (close)',
   },
   b = {
     name = '+Buffer',
@@ -94,4 +95,26 @@ vim.g.which_key_map = {
   }
 }
 
-vim.fn['which_key#register']('<Space>', 'g:which_key_map')
+vim.g.which_key_g_map = {
+  d = 'Ir para definição',
+  i = 'Ir para implementação',
+  y = 'Ir para definição do tipo',
+  r = 'Ver referências',
+}
+
+vim.g.which_key_closing_brackets_map = {
+  [']'] = 'Próxima função Elm',
+  d = 'Próximo problema',
+  e = 'Próximo erro',
+}
+
+vim.g.which_key_open_brackets_map = {
+  ['['] = 'Função Elm anterior',
+  d = 'Problema anterior',
+  e = 'Erro anterior'
+}
+
+vim.fn['which_key#register']('<Space>', 'g:which_key_leader_map')
+vim.fn['which_key#register']('g', 'g:which_key_g_map')
+vim.fn['which_key#register'](']', 'g:which_key_closing_brackets_map')
+vim.fn['which_key#register']('[', 'g:which_key_open_brackets_map')

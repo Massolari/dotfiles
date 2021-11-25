@@ -25,14 +25,14 @@ end
 -- if it's empty, abort, if it's not empty get the user input for the target folder, if
 -- it's not specified, defaults to `git ls-files`
 local function vim_grep()
-  local status, input = pcall(vim.fn.input, 'Search for: ', '')
-  if status == false or input == '' then
+  local searchStatus, input = pcall(vim.fn.input, 'Search for: ', '')
+  if searchStatus == false or input == '' then
     print('Aborted')
     return
   end
 
-  local status, target = pcall(vim.fn.input, 'Target folder/files (git ls-files): ', '', 'file')
-  if status == false then
+  local folderStatus, target = pcall(vim.fn.input, 'Target folder/files (git ls-files): ', '', 'file')
+  if folderStatus == false then
     print('Aborted')
     return
   end
@@ -52,7 +52,7 @@ end
 local Terminal = require'toggleterm.terminal'.Terminal
 local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
 
-function lazygit_toggle()
+local function lazygit_toggle()
   lazygit:toggle()
 end
 
@@ -83,13 +83,6 @@ local normal = {
 
   -- Diagnostics
   {'<leader>cd', '<cmd>Trouble<cr>', opts},
-
-  -- Navegar pelos buffers
-  {'<c-n>', "<cmd>BufferLineCycleNext<CR>", opts},
-  {'<c-p>', "<cmd>BufferLineCyclePrev<CR>", opts},
-
-  -- Alternar para arquivo
-  {'<leader>bb', "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts},
 
   -- Abrir arquivo
   {'<leader>pf', "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts},
@@ -177,6 +170,10 @@ local normal = {
   -- Buffers
   { '<leader>bd', '<cmd>bp|bd #<CR>' , opts},
   { '<leader>bs', '<cmd>w<CR>' , opts},
+  { '<leader>bj', '<cmd>BufferLinePick<CR>', opts },
+  {'<c-n>', "<cmd>BufferLineCycleNext<CR>", opts},
+  {'<c-p>', "<cmd>BufferLineCyclePrev<CR>", opts},
+  {'<leader>bb', "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts},
 
   -- Window
   { '<leader>wc', '<c-w>c' , opts},
@@ -242,6 +239,9 @@ local normal = {
   -- Mover de forma natural em wrap
   { 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true } },
   { 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true } },
+
+  -- Desabilitar modo Ex
+  { 'Q', '<nop>', {}}
 }
 
 local terminal = {
