@@ -14,6 +14,7 @@ require'plugins'
 require'settings'
 require'commands'
 require'autocommands'
+require'mappings'.setup()
 require'lsp'
 
 -- Arquivo de configurações do usuário

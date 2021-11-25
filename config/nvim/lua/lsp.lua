@@ -39,7 +39,7 @@ local on_attach = function(client, bufnr)
   client.config.capabilities = vim.tbl_extend('keep', client.config.capabilities or {}, lsp_status.capabilities)
 
   -- Mappings.
-  mappings.lsp(client)
+  mappings.lsp(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then

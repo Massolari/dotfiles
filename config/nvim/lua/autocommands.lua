@@ -14,10 +14,10 @@ augroup enable-cr-quickfix
 augroup END
 
 " Abrir todos os foldings quando entrar em um arquivo
-augroup openfold
-  autocmd!
-  autocmd BufEnter,FocusGained * norm zR
-augroup END
+" augroup openfold
+"   autocmd!
+"   autocmd BufEnter,FocusGained * norm zR
+" augroup END
 
 " Ativa o número da linha relativo apenas quando o buffer estiver em foco e no normal mode
 augroup numbertoggle
