@@ -76,3 +76,6 @@ vim.opt.background = 'light'
 
 -- Font
 vim.opt.guifont = 'JetBrainsMono Nerd Font'
+
+-- Habilitar título
+vim.opt.title = true
