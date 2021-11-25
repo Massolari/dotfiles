@@ -98,7 +98,7 @@ wk.register({
 -- Normal
 wk.register({
   ['<c-n>'] = {  "<cmd>BufferLineCycleNext<CR>", 'Próximo buffer' },
-  ['<c-p>'] = {  "<cmd>BufferLineCycleNext<CR>", 'Buffer anterior' },
+  ['<c-p>'] = {  "<cmd>BufferLineCyclePrev<CR>", 'Buffer anterior' },
   [']'] = {
     [']'] = { "<cmd>call search('^\\w\\+\\s:\\s', 'w')<CR>", 'Pular para a próxima função Elm' },
     c = 'Próximo git hunk',
