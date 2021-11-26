@@ -30,7 +30,8 @@ return require'packer'.startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require'telescope'.setup {
+      local telescope = require'telescope'
+      telescope.setup {
         defaults = {
           mappings = {
             i = {
@@ -41,8 +42,10 @@ return require'packer'.startup(function(use)
           }
         }
       }
+      telescope.load_extension('fzf')
     end
   }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Sintasse para várias linguagens
   use {
@@ -61,12 +64,6 @@ return require'packer'.startup(function(use)
   -- Exibe espaços vazios no final da linha
   use 'bronson/vim-trailing-whitespace'
 
-  -- Adicionar comentários com 'gcc'
-  -- use {
-  --   'tpope/vim-commentary',
-  --   opt = true,
-  --   keys = 'gc',
-  -- }
   use {
     'numToStr/Comment.nvim',
     config = function()
@@ -87,26 +84,8 @@ return require'packer'.startup(function(use)
   -- Habilita a busca rapida usando duas letras
   use 'ggandor/lightspeed.nvim'
 
-  -- Temas
+  -- Gruvbox
   use 'morhetz/gruvbox'
-  use 'Th3Whit3Wolf/one-nvim'
-  use 'dracula/vim'
-  use 'ishan9299/nvim-solarized-lua'
-  use 'tomasr/molokai'
-  use 'arcticicestudio/nord-vim'
-  use 'NLKNguyen/papercolor-theme'
-  use 'sainnhe/sonokai'
-  use 'cocopon/iceberg.vim'
-  use 'drewtempelmeyer/palenight.vim'
-  use 'flrnd/plastic.vim'
-  use 'projekt0n/github-nvim-theme'
-  use 'hzchirs/vim-material'
-  use 'jsit/toast.vim'
-  use 'Th3Whit3Wolf/space-nvim'
-  use 'rafamadriz/neon'
-  use 'folke/tokyonight.nvim'
-  use 'sainnhe/edge'
-  use 'junegunn/seoul256.vim'
 
 
   -- Mostra um git diff na coluna de número e comandos para hunks
@@ -184,8 +163,8 @@ return require'packer'.startup(function(use)
   }
 
   -- Engine de snippets
-  -- use 'SirVer/ultisnips'
   use 'L3MON4D3/LuaSnip'
+  use "rafamadriz/friendly-snippets"
 
   -- Biblioteca de snippets
   use 'honza/vim-snippets'
@@ -227,8 +206,6 @@ use {
   use {
     "hrsh7th/nvim-cmp",
     requires = {
-      -- "hrsh7th/vim-vsnip",
-      -- "quangnguyen30192/cmp-nvim-ultisnips",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -327,4 +304,7 @@ use {
   end
 
   use 'github/copilot.vim'
+
+  -- Correção do CursorHold
+  use 'antoinemadec/FixCursorHold.nvim'
 end)

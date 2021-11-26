@@ -1,6 +1,7 @@
 local cmp = require'cmp'
 local lspkind = require'lspkind'
 local luasnip = require'luasnip'
+require("luasnip/loaders/from_vscode").lazy_load()
 
 local sources ={
   { name = 'nvim_lsp' },
@@ -32,7 +33,6 @@ end
 cmp.setup({
   snippet = {
     expand = function(args)
-      -- vim.fn["UltiSnips#Anon"](args.body)
       luasnip.lsp_expand(args.body)
     end,
   },
