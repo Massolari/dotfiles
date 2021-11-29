@@ -228,7 +228,6 @@ local function lsp(client, bufnr)
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", 'Assinatura' },
   }
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  -- buf_set_keymap('n', 'gr', "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", opts)
 
   -- Set some keybinds conditional on server capabilities
   local format_command = nil
@@ -247,7 +246,7 @@ local function lsp(client, bufnr)
   wk.register({
     d = { "<cmd>lua vim.lsp.buf.definition()<CR>", 'Definição' },
     i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", 'Implementação' },
-    r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'Referências' },
+    r = { '<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<CR>', 'Referências' },
     y = { "<cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", 'Definição do tipo' },
   }, vim.tbl_extend('force', opts, { mode = 'n', buffer = bufnr, prefix = 'g' }))
 end
