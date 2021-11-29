@@ -31,7 +31,7 @@ local commands = {
       "*",
       "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
     },
-    { "BufWrite", "*", "lua vim.lsp.buf.formatting_sync(nil, 200)"}
+    { "BufWrite", "*", "lua vim.lsp.buf.formatting_sync(nil, 1000)"}
   },
   _filetypechanges = {
     { "BufWinEnter", ".zsh", "setlocal filetype=sh" },
