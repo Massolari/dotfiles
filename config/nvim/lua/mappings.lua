@@ -9,65 +9,6 @@ local function set_keymaps(mode, list)
   end
 end
 
-local function command_with_args(prompt, default, completion, command)
-  local status, input = pcall(vim.fn.input, prompt, '', completion)
-  if status == false then
-    return
-  end
-
-  if input == '' and default ~= nil then
-    input = default
-  end
-  vim.cmd(":" .. command .. " " .. input)
-end
-
-local function checkout_new_branch()
-  local branch_name = vim.fn.input("New branch name> ")
-  if branch_name == "" then
-    return
-  end
-  vim.cmd('echo "\r"')
-  vim.cmd("echohl Directory")
-  vim.cmd(":Git checkout -b " .. branch_name)
-  vim.cmd("echohl None")
-end
-
-
--- Get the user input for what he wants to search for with vimgrep
--- if it's empty, abort, if it's not empty get the user input for the target folder, if
--- it's not specified, defaults to `git ls-files`
-local function vim_grep()
-  local searchStatus, input = pcall(vim.fn.input, 'Search for: ', '')
-  if searchStatus == false or input == '' then
-    print('Aborted')
-    return
-  end
-
-  local folderStatus, target = pcall(vim.fn.input, 'Target folder/files (git ls-files): ', '', 'file')
-  if folderStatus == false then
-    print('Aborted')
-    return
-  end
-  -- local target = vim.fn.input('Target folder/files (git ls-files): ', '', 'file')
-  if target == '' then
-    target = '`git ls-files`'
-  end
-
-  local status, err = pcall(vim.cmd, ':vimgrep /' .. input .. '/gj ' .. target)
-  if status == false then
-    print(err)
-    return
-  end
-  vim.cmd(':copen')
-end
-
-local Terminal = require'toggleterm.terminal'.Terminal
-local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
-
-local function lazygit_toggle()
-  lazygit:toggle()
-end
-
 local opts = {
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
@@ -142,7 +83,7 @@ wk.register({
   e = {
     name = 'Editor',
     c = { "<cmd>lua require'telescope.builtin'.colorscheme()<CR>", 'Temas (colorscheme)' },
-    g = { "<cmd>lua require'mappings'.vim_grep()<CR>", 'Buscar com vimgrep' },
+    g = { "<cmd>lua require'functions'.vim_grep()<CR>", 'Buscar com vimgrep' },
     q = { '<cmd>q<CR>', 'Fechar' },
   },
   g = {
@@ -156,13 +97,13 @@ wk.register({
       u= 'Desfazer (undo)',
       v= 'Ver',
     },
-    k = { "<cmd>lua require'mappings'.checkout_new_branch()<CR>", 'Criar branch e fazer checkout' },
+    k = { "<cmd>lua require'functions'.checkout_new_branch()<CR>", 'Criar branch e fazer checkout' },
     l = { '<cmd>Git pull --rebase<CR> ', 'Pull' },
     p = { "<cmd>Git -c push.default=current push<CR>", 'Push' },
     r = { "<cmd>lua require'telescope.builtin'.git_branches()<CR>", 'Listar branches' },
     s = { '<cmd>Git<CR> ', 'Status' },
     w = { '<cmd>Gwrite<CR> ', 'Salvar e adicionar ao stage' },
-    y = { "<cmd>lua require'mappings'.lazygit_toggle()<CR>", 'Abrir lazygit' },
+    y = { "<cmd>lua require'functions'.lazygit_toggle()<CR>", 'Abrir lazygit' },
   },
   h = { '<cmd>split<CR> ', 'Dividir horizontalmente' },
   i = { 'mpgg=G`p', 'Indentar arquivo' },
@@ -189,15 +130,15 @@ wk.register({
     name = 'Sessão',
     c = { "<cmd>CloseSession<CR>", 'Fechar (close)' },
     d = {
-      "<cmd>lua require'mappings'.command_with_args('Delete session> ', 'default', 'customlist,xolox#session#complete_names', 'DeleteSession')<CR>",
+      "<cmd>lua require'functions'.command_with_args('Delete session> ', 'default', 'customlist,xolox#session#complete_names', 'DeleteSession')<CR>",
       'Deletar'
     },
     o = {
-      "<cmd>lua require'mappings'.command_with_args('Open session> ', 'default', 'customlist,xolox#session#complete_names', 'OpenSession')<CR>",
+      "<cmd>lua require'functions'.command_with_args('Open session> ', 'default', 'customlist,xolox#session#complete_names', 'OpenSession')<CR>",
       'Abrir'
     },
     s = {
-      "<cmd>lua require'mappings'.command_with_args('Save session> ', 'default', 'customlist,xolox#session#complete_names_with_suggestions', 'SaveSession')<CR>",
+      "<cmd>lua require'functions'.command_with_args('Save session> ', 'default', 'customlist,xolox#session#complete_names_with_suggestions', 'SaveSession')<CR>",
       'Salvar'
     },
   },
@@ -272,8 +213,6 @@ local visual = {
 
 local function setup()
   set_keymaps('t', terminal)
-  -- set_keymaps('i', insert)
-  -- set_keymaps('c', command)
   set_keymaps('n', normal)
   set_keymaps('v', visual)
 end
@@ -316,10 +255,6 @@ end
 local M = {
   setup = setup,
   lsp = lsp,
-  checkout_new_branch = checkout_new_branch,
-  command_with_args = command_with_args,
-  vim_grep = vim_grep,
-  lazygit_toggle = lazygit_toggle,
 }
 
 return M

@@ -1,39 +1,68 @@
-vim.cmd([[
-" Guardar posição do cursor
-augroup vimrc-remember-cursor-position
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
+local commands = {
+  _general_settings = {
+    { "FileType", "qf,help,man", "nnoremap <silent> <buffer> q :close<CR>" },
+    {
+      "TextYankPost",
+      "*",
+      "lua require'vim.highlight'.on_yank({higroup = 'Search', timeout = 200})",
+    },
+    {
+      "BufWinEnter",
+      "dashboard",
+      "setlocal cursorline signcolumn=yes cursorcolumn number",
+    },
+    { "FileType", "qf", "set nobuflisted" },
+    { "FileType", "qf", "nnoremap <buffer> <CR> <CR>" },
+    { "BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]] },
+    {
+      "BufEnter,FocusGained,InsertLeave",
+      "*",
+      "set relativenumber"
+    },
+    {
+      "BufLeave,FocusLost,InsertEnter",
+      "*",
+      "set norelativenumber"
+    }
+  },
+  _formatoptions = {
+    {
+      "BufWinEnter,BufRead,BufNewFile",
+      "*",
+      "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+    },
+    { "BufWrite", "*", "lua vim.lsp.buf.formatting_sync(nil, 200)"}
+  },
+  _filetypechanges = {
+    { "BufWinEnter", ".zsh", "setlocal filetype=sh" },
+    { "BufRead", "*.zsh", "setlocal filetype=sh" },
+    { "BufNewFile", "*.zsh", "setlocal filetype=sh" },
+  },
+  _git = {
+    { "FileType", "gitcommit", "setlocal wrap" },
+    { "FileType", "gitcommit", "setlocal spell" },
+  },
+  _markdown = {
+    { "FileType", "markdown", "setlocal wrap" },
+    { "FileType", "markdown", "setlocal spell" },
+  },
+  _auto_resize = {
+    -- will cause split windows to be resized evenly if main window is resized
+    { "VimResized", "*", "tabdo wincmd =" },
+  },
+  _general_lsp = {
+    { "FileType", "lspinfo,lsp-installer,null-ls-info", "nnoremap <silent> <buffer> q :close<CR>" },
+  },
+}
 
-" Sempre que entrar na janela de quickfix retirar o mapeamento customizado do Enter
-augroup enable-cr-quickfix
-  " In the quickfix window, <CR> is used to jump to the error under the cursor, so undefine the mapping there.
-  autocmd!
-  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-  autocmd BufReadPost quickfix let g:quickfix_win = bufnr('$')
-augroup END
+for group_name, definition in pairs(commands) do
+  vim.cmd("augroup " .. group_name)
+  vim.cmd "autocmd!"
 
-" Abrir todos os foldings quando entrar em um arquivo
-" augroup openfold
-"   autocmd!
-"   autocmd BufEnter,FocusGained * norm zR
-" augroup END
+  for _, def in pairs(definition) do
+    local command = table.concat(vim.tbl_flatten { "autocmd", def }, " ")
+    vim.cmd(command)
+  end
 
-" Ativa o número da linha relativo apenas quando o buffer estiver em foco e no normal mode
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-augroup LuaHighlight
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-augroup END
-
-" Formata o arquivo ao salvar
-augroup format-on-save
-  autocmd!
-  autocmd BufWrite * silent! lua vim.lsp.buf.formatting_sync(nil, 1000)
-augroup END
-]])
+  vim.cmd "augroup END"
+end

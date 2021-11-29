@@ -1,15 +1,11 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd matchit]]
--- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
--- vim._update_package_paths()
 
 return require'packer'.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  --
+
   -- Ícones
   use 'kyazdani42/nvim-web-devicons'
 
@@ -21,8 +17,6 @@ return require'packer'.startup(function(use)
   use {
     'xolox/vim-session',
     requires = { 'xolox/vim-misc' },
-    -- opt = true,
-    -- cmd = {'SaveSession', 'OpenSession', 'DeleteSession', 'CloseSession'}
   }
 
   -- Buscador
@@ -151,7 +145,9 @@ return require'packer'.startup(function(use)
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function ()
-      require'nvim-tree'.setup{}
+      require'nvim-tree'.setup{
+        disable_netrw = false
+      }
     end
   }
 
@@ -180,16 +176,21 @@ return require'packer'.startup(function(use)
   }
 
   -- Guia de atalhos
-use {
-  "folke/which-key.nvim",
-  config = function()
-    require("which-key").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require'which-key'.setup {
+        plugins = {
+          spelling = {
+            enabled = true
+          }
+        }
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- Cliente REST
   use {
@@ -279,7 +280,7 @@ use {
   }
 
   -- Mostrar o que há nos registradores
-  use 'tversteeg/registers.nvim'
+  -- use 'tversteeg/registers.nvim'
 
   -- Buffers no topo
   use {

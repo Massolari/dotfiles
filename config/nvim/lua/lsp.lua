@@ -5,35 +5,18 @@ local mappings = require("mappings")
 
 
 local border = {
-  -- {"🭽", "FloatBorder"},
   {"┌", "FloatBorder"},
-
-  -- {"▔", "FloatBorder"},
   {"─", "FloatBorder"},
-
-  -- {"🭾", "FloatBorder"},
   {"┐", "FloatBorder"},
-
-  -- {"▕", "FloatBorder"},
   {"│", "FloatBorder"},
-
-  -- {"🭿", "FloatBorder"},
   {"┘", "FloatBorder"},
-
-  -- {"▁", "FloatBorder"},
   {"─", "FloatBorder"},
-
-  -- {"🭼", "FloatBorder"},
   {"└", "FloatBorder"},
-
-  -- {"▏", "FloatBorder"},
   {"│", "FloatBorder"},
 }
 
 local on_attach = function(client, bufnr)
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   lsp_status.on_attach(client)
   client.config.capabilities = vim.tbl_extend('keep', client.config.capabilities or {}, lsp_status.capabilities)
@@ -43,23 +26,14 @@ local on_attach = function(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
+    local lsp_reference_color = 'lightyellow'
     if vim.opt.background:get() ~= 'light' then
-      vim.api.nvim_exec(
-        [[
-        hi LspReferenceRead cterm=bold ctermbg=black guibg=black
-        hi LspReferenceText cterm=bold ctermbg=black guibg=black
-        hi LspReferenceWrite cterm=bold ctermbg=black guibg=black
-        ]],
-        false)
-    else
-      vim.api.nvim_exec(
-        [[
-        hi LspReferenceRead cterm=bold ctermbg=lightyellow guibg=lightyellow
-        hi LspReferenceText cterm=bold ctermbg=lightyellow guibg=lightyellow
-        hi LspReferenceWrite cterm=bold ctermbg=lightyellow guibg=lightyellow
-        ]],
-        false)
+      lsp_reference_color = 'black'
     end
+    vim.cmd('hi LspReferenceRead cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
+    vim.cmd('hi LspReferenceText cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
+    vim.cmd('hi LspReferenceWrite cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
+
     vim.api.nvim_exec(
       [[
       augroup lsp_document_highlight
@@ -104,29 +78,6 @@ lsp_installer.on_server_ready(function(server)
     capabilities = capabilities,
     on_attach = on_attach,
   }
-
-  -- (optional) Customize the options passed to the server
-  -- if server.name == "tsserver" then
-  --     opts.root_dir = function() ... end
-  -- end
-  -- if server.name == "tailwindcss" then
-  --   opts.settings = {
-  --     tailwindCSS = {
-  --       -- includeLanguages = {
-  --       --   elm = "html"
-  --       -- },
-  --       experimental = {
-  --         classRegex = "\\bclass\\s+\"([^\"]*)\""
-  --       }
-  --     }
-  --   }
-  --   opts.init_options = {
-  --     userLanguages = {
-  --       elm = "html"
-  --     }
-  --   }
-  --   opts.filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "markdown", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte", "elm" }
-  -- end
 
   -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
   server:setup(opts)
