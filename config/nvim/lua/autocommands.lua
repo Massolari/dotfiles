@@ -31,6 +31,8 @@ local commands = {
       "*",
       "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
     },
+  },
+  _formatonsave = {
     { "BufWrite", "*", "lua vim.lsp.buf.formatting_sync(nil, 1000)"}
   },
   _filetypechanges = {
