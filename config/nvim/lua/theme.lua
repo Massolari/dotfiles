@@ -6,7 +6,9 @@ vim.cmd('highlight NormalFloat guibg=' .. require'functions'.get_color('CursorLi
 
 vim.cmd [[highlight CmpItemMenu guifg=Normal]]
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Information = " " }
+vim.cmd [[highlight DiagnosticInfo guifg=DarkCyan]]
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
