@@ -3,14 +3,7 @@ local colors = require('galaxyline.theme').default
 local condition = require('galaxyline.condition')
 local gls = gl.section
 
-
-local function get_color(highlight_group, type, fallback)
-  local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(highlight_group)), type .. '#')
-  if color == '' then
-    return fallback
-  end
-  return color
-end
+local get_color = require'functions'.get_color
 
 colors.bg = get_color('CursorLine', 'bg', colors.bg)
 colors.fg = get_color('Normal', 'fg')

@@ -84,6 +84,16 @@ local function lazygit_toggle()
   lazygit:toggle()
 end
 
+-- Get a color form a highlight group
+local function get_color(highlight_group, type, fallback)
+  local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(highlight_group)), type .. '#')
+  if color == '' then
+    return fallback
+  end
+  return color
+end
+
+
 return {
   toggle_quickfix = toggle_quickfix,
   toggle_location_list = toggle_location_list,
@@ -91,4 +101,5 @@ return {
   command_with_args = command_with_args,
   vim_grep = vim_grep,
   lazygit_toggle = lazygit_toggle,
+  get_color = get_color,
 }

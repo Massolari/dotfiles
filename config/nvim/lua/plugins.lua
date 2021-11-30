@@ -291,15 +291,22 @@ return require'packer'.startup(function(use)
         options = {
           diagnostics = 'nvim_lsp',
           diagnostics_indicator = function(_, _, diagnostics_dict, _)
-            local s = " "
+            local error = ""
+            local warning = ""
+            local info = ""
+            local hint = ""
             for e, n in pairs(diagnostics_dict) do
-              local sym = e == "error" and " "
-                or (e == "warning" and " ")
-                or (e == "hint" and " ")
-                or " "
-              s = s .. n .. sym
+              if e == 'error' then
+                error = "  " .. n
+              elseif e == 'warning' then
+                warning = "  " .. n
+              elseif e == 'hint' then
+                hint = "  " .. n
+              else
+                info = "  " .. n
+              end
             end
-            return s
+            return error .. warning .. hint .. info
           end
         }
       }
