@@ -55,9 +55,6 @@ return require'packer'.startup(function(use)
     end
   }
 
-  -- Exibe espaços vazios no final da linha
-  use 'bronson/vim-trailing-whitespace'
-
   use {
     'numToStr/Comment.nvim',
     config = function()
@@ -330,4 +327,12 @@ return require'packer'.startup(function(use)
 
   -- Correção do CursorHold
   use 'antoinemadec/FixCursorHold.nvim'
+
+  -- Colorir hexademical de cores
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function ()
+      require'colorizer'.setup{}
+    end
+  }
 end)

@@ -79,3 +79,6 @@ vim.opt.guifont = 'JetBrainsMono Nerd Font'
 
 -- Habilitar título
 vim.opt.title = true
+
+-- Destacar espaços em branco no final do arquivo
+vim.cmd[[match errorMsg /\s\+$/]]
