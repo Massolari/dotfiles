@@ -24,7 +24,7 @@ else
 end
 
 -- Idioma para correção ortográfica
-vim.opt.spelllang = 'pt'
+vim.opt.spelllang = 'pt_br'
 
 -- Número mínimo de linha que deverão ser mostradas antes e depois do cursor
 vim.opt.scrolloff = 5
