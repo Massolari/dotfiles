@@ -8,16 +8,10 @@ local get_color = require'functions'.get_color
 colors.bg = get_color('CursorLine', 'bg', colors.bg)
 colors.fg = get_color('Normal', 'fg')
 colors.yellow = 'DarkYellow'
--- colors.yellow = get_color('Search', 'fg', colors.yellow)
--- colors.green = '#98971a'
--- colors.blue = '#458588'
--- colors.red = '#cc241d'
--- colors.magenta = '#b16286'
--- colors.violet = '#8f3f71'
--- colors.cyan = '#689d6a'
 
-local getFileName = function()
-  return vim.fn.expand("%:h") .. '/'
+local getFilePath = function()
+  local path = string.gsub(vim.fn.expand("%:h"), '^./', '')
+  return path .. '/'
 end
 
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
@@ -31,7 +25,7 @@ gls.left[1] = {
 gls.left[2] = {
   ViMode = {
     provider = function()
-      -- auto change color according the vim mode
+-- auto change color according the vim mode
       local mode_color = {
         n = colors.red,
         i = colors.green,
@@ -67,25 +61,48 @@ gls.left[2] = {
 --     highlight = {colors.fg,colors.bg}
 --   }
 -- }
-gls.left[3] ={
+-- gls.left[3] ={
+--   FileIcon = {
+--     provider = 'FileIcon',
+--     condition = condition.buffer_not_empty,
+--     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
+--   },
+-- }
+gls.left[3] = {
+  FilePath = {
+    provider = getFilePath,
+    condition = condition.buffer_not_empty,
+    highlight = {colors.magenta,colors.bg,'bold'},
+-- separator_highlight = {'NONE',colors.bg},
+-- separator = ' ',
+  },
+}
+gls.left[4] = {
   FileIcon = {
-    provider = 'FileIcon',
+    provider = 'FileIcon' ,
     condition = condition.buffer_not_empty,
     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
   },
 }
-
-gls.left[4] = {
+gls.left[5] = {
   FileName = {
-    provider = { getFileName, 'FileName' },
+    provider = {
+      'FileName',
+      function()
+        local current_function = vim.b.lsp_current_function
+        if current_function == nil or current_function == '' then
+          return ''
+        end
+        return '> ' .. vim.b.lsp_current_function .. ' '
+      end
+    },
     condition = condition.buffer_not_empty,
     highlight = {colors.magenta,colors.bg,'bold'},
-    separator_highlight = {'NONE',colors.bg},
-    separator = ' ',
-  }
+    -- separator_highlight = {'NONE',colors.bg},
+    separator = '',
+  },
 }
-
-gls.left[5] = {
+gls.left[6] = {
   LineInfo = {
     provider = 'LineColumn',
     separator = ' ',
@@ -93,40 +110,36 @@ gls.left[5] = {
     highlight = {colors.fg,colors.bg},
   },
 }
-
-gls.left[6] = {
+gls.left[7] = {
   PerCent = {
     provider = 'LinePercent',
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
     highlight = {colors.fg,colors.bg,'bold'},
-  }
+  },
 }
-
-gls.left[7] = {
+gls.left[8] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
     highlight = {colors.red,colors.bg}
-  }
+  },
 }
-gls.left[8] = {
+gls.left[9] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
     highlight = {colors.yellow,colors.bg},
-  }
+  },
 }
-
-gls.left[9] = {
+gls.left[10] = {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
     icon = '  ',
     highlight = {colors.cyan,colors.bg},
-  }
+  },
 }
-
-gls.left[10] = {
+gls.left[11] = {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
     icon = '   ',
@@ -134,31 +147,22 @@ gls.left[10] = {
   }
 }
 
-gls.mid[1] = {
-  ShowLspClient = {
-    provider =
-      { 'GetLspClient',
-        function()
-          local current_function = vim.b.lsp_current_function
-          if current_function == nil then
-            return ''
-          end
-          return ' (' .. vim.b.lsp_current_function .. ')'
-        end
-      },
-    condition = function ()
-      local tbl = {['dashboard'] = true,['']=true}
-      if tbl[vim.bo.filetype] then
-        return false
-      end
-      return true
-    end,
-    -- icon = ' LSP:',
-    highlight = {colors.cyan,colors.bg,'bold'},
-    separator = ' ',
-    separator_highlight = {'NONE', colors.bg},
-  }
-}
+-- gls.mid[1] = {
+--   ShowLspClient = {
+--     provider = 'GetLspClient',
+--     condition = function ()
+--       local tbl = {['dashboard'] = true,['']=true}
+--       if tbl[vim.bo.filetype] then
+--         return false
+--       end
+--       return true
+--     end,
+--     -- icon = ' LSP:',
+--     highlight = {colors.cyan,colors.bg,'bold'},
+--     separator = ' ',
+--     separator_highlight = {'NONE', colors.bg},
+--   }
+-- }
 
 -- gls.right[1] = {
 --   FileEncode = {
@@ -184,6 +188,34 @@ vim.cmd([[highlight Statusline guifg=]] .. colors.bg)
 -- }
 
 gls.right[1] = {
+  ShowLspClient = {
+    -- provider = 'GetLspClient',
+    provider = function ()
+      local clients = vim.lsp.get_active_clients()
+      for _, client in pairs(clients) do
+        local buffers = vim.lsp.get_buffers_by_client_id(client.id)
+        for _, buffer in pairs(buffers) do
+          if buffer == vim.fn.bufnr() then
+            return ' ' .. client.name
+          end
+        end
+      end
+      return ''
+    end,
+    condition = function ()
+      local tbl = {['dashboard'] = true,['']=true}
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    -- icon = ' LSP:',
+    highlight = {colors.cyan,colors.bg,'bold'},
+    separator = ' ',
+    separator_highlight = {'NONE', colors.bg},
+  }
+}
+gls.right[2] = {
   GitIcon = {
     provider = function() return '  ' end,
     condition = condition.check_git_workspace,
@@ -193,7 +225,7 @@ gls.right[1] = {
   }
 }
 
-gls.right[2] = {
+gls.right[3] = {
   GitBranch = {
     provider = { 'GitBranch', function () return ' ' end },
     condition = condition.check_git_workspace,
@@ -201,7 +233,7 @@ gls.right[2] = {
   }
 }
 
-gls.right[3] = {
+gls.right[4] = {
   DiffAdd = {
     provider = 'DiffAdd',
     condition = condition.hide_in_width,
@@ -209,7 +241,7 @@ gls.right[3] = {
     highlight = {colors.green,colors.bg},
   }
 }
-gls.right[4] = {
+gls.right[5] = {
   DiffModified = {
     provider = 'DiffModified',
     condition = condition.hide_in_width,
@@ -217,7 +249,7 @@ gls.right[4] = {
     highlight = {colors.orange,colors.bg},
   }
 }
-gls.right[5] = {
+gls.right[6] = {
   DiffRemove = {
     provider = 'DiffRemove',
     condition = condition.hide_in_width,
@@ -226,7 +258,7 @@ gls.right[5] = {
   }
 }
 
-gls.right[6] = {
+gls.right[7] = {
   RainbowBlue = {
     provider = function() return ' ▊' end,
     highlight = {colors.blue,colors.bg}
@@ -244,7 +276,7 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
   SFileName = {
-    provider =  { getFileName, 'SFileName' },
+    provider =  { getFilePath, 'SFileName' },
     condition = condition.buffer_not_empty,
     highlight = {colors.fg,colors.bg,'bold'}
   }
