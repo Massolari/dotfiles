@@ -215,6 +215,10 @@ local function setup()
   set_keymaps('t', terminal)
   set_keymaps('n', normal)
   set_keymaps('v', visual)
+  vim.cmd[[
+    imap <silent><script><expr> <c-q> copilot#Accept("\<c-q>")
+    let g:copilot_no_tab_map = v:true
+  ]]
 end
 
 local function lsp(client, bufnr)
