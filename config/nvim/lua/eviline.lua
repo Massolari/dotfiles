@@ -80,23 +80,29 @@ gls.left[4] = {
 }
 gls.left[5] = {
   FileName = {
-    provider = {
-      'FileName',
-      function()
-        local current_function = vim.b.lsp_current_function
-        if current_function == nil or current_function == '' then
-          return ''
-        end
-        return '> ' .. vim.b.lsp_current_function .. ' '
-      end
-    },
+    provider = 'FileName',
     condition = condition.buffer_not_empty,
     highlight = {colors.magenta,colors.bg,'bold'},
-    -- separator_highlight = {'NONE',colors.bg},
+    separator_highlight = {'NONE',colors.bg},
     separator = '',
   },
 }
 gls.left[6] = {
+  CurrentFunction = {
+    provider = function()
+        local current_function = vim.b.lsp_current_function
+        if current_function == nil or current_function == '' then
+          return ''
+        end
+        return '𝝺 ' .. vim.b.lsp_current_function .. ' '
+      end,
+    condition = condition.buffer_not_empty,
+    highlight = {colors.blue,colors.bg,'bold'},
+    separator_highlight = {'NONE',colors.bg},
+    separator = '',
+  },
+}
+gls.left[7] = {
   LineInfo = {
     provider = 'LineColumn',
     separator = ' ',
@@ -104,7 +110,7 @@ gls.left[6] = {
     highlight = {colors.fg,colors.bg},
   },
 }
-gls.left[7] = {
+gls.left[8] = {
   PerCent = {
     provider = 'LinePercent',
     separator = ' ',
@@ -112,25 +118,18 @@ gls.left[7] = {
     highlight = {colors.fg,colors.bg,'bold'},
   },
 }
-gls.left[8] = {
+gls.left[9] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
     highlight = {colors.red,colors.bg}
   },
 }
-gls.left[9] = {
+gls.left[10] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
     highlight = {colors.yellow,colors.bg},
-  },
-}
-gls.left[10] = {
-  DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = '  ',
-    highlight = {colors.cyan,colors.bg},
   },
 }
 gls.left[11] = {
@@ -140,23 +139,13 @@ gls.left[11] = {
     highlight = {colors.blue,colors.bg},
   }
 }
-
--- gls.mid[1] = {
---   ShowLspClient = {
---     provider = 'GetLspClient',
---     condition = function ()
---       local tbl = {['dashboard'] = true,['']=true}
---       if tbl[vim.bo.filetype] then
---         return false
---       end
---       return true
---     end,
---     -- icon = ' LSP:',
---     highlight = {colors.cyan,colors.bg,'bold'},
---     separator = ' ',
---     separator_highlight = {'NONE', colors.bg},
---   }
--- }
+gls.left[12] = {
+  DiagnosticHint = {
+    provider = 'DiagnosticHint',
+    icon = '  ',
+    highlight = {colors.cyan,colors.bg},
+  },
+}
 
 -- gls.right[1] = {
 --   FileEncode = {

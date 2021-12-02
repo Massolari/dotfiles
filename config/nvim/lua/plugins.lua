@@ -303,7 +303,7 @@ return require'packer'.startup(function(use)
                 info = "  " .. n
               end
             end
-            return error .. warning .. hint .. info
+            return error .. warning .. info .. hint
           end
         }
       }
