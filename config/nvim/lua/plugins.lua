@@ -164,7 +164,7 @@ return require'packer'.startup(function(use)
 
   -- Status line
   use {
-    'glepnir/galaxyline.nvim',
+    'NTBBloodbath/galaxyline.nvim',
     branch = 'main',
     -- your statusline
     config = function() require'eviline' end,

@@ -1,5 +1,5 @@
 local gl = require('galaxyline')
-local colors = require('galaxyline.theme').default
+local colors = require("galaxyline.themes.colors").default
 local condition = require('galaxyline.condition')
 local gls = gl.section
 
@@ -64,27 +64,18 @@ gls.left[2] = {
 --     highlight = {colors.fg,colors.bg}
 --   }
 -- }
--- gls.left[3] ={
---   FileIcon = {
---     provider = 'FileIcon',
---     condition = condition.buffer_not_empty,
---     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
---   },
--- }
 gls.left[3] = {
   FilePath = {
     provider = getFilePath,
     condition = condition.buffer_not_empty,
     highlight = {colors.magenta,colors.bg,'bold'},
--- separator_highlight = {'NONE',colors.bg},
--- separator = ' ',
   },
 }
 gls.left[4] = {
   FileIcon = {
     provider = 'FileIcon' ,
     condition = condition.buffer_not_empty,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
+    highlight = {require('galaxyline.providers.fileinfo').get_file_icon_color,colors.bg},
   },
 }
 gls.left[5] = {
