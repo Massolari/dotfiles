@@ -194,25 +194,11 @@ gls.right[1] = {
   ShowLspClient = {
     -- provider = 'GetLspClient',
     provider = function ()
-      local clients = vim.lsp.get_active_clients()
-      for _, client in pairs(clients) do
-        local buffers = vim.lsp.get_buffers_by_client_id(client.id)
-        for _, buffer in pairs(buffers) do
-          if buffer == vim.fn.bufnr() then
-            return ' ' .. client.name
-          end
-        end
+      for _, client in pairs(vim.lsp.buf_get_clients()) do
+        return ' ' .. client.name
       end
       return ''
     end,
-    condition = function ()
-      local tbl = {['dashboard'] = true,['']=true}
-      if tbl[vim.bo.filetype] then
-        return false
-      end
-      return true
-    end,
-    -- icon = ' LSP:',
     highlight = {colors.cyan,colors.bg,'bold'},
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
