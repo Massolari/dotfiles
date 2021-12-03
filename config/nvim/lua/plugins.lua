@@ -337,4 +337,7 @@ return require'packer'.startup(function(use)
       }
     end
   }
+
+  -- Dashboard
+  use 'ChristianChiarulli/dashboard-nvim'
 end)

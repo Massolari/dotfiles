@@ -55,6 +55,15 @@ local commands = {
   _general_lsp = {
     { "FileType", "lspinfo,lsp-installer,null-ls-info", "nnoremap <silent> <buffer> q :close<CR>" },
   },
+  _dashboard = {
+    -- seems to be nobuflisted that makes my stuff disappear will do more testing
+    {
+      "FileType",
+      "dashboard",
+      "setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= ",
+    },
+    { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
+  },
 }
 
 for group_name, definition in pairs(commands) do

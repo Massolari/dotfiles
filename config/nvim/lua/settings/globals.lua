@@ -25,3 +25,6 @@ vim.g.function_style = 'italic'
 vim.g.neovide_floating_blur = 0
 vim.g.neovide_window_floating_opacity = 1
 vim.g.neovide_cursor_vfx_mode = 'ripple'
+
+-- Indent blankline
+vim.g.indent_blankline_filetype_exclude = { 'dashboard' }
