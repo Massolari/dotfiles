@@ -73,6 +73,7 @@ chmod +x nvim.appimage
 mv nvim.appimage $HOME/bin/nvim
 mkdir $HOME/.config/nvim
 ln -s $PWD/config/nvim/init.lua $HOME/.config/nvim/
+ln -s $PWD/config/nvim/neovim.cat $HOME/.config/nvim/
 ln -s $PWD/config/nvim/lua/ $HOME/.config/nvim/
 
 # Elixir language server
