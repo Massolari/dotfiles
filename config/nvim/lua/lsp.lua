@@ -69,6 +69,8 @@ local on_attach = function(client, bufnr)
       ]],
       false
     )
+    vim.cmd [[highlight LspCodeLens guifg=DarkGrey]]
+    vim.cmd [[highlight LspCodeLensSeparator guifg=DarkGrey]]
   end
   vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border})
   vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
