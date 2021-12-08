@@ -1,3 +1,4 @@
+local M = {}
 local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
 
@@ -211,7 +212,7 @@ local visual = {
   {'J', ":m '>+1<CR>gv=gv", opts},
 }
 
-local function setup()
+function M.setup()
   set_keymaps('t', terminal)
   set_keymaps('n', normal)
   set_keymaps('v', visual)
@@ -221,7 +222,7 @@ local function setup()
   ]]
 end
 
-local function lsp(client, bufnr)
+function M.lsp(client, bufnr)
   -- buf_set_keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   local code_mappings = {
     a = { "<cmd>lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_dropdown({}))<CR>", 'Ações' },
@@ -254,10 +255,5 @@ local function lsp(client, bufnr)
     y = { "<cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>", 'Definição do tipo' },
   }, vim.tbl_extend('force', opts, { mode = 'n', buffer = bufnr, prefix = 'g' }))
 end
-
-local M = {
-  setup = setup,
-  lsp = lsp,
-}
 
 return M

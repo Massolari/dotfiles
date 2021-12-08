@@ -25,15 +25,16 @@ local on_attach = function(client, bufnr)
   mappings.lsp(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    local lsp_reference_color = 'lightyellow'
-    if vim.opt.background:get() ~= 'light' then
-      lsp_reference_color = 'black'
-    end
-    vim.cmd('hi LspReferenceRead cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
-    vim.cmd('hi LspReferenceText cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
-    vim.cmd('hi LspReferenceWrite cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
+  local lsp_reference_color = 'lightyellow'
+  if vim.opt.background:get() ~= 'light' then
+    lsp_reference_color = 'black'
+  end
+  vim.cmd('hi LspReferenceRead cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
+  vim.cmd('hi LspReferenceText cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
+  vim.cmd('hi LspReferenceWrite cterm=bold ctermbg='..lsp_reference_color..' guibg=' .. lsp_reference_color)
 
+
+  if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
       augroup lsp_document_highlight
@@ -43,8 +44,19 @@ local on_attach = function(client, bufnr)
       augroup END
       ]],
       false)
-
+  else
+    vim.api.nvim_exec(
+      [[
+      augroup lsp_document_highlight
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua require'functions'.highlight_word()
+      autocmd CursorMoved <buffer> lua require'functions'.clear_highlight_word()
+      augroup END
+      ]],
+      false)
   end
+  print(highlight_command)
+
 
   if client.resolved_capabilities.code_lens then
     vim.api.nvim_exec(

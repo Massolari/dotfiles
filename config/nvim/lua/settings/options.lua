@@ -81,4 +81,4 @@ vim.opt.guifont = 'JetBrainsMono Nerd Font'
 vim.opt.title = true
 
 -- Destacar espaços em branco no final do arquivo
-vim.cmd[[match errorMsg /\s\+$/]]
+vim.fn.matchadd('errorMsg', [[\s\+$]])

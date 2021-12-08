@@ -1,5 +1,6 @@
+local M = {}
 -- Alterar o quickfix
-local function toggle_quickfix ()
+function M.toggle_quickfix ()
   local is_quickfix_open = vim.fn.len(vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix && !v:val.loclist')) > 0
 
   if is_quickfix_open then
@@ -10,7 +11,7 @@ local function toggle_quickfix ()
 end
 
 -- Alterar a location list
-local function toggle_location_list ()
+function M.toggle_location_list ()
   local is_location_list_open = vim.fn.len(vim.fn.filter(vim.fn.getwininfo(), '!v:val.quickfix && v:val.loclist')) > 0
 
   if is_location_list_open then
@@ -24,7 +25,7 @@ local function toggle_location_list ()
 end
 
 -- Executar comando tratando parâmetros de input
-local function command_with_args(prompt, default, completion, command)
+function M.command_with_args(prompt, default, completion, command)
   local status, input = pcall(vim.fn.input, prompt, '', completion)
   if status == false then
     return
@@ -37,7 +38,7 @@ local function command_with_args(prompt, default, completion, command)
 end
 
 -- Criar nova branch e fazer checkout
-local function checkout_new_branch()
+function M.checkout_new_branch()
   local branch_name = vim.fn.input("New branch name> ")
   if branch_name == "" then
     return
@@ -51,7 +52,7 @@ end
 -- Get the user input for what he wants to search for with vimgrep
 -- if it's empty, abort, if it's not empty get the user input for the target folder, if
 -- it's not specified, defaults to `git ls-files`
-local function vim_grep()
+function M.vim_grep()
   local searchStatus, input = pcall(vim.fn.input, 'Search for: ', '')
   if searchStatus == false or input == '' then
     print('Aborted')
@@ -80,12 +81,12 @@ end
 local Terminal = require'toggleterm.terminal'.Terminal
 local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, direction = 'float' })
 
-local function lazygit_toggle()
+function M.lazygit_toggle()
   lazygit:toggle()
 end
 
 -- Get a color form a highlight group
-local function get_color(highlight_group, type, fallback)
+function M.get_color(highlight_group, type, fallback)
   local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(highlight_group)), type .. '#')
   if color == '' then
     return fallback
@@ -93,13 +94,13 @@ local function get_color(highlight_group, type, fallback)
   return color
 end
 
+function M.highlight_word()
+  vim.cmd([[match LspReferenceRead /\V\<]].. vim.fn.expand('<cword>') .. [[\>/]])
+end
 
-return {
-  toggle_quickfix = toggle_quickfix,
-  toggle_location_list = toggle_location_list,
-  checkout_new_branch = checkout_new_branch,
-  command_with_args = command_with_args,
-  vim_grep = vim_grep,
-  lazygit_toggle = lazygit_toggle,
-  get_color = get_color,
-}
+function M.clear_highlight_word()
+  vim.cmd('match none')
+end
+
+
+return M
