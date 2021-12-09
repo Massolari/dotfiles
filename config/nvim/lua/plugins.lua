@@ -167,7 +167,7 @@ return require'packer'.startup(function(use)
     'NTBBloodbath/galaxyline.nvim',
     branch = 'main',
     -- your statusline
-    config = function() require'eviline' end,
+    config = function() require'statusline' end,
     -- some optional icons
     requires = {'kyazdani42/nvim-web-devicons'}
   }

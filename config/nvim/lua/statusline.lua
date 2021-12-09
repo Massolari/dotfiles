@@ -11,6 +11,7 @@ colors.yellow = 'DarkYellow'
 
 local getFilePath = function()
   local path = string.gsub(vim.fn.expand("%:h"), '^./', '')
+  path = string.gsub(path, vim.fn.getcwd() .. '/', '')
   if path == '.' then
     return ''
   end
