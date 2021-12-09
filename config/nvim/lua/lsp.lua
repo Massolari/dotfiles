@@ -55,7 +55,6 @@ local on_attach = function(client, bufnr)
       ]],
       false)
   end
-  print(highlight_command)
 
 
   if client.resolved_capabilities.code_lens then

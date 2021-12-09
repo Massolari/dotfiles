@@ -11,11 +11,13 @@ colors.yellow = 'DarkYellow'
 
 local getFilePath = function()
   local path = string.gsub(vim.fn.expand("%:h"), '^./', '')
-  path = string.gsub(path, vim.fn.getcwd() .. '/', '')
-  if path == '.' then
+  local formattedCwd = string.gsub(vim.fn.getcwd(), '\\-', '\\-')
+  local formattedPath = string.gsub(path, formattedCwd .. '/', '')
+  -- print(vim.fn.getcwd() .. ' | ' .. formattedPath)
+  if formattedPath == '.' then
     return ''
   end
-  return path .. '/'
+  return formattedPath .. '/'
 end
 
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
