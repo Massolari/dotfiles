@@ -72,9 +72,9 @@ curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimag
 chmod +x nvim.appimage
 mv nvim.appimage $HOME/bin/nvim
 mkdir $HOME/.config/nvim
-ln -s $PWD/config/nvim/init.lua $HOME/.config/nvim/
-ln -s $PWD/config/nvim/neovim.cat $HOME/.config/nvim/
-ln -s $PWD/config/nvim/lua/ $HOME/.config/nvim/
+ln -s $PWD/config/neovim/init.lua $HOME/.config/nvim/
+ln -s $PWD/config/neovim/neovim.cat $HOME/.config/nvim/
+ln -s $PWD/config/neovim/lua/ $HOME/.config/nvim/
 
 # Elixir language server
 curl -fLO https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
