@@ -69,8 +69,9 @@
           settings = {
             tab_bar_style = "powerline";
             watcher = "/Users/douglasmassolari/.fig/tools/kitty-integration.py";
+            include = "${config.home.homeDirectory}/dotfiles/kitty-theme.conf";
           };
-          theme = "Github";
+          # theme = "Github";
         };
 
         programs.starship = {
