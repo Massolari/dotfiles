@@ -20,12 +20,6 @@
           experimental-features = nix-command flakes
         '';
 
-        # home.activation = {
-        #   aliasApplications = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        #     ln -sfn $genProfilePath/home-path/Applications "$HOME/Applications/Home Manager Applications"
-        #     '';
-        # };
-
         # Install MacOS applications to the user environment.
         home.file."Applications/Home Manager Apps".source = let
           apps = pkgs.buildEnv {
@@ -74,6 +68,13 @@
           # theme = "Github";
         };
 
+        programs.lazygit = {
+          enable = true;
+          settings.gui.theme = {
+            lightTheme = true;
+          };
+        };
+
         programs.starship = {
           enable = true;
           enableZshIntegration = true;
@@ -108,8 +109,8 @@
           elmPackages.elm-language-server
           fd
           fswatch
+          fnlfmt
           fzf
-          lazygit
           neovim
           nodejs-18_x
           ripgrep
