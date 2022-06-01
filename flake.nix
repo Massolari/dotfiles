@@ -95,7 +95,6 @@
               { name = "z-shell/F-Sy-H"; }
               { name = "jeffreytse/zsh-vi-mode"; }
               { name = "plugins/git"; tags = [ from:oh-my-zsh ]; }
-              { name = "plugins/fzf"; tags = [ from:oh-my-zsh ]; }
             ];
           };
           localVariables = {
