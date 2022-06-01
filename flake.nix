@@ -76,9 +76,8 @@
           settings = {
             tab_bar_style = "powerline";
             watcher = "/Users/douglasmassolari/.fig/tools/kitty-integration.py";
-            include = "${config.home.homeDirectory}/dotfiles/kitty-theme.conf";
+            include = "${./kitty-theme.conf}";
           };
-          # theme = "Github";
         };
 
         programs.lazygit = {
