@@ -119,6 +119,7 @@
           ripgrep
           rsync
           wget
+          yarn
         ];
         #home.file.".config/nixpkgs/home/flake.nix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/flake.nix";
       };
