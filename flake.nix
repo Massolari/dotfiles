@@ -29,6 +29,10 @@
           };
         in "${apps}/Applications";
 
+        programs.bat.enable = true;
+
+        programs.fzf.enable = true;
+
         programs.git = {
           enable = true;
           userName = "Douglas M.";
@@ -43,6 +47,15 @@
             core.editor = "nvim";
             init.defaultBranch = "master";
             pull.ff = "only";
+          };
+        };
+
+        programs.gh = {
+          enable = true;
+          settings = {
+            git_protocol = "ssh";
+            editor = "nvim";
+            prompt = "enable";
           };
         };
 
@@ -104,13 +117,11 @@
         };
 
         home.packages = with pkgs; [
-          bat
           bitwarden-cli
           elmPackages.elm-language-server
           fd
           fswatch
           fnlfmt
-          fzf
           neovim
           nodejs-18_x
           ripgrep
