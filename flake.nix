@@ -62,7 +62,6 @@
         programs.kitty = {
           enable = true;
           font = {
-            # package = null;
             name = "JetBrainsMono Nerd Font";
             size = 14;
           };
@@ -82,15 +81,10 @@
 
         programs.lazygit = {
           enable = true;
-          settings.gui.theme = {
-            lightTheme = true;
-          };
+          settings.gui.theme.lightTheme = true;
         };
 
-        programs.starship = {
-          enable = true;
-          enableZshIntegration = true;
-        };
+        programs.starship.enable = true;
 
         programs.zsh = {
           enable = true;
