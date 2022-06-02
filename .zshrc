@@ -113,6 +113,7 @@ alias nvid=/Users/douglasmassolari/neovide/target/release/neovide
 alias lg=lazygit
 alias lvim=$HOME/.local/bin/lvim
 alias icat="kitty +kitten icat"
+alias sshk="kitty +kitten ssh"
 [ -f "/Users/douglasmassolari/.ghcup/env" ] && source "/Users/douglasmassolari/.ghcup/env" # ghcup-env
 
 eval "$(starship init zsh)"
