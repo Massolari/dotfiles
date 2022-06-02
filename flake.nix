@@ -48,6 +48,10 @@
             init.defaultBranch = "master";
             pull.ff = "only";
           };
+          delta = {
+            enable = true;
+            options.light = true;
+          };
         };
 
         programs.gh = {
