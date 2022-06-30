@@ -15,23 +15,23 @@
 
       homePackages = with pkgs; [
         bitwarden-cli
-          elmPackages.elm-language-server
-          fd
-          fswatch
-          fnlfmt
-          neovim
-          nodejs
-          ripgrep
-          rsync
-          wget
-          yarn
+        elmPackages.elm-language-server
+        fd
+        fswatch
+        fnlfmt
+        neovim
+        nodejs
+        ripgrep
+        rsync
+        wget
+        yarn
       ];
 
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          {
+          ({ config, ... }: {
             home = {
               stateVersion = "22.11";
               inherit username;
@@ -45,7 +45,7 @@
               file."Applications/Home Manager Apps".source = let
                 apps = pkgs.buildEnv {
                   name = "home-manager-applications";
-                  paths = homePackages;
+                  paths = config.home.packages;
                   pathsToLink = "/Applications";
                 };
               in "${apps}/Applications";
@@ -140,7 +140,7 @@
                 };
               };
             };
-          }
+          })
         ];
       };
   };
