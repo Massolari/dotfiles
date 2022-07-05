@@ -12,21 +12,6 @@
       system = "x86_64-darwin";
       username = "douglasmassolari";
       pkgs = nixpkgs.legacyPackages.${system};
-
-      homePackages = with pkgs; [
-        bitwarden-cli
-        elmPackages.elm-language-server
-        fd
-        fswatch
-        fnlfmt
-        neovim
-        nodejs
-        ripgrep
-        rsync
-        wget
-        yarn
-      ];
-
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -41,7 +26,7 @@
                 experimental-features = nix-command flakes
                 '';
 
-  # Install MacOS applications to the user environment.
+              # Install MacOS applications to the user environment.
               file."Applications/Home Manager Apps".source = let
                 apps = pkgs.buildEnv {
                   name = "home-manager-applications";
@@ -50,13 +35,27 @@
                 };
               in "${apps}/Applications";
 
-              packages = homePackages;
+              packages = with pkgs; [
+                bitwarden-cli
+                elmPackages.elm-language-server
+                fd
+                fswatch
+                fnlfmt
+                neovim
+                nodejs
+                ripgrep
+                rsync
+                wget
+                yarn
+              ];
             };
 
             programs = {
               home-manager.enable = true;
 
               bat.enable = true;
+
+              emacs.enable = true;
 
               fzf.enable = true;
 
@@ -74,6 +73,7 @@
                   core.editor = "nvim";
                   init.defaultBranch = "master";
                   pull.ff = "only";
+                  github.user = "Massolari";
                 };
                 delta = {
                   enable = true;
@@ -105,7 +105,7 @@
                 };
                 settings = {
                   tab_bar_style = "powerline";
-                  watcher = "/Users/douglasmassolari/.fig/tools/kitty-integration.py";
+                  watcher = "${config.home.homeDirectory}.fig/tools/kitty-integration.py";
                   include = "${./kitty-theme.conf}";
                 };
               };
@@ -133,10 +133,11 @@
                 };
                 shellAliases = {
                   lg = "lazygit";
-                  nvid = "/Users/douglasmassolari/neovide/target/release/neovide";
+                  nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                   ll = "ls -l";
                   ".." = "cd ..";
                   "nsx" = "nix-shell --system x86_64-darwin";
+                  doom = "${config.home.homeDirectory}/.emacs.d/bin/doom";
                 };
               };
             };
