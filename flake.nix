@@ -38,6 +38,23 @@
                 };
               in "${apps}/Applications";
 
+              file.".w3m/keymap".text = ''
+                keymap C-b PREV_PAGE
+                keymap C-f NEXT_PAGE
+                keymap b PREV_WORD
+                keymap C-u PREV_HALF_PAGE
+                keymap C-d NEXT_HALF_PAGE
+                keymap C-y DOWN
+                keymap C-e UP
+                keymap C-o BOOKMARK
+                keymap C-a ADD_BOOKMARK
+
+                keymap Sd COMMAND "GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
+                keymap Sg COMMAND "GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
+                keymap Se COMMAND "GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK; GOTO_LINK"
+                keymap Sw COMMAND "GOTO https://en.m.wikipedia.org/wiki/Main_Page; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
+              '';
+
               packages = with pkgs; [
                 bitwarden-cli
                 elmPackages.elm-language-server
@@ -50,6 +67,7 @@
                 nodejs
                 ripgrep
                 rsync
+                w3m
                 wget
                 yarn
               ];
