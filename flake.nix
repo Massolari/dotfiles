@@ -42,9 +42,10 @@
                 bitwarden-cli
                 elmPackages.elm-language-server
                 fd
-                fswatch
                 fennel
                 fnlfmt
+                fswatch
+                imagemagick
                 neovim
                 nodejs
                 ripgrep
