@@ -43,6 +43,7 @@
                 elmPackages.elm-language-server
                 fd
                 fswatch
+                fennel
                 fnlfmt
                 neovim
                 nodejs
