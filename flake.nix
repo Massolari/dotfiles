@@ -99,7 +99,7 @@
                 enable = true;
                 font = {
                   name = "JetBrainsMono Nerd Font";
-                  size = 14;
+                  size = 12;
                 };
                 keybindings = {
                   "shift+cmd+t" = "new_tab_with_cwd";
@@ -112,6 +112,7 @@
                   tab_bar_style = "powerline";
                   watcher = "${config.home.homeDirectory}.fig/tools/kitty-integration.py";
                   include = "${./kitty-theme.conf}";
+                  macos_thicken_font = "0.25";
                 };
               };
 
