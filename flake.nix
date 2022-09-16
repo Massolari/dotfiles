@@ -219,6 +219,10 @@
               zsh = {
                 enable = true;
                 enableAutosuggestions = true;
+                initExtra = ''
+                  path+=('${config.home.homeDirectory}/.ghcup/bin')
+                  path+=('${config.home.homeDirectory}/.cargo/bin')
+                '';
                 zplug = {
                   enable = true;
                   plugins = [
