@@ -89,7 +89,15 @@
                 includes = [
                 {
                   path = "~/tweag/.gitconfig";
+                  condition = "gitdir:~/tweag";
+                }
+                {
+                  path = "~/tweag/.gitconfig";
                   condition = "gitdir:~/tweag/";
+                }
+                {
+                  path = "~/tweag/metronome/.gitconfig";
+                  condition = "gitdir:~/tweag/metronome/";
                 }
                 ];
                 extraConfig = {
