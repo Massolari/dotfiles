@@ -63,6 +63,7 @@
                 fnlfmt
                 fswatch
                 imagemagick
+                kakoune
                 neovim
                 nodejs
                 ripgrep
