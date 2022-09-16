@@ -68,6 +68,7 @@
                 nodejs
                 ripgrep
                 rsync
+                vifm
                 w3m
                 wget
                 yarn
