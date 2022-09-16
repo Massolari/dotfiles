@@ -71,6 +71,7 @@
                 w3m
                 wget
                 yarn
+                yt-dlp
               ];
             };
 
