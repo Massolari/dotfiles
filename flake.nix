@@ -133,6 +133,60 @@
                 };
               };
 
+              helix = {
+                enable = true;
+                settings = {
+                  theme = "onelight";
+                  editor = {
+                    "line-number" = "relative";
+                    "cursor-shape".insert = "bar";
+                    statusline = {
+                       left = ["mode" "file-type" "file-name" "diagnostics"];
+                       center = ["spinner"];
+                       right = ["selections" "position" "position-percentage"];
+                    };
+                    "file-picker".hidden = false;
+                    "indent-guides".render = true;
+                  };
+                  keys = {
+                    normal = {
+                      "C-h" = "jump_view_left";
+                      "C-j" = "jump_view_down";
+                      "C-k" = "jump_view_up";
+                      "C-l" = "jump_view_right";
+                      "C-e" = "scroll_down";
+                      "C-y" = "scroll_up";
+                      "space".b = {
+                         b = "buffer_picker";
+                         d = ":bc";
+                         s = ":w";
+                      };
+                      X = "extend_line_above";
+                    };
+                    insert = {
+                      j.k = "normal_mode";
+                    };
+                  };
+                };
+                languages = [
+                  {
+                    name = "fennel";
+                    scope = "source.fnl";
+                    "file-types" = ["fnl"];
+                    "comment-token" = ";";
+                    "roots" = [];
+                    grammar = "tree-sitter-fennel";
+                    # grammar = {
+                    #   name = "tree-sitter-fennel";
+                    #   source = {
+                    #     git = "https://github.com/travonted/tree-sitter-fennel";
+                    #     rev = "517195970428aacca60891b050aa53eabf4ba78d";
+                    #   };
+                    # };
+                  }
+                ];
+              };
+
               kitty = {
                 enable = true;
                 font = {
