@@ -76,6 +76,16 @@
             programs = {
               home-manager.enable = true;
 
+              alacritty = {
+                enable = true;
+                settings = {
+                  font = {
+                    normal.family = "JetBrainsMono Nerd Font";
+                    size = 12.0;
+                  };
+                };
+              };
+
               bat.enable = true;
 
               emacs.enable = true;
