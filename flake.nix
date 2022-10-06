@@ -9,12 +9,19 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-darwin";
-      username = "douglasmassolari";
+      intel-system = "x86_64-darwin";
+      intel-pkgs = import nixpkgs {
+        inherit intel-system;
+        config.allowUnfree = true;
+      };
+
+      system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
+
+      username = "douglasmassolari";
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -56,6 +63,7 @@
               '';
 
               packages = with pkgs; [
+                ascii-image-converter
                 bitwarden-cli
                 elmPackages.elm-language-server
                 fd
@@ -63,9 +71,11 @@
                 fnlfmt
                 fswatch
                 imagemagick
-                kakoune
+                mpv
                 neovim
-                nodejs
+                nodePackages.typescript-language-server
+                nodePackages.typescript
+                nodejs-16_x # Para o copilot funcionar no Neovim
                 ripgrep
                 rsync
                 vifm
