@@ -70,7 +70,9 @@
                 fennel
                 fnlfmt
                 fswatch
-                imagemagick
+                jdk11
+                jq
+                languagetool
                 mpv
                 neovim
                 nodePackages.typescript-language-server
