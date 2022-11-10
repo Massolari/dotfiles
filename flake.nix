@@ -83,6 +83,7 @@
                 python310Packages.pynvim
                 ripgrep
                 rsync
+                tree-sitter
                 vifm
                 w3m
                 wget
