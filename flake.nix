@@ -218,7 +218,7 @@
                 };
                 settings = {
                   tab_bar_style = "powerline";
-                  watcher = "${config.home.homeDirectory}.fig/tools/kitty-integration.py";
+                  watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
                   include = "${./kitty-theme.conf}";
                   macos_thicken_font = "0.40";
                   macos_option_as_alt = "yes";
