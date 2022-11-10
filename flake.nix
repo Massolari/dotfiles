@@ -78,6 +78,9 @@
                 nodePackages.typescript-language-server
                 nodePackages.typescript
                 nodejs-16_x # Para o copilot funcionar no Neovim
+                python310
+                python310Packages.pip
+                python310Packages.pynvim
                 ripgrep
                 rsync
                 vifm
