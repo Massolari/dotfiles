@@ -70,6 +70,7 @@
                 fennel
                 fnlfmt
                 fswatch
+                imagemagick
                 jdk11
                 jq
                 languagetool
