@@ -238,6 +238,7 @@
                 initExtra = ''
                   path+=('${config.home.homeDirectory}/.ghcup/bin')
                   path+=('${config.home.homeDirectory}/.cargo/bin')
+                  path+=('${config.home.homeDirectory}/.nimble/bin')
                 '';
                 zplug = {
                   enable = true;
