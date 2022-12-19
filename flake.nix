@@ -9,12 +9,6 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
     let
-      intel-system = "x86_64-darwin";
-      intel-pkgs = import nixpkgs {
-        inherit intel-system;
-        config.allowUnfree = true;
-      };
-
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
@@ -22,7 +16,8 @@
       };
 
       username = "douglasmassolari";
-    in {
+    in
+    {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
@@ -34,16 +29,18 @@
 
               file.".config/nix/nix.conf".text = ''
                 experimental-features = nix-command flakes
-                '';
+              '';
 
               # Install MacOS applications to the user environment.
-              file."Applications/Home Manager Apps".source = let
-                apps = pkgs.buildEnv {
-                  name = "home-manager-applications";
-                  paths = config.home.packages;
-                  pathsToLink = "/Applications";
-                };
-              in "${apps}/Applications";
+              file."Applications/Home Manager Apps".source =
+                let
+                  apps = pkgs.buildEnv {
+                    name = "home-manager-applications";
+                    paths = config.home.packages;
+                    pathsToLink = "/Applications";
+                  };
+                in
+                "${apps}/Applications";
 
               file.".w3m/keymap".text = ''
                 keymap C-b PREV_PAGE
@@ -115,18 +112,18 @@
                 userName = "Douglas M.";
                 userEmail = "douglasmassolari@hotmail.com";
                 includes = [
-                {
-                  path = "~/tweag/.gitconfig";
-                  condition = "gitdir:~/tweag";
-                }
-                {
-                  path = "~/tweag/.gitconfig";
-                  condition = "gitdir:~/tweag/";
-                }
-                {
-                  path = "~/tweag/metronome/.gitconfig";
-                  condition = "gitdir:~/tweag/metronome/";
-                }
+                  {
+                    path = "~/tweag/.gitconfig";
+                    condition = "gitdir:~/tweag";
+                  }
+                  {
+                    path = "~/tweag/.gitconfig";
+                    condition = "gitdir:~/tweag/";
+                  }
+                  {
+                    path = "~/tweag/metronome/.gitconfig";
+                    condition = "gitdir:~/tweag/metronome/";
+                  }
                 ];
                 extraConfig = {
                   core.editor = "nvim";
@@ -157,9 +154,9 @@
                     "line-number" = "relative";
                     "cursor-shape".insert = "bar";
                     statusline = {
-                       left = ["mode" "file-type" "file-name" "diagnostics"];
-                       center = ["spinner"];
-                       right = ["selections" "position" "position-percentage"];
+                      left = [ "mode" "file-type" "file-name" "diagnostics" ];
+                      center = [ "spinner" ];
+                      right = [ "selections" "position" "position-percentage" ];
                     };
                     "file-picker".hidden = false;
                     "indent-guides".render = true;
@@ -173,9 +170,9 @@
                       "C-e" = "scroll_down";
                       "C-y" = "scroll_up";
                       "space".b = {
-                         b = "buffer_picker";
-                         d = ":bc";
-                         s = ":w";
+                        b = "buffer_picker";
+                        d = ":bc";
+                        s = ":w";
                       };
                       X = "extend_line_above";
                     };
@@ -188,9 +185,9 @@
                   {
                     name = "fennel";
                     scope = "source.fnl";
-                    "file-types" = ["fnl"];
+                    "file-types" = [ "fnl" ];
                     "comment-token" = ";";
-                    "roots" = [];
+                    "roots" = [ ];
                     grammar = "tree-sitter-fennel";
                     # grammar = {
                     #   name = "tree-sitter-fennel";
@@ -244,9 +241,9 @@
                 zplug = {
                   enable = true;
                   plugins = [
-                  { name = "z-shell/F-Sy-H"; }
-                  { name = "jeffreytse/zsh-vi-mode"; }
-                  { name = "plugins/git"; tags = [ from:oh-my-zsh ]; }
+                    { name = "z-shell/F-Sy-H"; }
+                    { name = "jeffreytse/zsh-vi-mode"; }
+                    { name = "plugins/git"; tags = [ from:oh-my-zsh ]; }
                   ];
                 };
                 localVariables = {
@@ -266,5 +263,5 @@
           })
         ];
       };
-  };
+    };
 }
