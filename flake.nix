@@ -109,6 +109,7 @@
 
               git = {
                 enable = true;
+                lfs.enable = true;
                 userName = "Douglas M.";
                 userEmail = "douglasmassolari@hotmail.com";
                 includes = [
