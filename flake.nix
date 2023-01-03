@@ -73,7 +73,7 @@
                 languagetool
                 mpv
                 neovim
-                nodejs-16_x # Para o copilot funcionar no Neovim
+                nodejs
                 python310
                 python310Packages.pip
                 python310Packages.pynvim
