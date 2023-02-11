@@ -234,6 +234,11 @@
 
               starship.enable = true;
 
+              wezterm = {
+                enable = true;
+                extraConfig = builtins.readFile ./wezterm.lua;
+              };
+
               zsh = {
                 enable = true;
                 enableAutosuggestions = true;
