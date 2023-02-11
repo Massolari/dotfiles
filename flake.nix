@@ -199,13 +199,6 @@
                     "comment-token" = ";";
                     "roots" = [ ];
                     grammar = "tree-sitter-fennel";
-                    # grammar = {
-                    #   name = "tree-sitter-fennel";
-                    #   source = {
-                    #     git = "https://github.com/travonted/tree-sitter-fennel";
-                    #     rev = "517195970428aacca60891b050aa53eabf4ba78d";
-                    #   };
-                    # };
                   }
                 ];
               };
