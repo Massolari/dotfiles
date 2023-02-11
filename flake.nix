@@ -271,7 +271,6 @@
                   nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                   ll = "ls -l";
                   ".." = "cd ..";
-                  "icloud" = "cd ${config.home.homeDirectory}/Library/Mobile\\ Documents/com\\~apple\\~CloudDocs";
                   "nsx" = "nix-shell --system x86_64-darwin";
                   doom = "${config.home.homeDirectory}/.emacs.d/bin/doom";
                 };
