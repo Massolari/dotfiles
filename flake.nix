@@ -42,6 +42,16 @@
                 in
                 "${apps}/Applications";
 
+
+              file.".config/vifm/vifmrc".source = "${./vifmrc}";
+
+              file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
+                owner = "vifm";
+                repo = "vifm-colors";
+                rev = "master";
+                sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
+              };
+
               file.".w3m/keymap".text = ''
                 keymap C-b PREV_PAGE
                 keymap C-f NEXT_PAGE
