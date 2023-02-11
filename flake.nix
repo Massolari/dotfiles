@@ -75,7 +75,6 @@
                 elmPackages.elm-language-server
                 fd
                 fennel
-                fnlfmt
                 fswatch
                 imagemagick
                 jdk11
