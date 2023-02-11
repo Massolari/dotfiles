@@ -242,10 +242,18 @@
               zsh = {
                 enable = true;
                 enableAutosuggestions = true;
+                initExtraFirst = ''
+                  # Fig pre block. Keep at the top of this file.
+                  . "$HOME/.fig/shell/zshrc.pre.zsh"
+                '';
                 initExtra = ''
                   path+=('${config.home.homeDirectory}/.ghcup/bin')
                   path+=('${config.home.homeDirectory}/.cargo/bin')
                   path+=('${config.home.homeDirectory}/.nimble/bin')
+
+                  # Fig post block. Keep at the bottom of this file.
+                  . "$HOME/.fig/shell/zshrc.post.zsh"
+                  export MANPAGER='nvim +Man!'
                 '';
                 zplug = {
                   enable = true;
