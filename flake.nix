@@ -96,6 +96,7 @@
                 wget
                 yarn
                 yt-dlp
+                zoxide
               ];
             };
 
@@ -252,6 +253,9 @@
                   path+=('${config.home.homeDirectory}/.ghcup/bin')
                   path+=('${config.home.homeDirectory}/.cargo/bin')
                   path+=('${config.home.homeDirectory}/.nimble/bin')
+
+                  # Setup zoxide
+                  eval "$(zoxide init zsh)"
 
                   # Fig post block. Keep at the bottom of this file.
                   . "$HOME/.fig/shell/zshrc.post.zsh"
