@@ -284,7 +284,7 @@
                   ll = "ls -l";
                   ".." = "cd ..";
                   "nsx" = "nix-shell --system x86_64-darwin";
-                  doom = "${config.home.homeDirectory}/.emacs.d/bin/doom";
+                  doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
                 };
               };
             };
