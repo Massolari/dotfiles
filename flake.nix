@@ -52,6 +52,8 @@
                 sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
               };
 
+              file."Library/Preferences/espanso/match/custom.yml".text = builtins.readFile ./espanso/match.yml;
+
               file.".w3m/keymap".text = ''
                 keymap C-b PREV_PAGE
                 keymap C-f NEXT_PAGE
