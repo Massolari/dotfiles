@@ -89,6 +89,7 @@
                 python310Packages.pynvim
                 ripgrep
                 rsync
+                silicon
                 tree-sitter
                 vifm
                 w3m
