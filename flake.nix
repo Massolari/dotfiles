@@ -239,7 +239,13 @@
 
               lazygit = {
                 enable = true;
-                settings.gui.theme.lightTheme = true;
+                settings.gui = {
+                  theme = {
+                    lightTheme = true;
+                    defaultFgColor = [ "black" ];
+                  };
+                  showIcons = true;
+                };
               };
 
               starship.enable = true;
