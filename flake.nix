@@ -216,8 +216,8 @@
               kitty = {
                 enable = true;
                 font = {
-                  name = "JetBrainsMono Nerd Font";
-                  size = 12;
+                  name = "Iosevka Nerd Font";
+                  size = 14;
                 };
                 keybindings = {
                   "shift+cmd+t" = "new_tab_with_cwd";
