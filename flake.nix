@@ -230,7 +230,6 @@
                   hide_window_decorations = "yes";
                   include = "${./kitty-theme.conf}";
                   # theme = "One Half Dark";
-                  macos_thicken_font = "0.40";
                   macos_option_as_alt = "yes";
                   scrollback_pager = ''nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
                   tab_bar_style = "powerline";
