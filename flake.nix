@@ -227,6 +227,7 @@
                   "kitty_mod+z" = "toggle_layout stack";
                 };
                 settings = {
+                  hide_window_decorations = "yes";
                   include = "${./kitty-theme.conf}";
                   # theme = "One Half Dark";
                   macos_thicken_font = "0.40";
