@@ -82,6 +82,7 @@
                 fd
                 fennel
                 fswatch
+                gomuks
                 imagemagick
                 jdk11
                 jq
@@ -95,6 +96,7 @@
                 ripgrep
                 rsync
                 silicon
+                terminal-notifier
                 tree-sitter
                 vifm
                 w3m
