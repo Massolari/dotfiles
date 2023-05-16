@@ -232,7 +232,7 @@
                   # theme = "One Half Dark";
                   macos_thicken_font = "0.40";
                   macos_option_as_alt = "yes";
-                  scrollback_pager = ''nvim -u NORC -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - "'';
+                  scrollback_pager = ''nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
                   tab_bar_style = "powerline";
                   watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
                 };
