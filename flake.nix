@@ -43,6 +43,9 @@
                 "${apps}/Applications";
 
 
+              file.".config/silicon/config".text = ''
+                --theme 'Solarized (light)'
+              '';
               file.".config/vifm/vifmrc".source = "${./vifmrc}";
 
               file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
