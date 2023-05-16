@@ -43,6 +43,20 @@
                 "${apps}/Applications";
 
 
+              file.".config/iamb/config.json".text = builtins.toJSON {
+                profiles = {
+                  dougmass = {
+                    user_id = "@dougmass:matrix.org";
+                    url = "https://matrix.org";
+                  };
+                  douglas = {
+                    user_id = "@douglas:massolari.us.to";
+                    url = "https://massolari.us.to";
+                  };
+                };
+                default_profile = "douglas";
+              };
+
               file.".config/silicon/config".text = ''
                 --theme 'Solarized (light)'
               '';
@@ -300,6 +314,7 @@
                   ".." = "cd ..";
                   "nsx" = "nix-shell --system x86_64-darwin";
                   doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
+                  iamb = "iamb -C ${config.home.homeDirectory}/.config";
                 };
               };
             };
