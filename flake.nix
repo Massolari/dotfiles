@@ -221,8 +221,8 @@
                 };
                 keybindings = {
                   "shift+cmd+t" = "new_tab_with_cwd";
-                  "kitty_mod+j" = "next_tab";
-                  "kitty_mod+k" = "previous_tab";
+                  "kitty_mod+j" = "previous_tab";
+                  "kitty_mod+k" = "next_tab";
                   "kitty_mod+enter" = "new_window_with_cwd";
                   "kitty_mod+z" = "toggle_layout stack";
                 };
