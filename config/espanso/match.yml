@@ -1,0 +1,9 @@
+matches:
+  - trigger: ":emailend"
+    replace: "Best regards,\nDouglas Massolari"
+  - trigger: ":goi"
+    replace: "/open img.png"
+  - trigger: ":gov"
+    replace: "/open video.mp4"
+  - trigger: ":goa"
+    replace: "/open audio.ogg"

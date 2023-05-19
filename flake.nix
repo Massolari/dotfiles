@@ -60,7 +60,7 @@
               file.".config/silicon/config".text = ''
                 --theme 'Solarized (light)'
               '';
-              file.".config/vifm/vifmrc".source = "${./vifmrc}";
+              file.".config/vifm/vifmrc".source = "${./config/vifmrc}";
 
               file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
                 owner = "vifm";
@@ -69,7 +69,7 @@
                 sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
               };
 
-              file."Library/Preferences/espanso/match/custom.yml".text = builtins.readFile ./espanso/match.yml;
+              file."Library/Preferences/espanso/match/custom.yml".text = builtins.readFile ./config/espanso/match.yml;
 
               file.".w3m/keymap".text = ''
                 keymap C-b PREV_PAGE
@@ -242,8 +242,7 @@
                 };
                 settings = {
                   hide_window_decorations = "yes";
-                  include = "${./kitty-theme.conf}";
-                  # theme = "One Half Dark";
+                  include = "${./config/kitty/theme/solarized.conf}";
                   macos_option_as_alt = "yes";
                   scrollback_pager = ''nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
                   tab_bar_style = "powerline";
@@ -266,7 +265,7 @@
 
               wezterm = {
                 enable = true;
-                extraConfig = builtins.readFile ./wezterm.lua;
+                extraConfig = builtins.readFile ./config/wezterm.lua;
               };
 
               zsh = {
