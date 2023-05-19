@@ -1,5 +1,0 @@
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
-yarn global upgrade
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod +x nvim.appimage
-mv -f nvim.appimage $HOME/bin/nvim
