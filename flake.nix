@@ -57,9 +57,8 @@
                 default_profile = "douglas";
               };
 
-              file.".config/silicon/config".text = ''
-                --theme 'Solarized (light)'
-              '';
+              file.".config/silicon/config".text = "--theme 'Solarized (light)'";
+
               file.".config/vifm/vifmrc".source = "${./config/vifmrc}";
 
               file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
@@ -71,22 +70,7 @@
 
               file."Library/Preferences/espanso/match/custom.yml".text = builtins.readFile ./config/espanso/match.yml;
 
-              file.".w3m/keymap".text = ''
-                keymap C-b PREV_PAGE
-                keymap C-f NEXT_PAGE
-                keymap b PREV_WORD
-                keymap C-u PREV_HALF_PAGE
-                keymap C-d NEXT_HALF_PAGE
-                keymap C-y DOWN
-                keymap C-e UP
-                keymap C-o BOOKMARK
-                keymap C-a ADD_BOOKMARK
-
-                keymap Sd COMMAND "GOTO https://duckduckgo.com/lite/; NEXT_LINK; GOTO_LINK"
-                keymap Sg COMMAND "GOTO https://google.com; GOTO_LINE 6; NEXT_LINK; GOTO_LINK"
-                keymap Se COMMAND "GOTO https://stackexchange.com; GOTO_LINE 7; NEXT_LINK; GOTO_LINK"
-                keymap Sw COMMAND "GOTO https://en.m.wikipedia.org/wiki/Main_Page; GOTO_LINE 18; NEXT_LINK; GOTO_LINK"
-              '';
+              file.".w3m/keymap".text = builtins.readFile ./config/w3m/keymap;
 
               packages = with pkgs; [
                 ascii-image-converter
@@ -101,6 +85,7 @@
                 jdk11
                 jq
                 languagetool
+                luajitPackages.luarocks
                 mpv
                 neovim
                 nodejs
@@ -261,6 +246,12 @@
                 };
               };
 
+              # neomutt = {
+              #   enable = true;
+              #   sidebar.enable = true;
+              #   vimKeys = true;
+              # };
+
               starship.enable = true;
 
               wezterm = {
@@ -271,30 +262,11 @@
               zsh = {
                 enable = true;
                 enableAutosuggestions = true;
-                initExtraFirst = ''
-                  export LC_TYPE=pt_BR.UTF-8
-                  export LC_ALL=pt_BR.UTF-8
-                  # Fig pre block. Keep at the top of this file.
-                  . "$HOME/.fig/shell/zshrc.pre.zsh"
-                '';
-                initExtra = ''
-                  path+=('${config.home.homeDirectory}/.ghcup/bin')
-                  path+=('${config.home.homeDirectory}/.cargo/bin')
-                  path+=('${config.home.homeDirectory}/.nimble/bin')
-
-                  # Setup zoxide
-                  eval "$(zoxide init zsh)"
-
-                  # Nix
-                  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-                    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-                  fi
-                  # End Nix
-
-                  # Fig post block. Keep at the bottom of this file.
-                  . "$HOME/.fig/shell/zshrc.post.zsh"
-                  export MANPAGER='nvim +Man!'
-                '';
+                initExtraFirst = builtins.readFile ./config/zsh/pre.zsh;
+                initExtra = builtins.readFile (pkgs.substituteAll {
+                  src = ./config/zsh/.zshrc;
+                  home = config.home.homeDirectory;
+                });
                 zplug = {
                   enable = true;
                   plugins = [
