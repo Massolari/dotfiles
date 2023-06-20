@@ -244,7 +244,10 @@ fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 filetype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
        \ open -a Preview.app,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
+          \ kitten icat --silent --transfer-mode=file --place=%pwx%ph@%pxx%py %c >/dev/tty </dev/tty %N
+          \ %pc
+          \ kitten icat --clear --silent >/dev/tty </dev/tty %N
+" \ identify %f
 
 " MD5
 filetype *.md5
