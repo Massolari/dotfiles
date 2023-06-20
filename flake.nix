@@ -191,7 +191,7 @@
               helix = {
                 enable = true;
                 settings = {
-                  theme = "onelight";
+                  theme = "solarized_light";
                   editor = {
                     "line-number" = "relative";
                     "cursor-shape".insert = "bar";
