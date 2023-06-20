@@ -29,6 +29,7 @@
 
               file.".config/nix/nix.conf".text = ''
                 experimental-features = nix-command flakes
+                trusted-users = ${username}
               '';
 
               # Install MacOS applications to the user environment.
