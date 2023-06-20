@@ -60,7 +60,16 @@
 
               file.".config/silicon/config".text = "--theme 'Solarized (light)'";
 
-              file.".config/vifm/vifmrc".source = "${./config/vifmrc}";
+              file.".config/vifm/vifmrc".source = pkgs.substituteAll {
+                src = ./config/vifmrc;
+                favicons = pkgs.fetchFromGitHub
+                  {
+                    owner = "thimc";
+                    repo = "vifm_devicons";
+                    rev = "master";
+                    sha256 = "sha256-MYbOob60TzIn+2v64z/6HwnxNoDAZnOoYLLYikUA078=";
+                  } + "/favicons.vifm";
+              };
 
               file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
                 owner = "vifm";
