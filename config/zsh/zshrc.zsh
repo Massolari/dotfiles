@@ -1,6 +1,8 @@
 path+=('@home@/.ghcup/bin')
 path+=('@home@/.cargo/bin')
 path+=('@home@/.nimble/bin')
+export XDG_CONFIG_HOME='@home@/.config'
+export EDITOR='nvim'
 
 # Setup zoxide
 eval "$(zoxide init zsh)"

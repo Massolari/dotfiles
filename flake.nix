@@ -264,7 +264,7 @@
                 enableAutosuggestions = true;
                 initExtraFirst = builtins.readFile ./config/zsh/pre.zsh;
                 initExtra = builtins.readFile (pkgs.substituteAll {
-                  src = ./config/zsh/.zshrc;
+                  src = ./config/zsh/zshrc.zsh;
                   home = config.home.homeDirectory;
                 });
                 zplug = {
@@ -279,13 +279,14 @@
                   ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
                 };
                 shellAliases = {
-                  lg = "lazygit";
-                  nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
-                  ll = "ls -l";
                   ".." = "cd ..";
-                  "nsx" = "nix-shell --system x86_64-darwin";
                   doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
                   iamb = "iamb -C ${config.home.homeDirectory}/.config";
+                  lg = "lazygit";
+                  ll = "ls -l";
+                  nsb = "nix-shell --builders '@/etc/nix/machines'";
+                  nsx = "nix-shell --system x86_64-darwin";
+                  nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                 };
               };
             };
