@@ -223,16 +223,18 @@
                     };
                   };
                 };
-                languages = [
-                  {
-                    name = "fennel";
-                    scope = "source.fnl";
-                    "file-types" = [ "fnl" ];
-                    "comment-token" = ";";
-                    "roots" = [ ];
-                    grammar = "tree-sitter-fennel";
-                  }
-                ];
+                languages = {
+                  language = [
+                    {
+                      name = "fennel";
+                      scope = "source.fnl";
+                      "file-types" = [ "fnl" ];
+                      "comment-token" = ";";
+                      "roots" = [ ];
+                      grammar = "tree-sitter-fennel";
+                    }
+                  ];
+                };
               };
 
               kitty = {
