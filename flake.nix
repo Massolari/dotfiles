@@ -196,6 +196,9 @@
                   theme = "solarized_light";
                   editor = {
                     "line-number" = "relative";
+                    lsp = {
+                      display-inlay-hints = true;
+                    };
                     "cursor-shape".insert = "bar";
                     statusline = {
                       left = [ "mode" "file-type" "file-name" "diagnostics" ];
