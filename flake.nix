@@ -193,7 +193,7 @@
               helix = {
                 enable = true;
                 settings = {
-                  theme = "solarized_light";
+                  theme = "everforest_light";
                   editor = {
                     "line-number" = "relative";
                     lsp = {
