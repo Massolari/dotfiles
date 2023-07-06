@@ -91,6 +91,7 @@
                 fennel
                 fswatch
                 gomuks
+                htop
                 imagemagick
                 jdk11
                 jq
