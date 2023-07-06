@@ -309,7 +309,7 @@
                   iamb = "iamb -C ${config.home.homeDirectory}/.config";
                   lg = "lazygit";
                   ll = "ls -l";
-                  nsb = "nix-shell --builders '@/etc/nix/machines'";
+                  nsb = "nix-shell -j0 --builders '@/etc/nix/machines'";
                   nsx = "nix-shell --system x86_64-darwin";
                   nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                 };
