@@ -107,6 +107,7 @@
                 rsync
                 silicon
                 terminal-notifier
+                tldr
                 tree-sitter
                 vifm
                 w3m
