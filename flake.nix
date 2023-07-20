@@ -80,6 +80,14 @@
 
               file."Library/Preferences/espanso/match/custom.yml".text = builtins.readFile ./config/espanso/match.yml;
 
+              file."Library/Application Support/nushell/nu_scripts".source = pkgs.fetchFromGitHub {
+                owner = "nushell";
+                repo = "nu_scripts";
+                rev = "master";
+                sha256 = "sha256-Bt1ALgY0O2iHQembqEDS+kjiuP8ZZLe6spQWuMP97ik=";
+              };
+
+
               file.".w3m/keymap".text = builtins.readFile ./config/w3m/keymap;
 
               packages = with pkgs; [
@@ -271,36 +279,67 @@
                 extraConfig = builtins.readFile ./config/wezterm.lua;
               };
 
-              zsh = {
+              # zsh = {
+              #   enable = true;
+              #   enableAutosuggestions = true;
+              #   initExtraFirst = builtins.readFile ./config/zsh/pre.zsh;
+              #   initExtra = builtins.readFile (pkgs.substituteAll {
+              #     src = ./config/zsh/zshrc.zsh;
+              #     home = config.home.homeDirectory;
+              #   });
+              #   zplug = {
+              #     enable = true;
+              #     plugins = [
+              #       { name = "z-shell/F-Sy-H"; }
+              #       { name = "jeffreytse/zsh-vi-mode"; }
+              #       { name = "plugins/git"; tags = [ from:oh-my-zsh ]; }
+              #     ];
+              #   };
+              #   localVariables = {
+              #     ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
+              #   };
+              #   shellAliases = {
+              #     ".." = "cd ..";
+              #     doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
+              #     iamb = "iamb -C ${config.home.homeDirectory}/.config";
+              #     lg = "lazygit";
+              #     ll = "ls -l";
+              #     nsb = "nix-shell -j0 --builders '@/etc/nix/machines'";
+              #     nsx = "nix-shell --system x86_64-darwin";
+              #     nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
+              #   };
+              # };
+
+              nushell = {
                 enable = true;
-                enableAutosuggestions = true;
-                initExtraFirst = builtins.readFile ./config/zsh/pre.zsh;
-                initExtra = builtins.readFile (pkgs.substituteAll {
-                  src = ./config/zsh/zshrc.zsh;
+
+                configFile.source = pkgs.substituteAll {
+                  src = ./config/nushell/conf.nu;
                   home = config.home.homeDirectory;
-                });
-                zplug = {
-                  enable = true;
-                  plugins = [
-                    { name = "z-shell/F-Sy-H"; }
-                    { name = "jeffreytse/zsh-vi-mode"; }
-                    { name = "plugins/git"; tags = [ from:oh-my-zsh ]; }
-                  ];
                 };
-                localVariables = {
-                  ZVM_VI_INSERT_ESCAPE_BINDKEY = "jk";
+
+                environmentVariables = {
+                  XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+                  EDITOR = "nvim";
+                  MANPAGER = "'nvim +Man'";
+                  LC_TYPE = "pt_BR.UTF-8";
+                  LC_ALL = "pt_BR.UTF-8";
                 };
+
                 shellAliases = {
+                  open = "^open";
                   ".." = "cd ..";
                   doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
                   iamb = "iamb -C ${config.home.homeDirectory}/.config";
                   lg = "lazygit";
                   ll = "ls -l";
                   nsb = "nix-shell -j0 --builders '@/etc/nix/machines'";
+                  ndb = "nix develop -j0 --builders '@/etc/nix/machines'";
                   nsx = "nix-shell --system x86_64-darwin";
                   nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                 };
               };
+
               zoxide.enable = true;
             };
           })
