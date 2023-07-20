@@ -114,7 +114,6 @@
                 wget
                 yarn
                 yt-dlp
-                zoxide
               ];
             };
 
@@ -327,6 +326,7 @@
                   nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                 };
               };
+              zoxide.enable = true;
             };
           })
         ];
