@@ -228,31 +228,6 @@
                     };
                   };
                 };
-                # languages = {
-                #   language = [
-                #     {
-                #       name = "typescript";
-                #       config = {
-                #         inlayHints.includeInlayParameterNameHints = "all";
-                #         inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                #         inlayHints.includeInlayFunctionParameterTypeHints = true;
-                #         inlayHints.includeInlayVariableTypeHints = true;
-                #         inlayHints.includeInlayVariableTypeHintsWhenTypeMatchesName = true;
-                #         inlayHints.includeInlayPropertyDeclarationTypeHints = true;
-                #         inlayHints.includeInlayFunctionLikeReturnTypeHints = true;
-                #         inlayHints.includeInlayEnumMemberValueHints = true;
-                #       };
-                #     }
-                # {
-                #       name = "fennel";
-                #       scope = "source.fnl";
-                #       "file-types" = [ "fnl" ];
-                #       "comment-token" = ";";
-                #       "roots" = [ ];
-                #       grammar = "tree-sitter-fennel";
-                #     }
-                #   ];
-                # };
               };
 
               kitty = {
