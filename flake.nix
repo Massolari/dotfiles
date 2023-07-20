@@ -94,7 +94,6 @@
                 ascii-image-converter
                 bitwarden-cli
                 elmPackages.elm-language-server
-                exa
                 fd
                 fennel
                 fswatch
