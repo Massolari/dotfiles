@@ -84,7 +84,7 @@
                 owner = "nushell";
                 repo = "nu_scripts";
                 rev = "master";
-                sha256 = "sha256-Bt1ALgY0O2iHQembqEDS+kjiuP8ZZLe6spQWuMP97ik=";
+                sha256 = "sha256-4BQy+iEOB0dgpbB9AlGJp4mr+vHpch2iE5LTm5RWscs=";
               };
 
 
