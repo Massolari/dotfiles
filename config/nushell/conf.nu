@@ -1,7 +1,7 @@
 use "@home@/Library/Application Support/nushell/nu_scripts/themes/themes/nushell-light.nu"
 use "@home@/Library/Application Support/nushell/nu_scripts/aliases/git/git-aliases.nu" *
 
-let-env config = {
+$env.config = {
   edit_mode: vi
   color_config: (nushell-light)
   keybindings: [
@@ -68,8 +68,4 @@ let-env config = {
 
 def nuopen [arg, --raw (-r)] { if $raw { open -r $arg } else { open $arg } }
 
-let-env PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | prepend '@home@/.ghcup/bin' | prepend '@home@/.cargo/bin' | prepend '@home@/.nimble/bin' | prepend '@home@/.nix-profile/bin' | prepend '/nix/var/nix/profiles/default/bin' | prepend '@home@/.local/bin')
-
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
-
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | prepend '@home@/.ghcup/bin' | prepend '@home@/.cargo/bin' | prepend '@home@/.nimble/bin' | prepend '@home@/.nix-profile/bin' | prepend '/nix/var/nix/profiles/default/bin' | prepend '@home@/.local/bin')
