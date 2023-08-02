@@ -339,7 +339,10 @@
                 };
               };
 
-              zoxide.enable = true;
+              zoxide = {
+                enable = true;
+                enableNushellIntegration = false;
+              };
             };
           })
         ];
