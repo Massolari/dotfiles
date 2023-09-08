@@ -68,7 +68,17 @@ $env.config = {
 
 def nuopen [arg, --raw (-r)] { if $raw { open -r $arg } else { open $arg } }
 
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin' | prepend '@home@/.ghcup/bin' | prepend '@home@/.cargo/bin' | prepend '@home@/.nimble/bin' | prepend '@home@/.nix-profile/bin' | prepend '/nix/var/nix/profiles/default/bin' | prepend '@home@/.local/bin')
+$env.PATH = ($env.PATH
+  | split row (char esep)
+  | prepend '/opt/homebrew/bin'
+  | prepend '@home@/.ghcup/bin'
+  | prepend '@home@/.cargo/bin'
+  | prepend '@home@/.nimble/bin'
+  | prepend '@home@/.nix-profile/bin'
+  | prepend '/nix/var/nix/profiles/default/bin'
+  | prepend '@home@/.local/bin'
+  | prepend '@home@/.docker/bin'
+)
 
 @home@/.nix-profile/bin/zoxide init nushell | str replace --string --all 'let-env ' '$env.' | save -f @home@/.cache/zoxide/init.nu
 source @home@/.cache/zoxide/init.nu
