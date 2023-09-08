@@ -345,6 +345,14 @@
               };
             };
           })
+
+          ({ pkgs, ... }: {
+            nix = {
+              registry = {
+                nixpkgs.flake = nixpkgs;
+              };
+            };
+          })
         ];
       };
     };
