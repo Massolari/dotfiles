@@ -110,7 +110,6 @@
                 python310
                 python310Packages.pip
                 python310Packages.pynvim
-                ripgrep
                 rsync
                 silicon
                 terminal-notifier
@@ -338,6 +337,8 @@
                   nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                 };
               };
+
+              ripgrep.enable = true;
 
               zoxide = {
                 enable = true;
