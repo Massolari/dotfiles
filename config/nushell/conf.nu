@@ -82,3 +82,5 @@ $env.PATH = ($env.PATH
 
 @home@/.nix-profile/bin/zoxide init nushell | str replace --string --all 'let-env ' '$env.' | save -f @home@/.cache/zoxide/init.nu
 source @home@/.cache/zoxide/init.nu
+
+def nvid [] { which nvim | get path | /Applications/neovide.app/Contents/MacOS/neovide --neovim-bin $in }

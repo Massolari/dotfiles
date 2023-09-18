@@ -334,7 +334,6 @@
                   nsb = "bash -c 'source ~/.bashrc && nsb'";
                   ndb = "bash -c 'source ~/.bashrc && ndb'";
                   nsx = "nix-shell --system x86_64-darwin";
-                  nvid = "${config.home.homeDirectory}/neovide/target/release/neovide";
                 };
               };
 
