@@ -311,10 +311,7 @@
               nushell = {
                 enable = true;
 
-                configFile.source = pkgs.substituteAll {
-                  src = ./config/nushell/conf.nu;
-                  home = config.home.homeDirectory;
-                };
+                configFile.source = ./config/nushell/conf.nu;
 
                 environmentVariables = {
                   XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";

@@ -1,5 +1,5 @@
-use "@home@/Library/Application Support/nushell/nu_scripts/themes/themes/nushell-light.nu"
-use "@home@/Library/Application Support/nushell/nu_scripts/aliases/git/git-aliases.nu" *
+use "~/Library/Application Support/nushell/nu_scripts/themes/themes/nushell-light.nu"
+use "~/Library/Application Support/nushell/nu_scripts/aliases/git/git-aliases.nu" *
 
 $env.config = {
   edit_mode: vi
@@ -71,16 +71,16 @@ def nuopen [arg, --raw (-r)] { if $raw { open -r $arg } else { open $arg } }
 $env.PATH = ($env.PATH
   | split row (char esep)
   | prepend '/opt/homebrew/bin'
-  | prepend '@home@/.ghcup/bin'
-  | prepend '@home@/.cargo/bin'
-  | prepend '@home@/.nimble/bin'
-  | prepend '@home@/.nix-profile/bin'
+  | prepend '($env.HOME)/.ghcup/bin'
+  | prepend '($env.HOME)/.cargo/bin'
+  | prepend '($env.HOME)/.nimble/bin'
+  | prepend '($env.HOME)/.nix-profile/bin'
   | prepend '/nix/var/nix/profiles/default/bin'
-  | prepend '@home@/.local/bin'
-  | prepend '@home@/.docker/bin'
+  | prepend '($env.HOME)/.local/bin'
+  | prepend '($env.HOME)/.docker/bin'
+  | prepend $'($env.HOME)/.local/share/nvim/mason/bin/'
 )
 
-@home@/.nix-profile/bin/zoxide init nushell | str replace --string --all 'let-env ' '$env.' | save -f @home@/.cache/zoxide/init.nu
-source @home@/.cache/zoxide/init.nu
+source ~/.cache/zoxide/init.nu
 
 def nvid [] { which nvim | get path | /Applications/neovide.app/Contents/MacOS/neovide --neovim-bin $in }
