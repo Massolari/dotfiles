@@ -81,6 +81,4 @@ $env.PATH = ($env.PATH
   | prepend $'($env.HOME)/.local/share/nvim/mason/bin/'
 )
 
-source ~/.cache/zoxide/init.nu
-
 def nvid [] { which nvim | get path | /Applications/neovide.app/Contents/MacOS/neovide --neovim-bin $in }
