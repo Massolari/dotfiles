@@ -71,13 +71,13 @@ def nuopen [arg, --raw (-r)] { if $raw { open -r $arg } else { open $arg } }
 $env.PATH = ($env.PATH
   | split row (char esep)
   | prepend '/opt/homebrew/bin'
-  | prepend '($env.HOME)/.ghcup/bin'
-  | prepend '($env.HOME)/.cargo/bin'
-  | prepend '($env.HOME)/.nimble/bin'
-  | prepend '($env.HOME)/.nix-profile/bin'
+  | prepend $'($env.HOME)/.ghcup/bin'
+  | prepend $'($env.HOME)/.cargo/bin'
+  | prepend $'($env.HOME)/.nimble/bin'
+  | prepend $'($env.HOME)/.nix-profile/bin'
   | prepend '/nix/var/nix/profiles/default/bin'
-  | prepend '($env.HOME)/.local/bin'
-  | prepend '($env.HOME)/.docker/bin'
+  | prepend $'($env.HOME)/.local/bin'
+  | prepend $'($env.HOME)/.docker/bin'
   | prepend $'($env.HOME)/.local/share/nvim/mason/bin/'
 )
 
