@@ -285,7 +285,7 @@
                 environmentVariables = {
                   XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
                   EDITOR = "nvim";
-                  MANPAGER = "'nvim +Man'";
+                  MANPAGER = "'nvim +Man!'";
                   LC_TYPE = "pt_BR.UTF-8";
                   LC_ALL = "pt_BR.UTF-8";
                 };
