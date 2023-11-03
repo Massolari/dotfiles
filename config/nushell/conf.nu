@@ -1,4 +1,4 @@
-use "~/Library/Application Support/nushell/nu_scripts/themes/themes/nushell-light.nu"
+use "~/Library/Application Support/nushell/nu_scripts/themes/nu-themes/nushell-light.nu"
 use "~/Library/Application Support/nushell/nu_scripts/aliases/git/git-aliases.nu" *
 
 $env.config = {
