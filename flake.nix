@@ -153,6 +153,12 @@
 
               bat.enable = true;
 
+              direnv = {
+                enable = true;
+                enableNushellIntegration = true;
+                nix-direnv.enable = true;
+              };
+
               emacs.enable = true;
 
               fzf.enable = true;
