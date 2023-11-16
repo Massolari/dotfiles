@@ -94,6 +94,7 @@
               packages = with pkgs; [
                 ascii-image-converter
                 bitwarden-cli
+                devbox
                 elmPackages.elm-language-server
                 fd
                 fennel
