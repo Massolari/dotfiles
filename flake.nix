@@ -154,6 +154,8 @@
 
               bat.enable = true;
 
+              carapace.enable = true;
+
               direnv = {
                 enable = true;
                 enableNushellIntegration = true;
