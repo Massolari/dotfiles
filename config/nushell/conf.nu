@@ -82,3 +82,6 @@ $env.PATH = ($env.PATH
 )
 
 def nvid [] { which nvim | get path | /Applications/neovide.app/Contents/MacOS/neovide --neovim-bin $in }
+
+yabai --start-service
+skhd --start-service

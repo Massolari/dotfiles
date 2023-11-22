@@ -88,8 +88,17 @@
                 sha256 = "sha256-Sug07QTL7fxxQAf9YOprMNEQSDqeXEk7qt1g2dP0Eqk=";
               };
 
+              file.".skhdrc" = {
+                text = builtins.readFile ./config/skhdrc;
+                executable = true;
+              };
 
               file.".w3m/keymap".text = builtins.readFile ./config/w3m/keymap;
+
+              file.".yabairc" = {
+                text = builtins.readFile ./config/yabairc;
+                executable = true;
+              };
 
               packages = with pkgs; [
                 ascii-image-converter
