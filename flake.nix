@@ -57,6 +57,9 @@
                   };
                 };
                 default_profile = "douglas";
+                settings = {
+                  image_preview = { };
+                };
               };
 
               file.".config/silicon/config".text = "--theme 'Solarized (light)'";
