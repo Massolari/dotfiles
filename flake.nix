@@ -63,6 +63,7 @@
                 };
                 settings = {
                   image_preview = { };
+                  username_display = "displayname";
                 };
               };
 
