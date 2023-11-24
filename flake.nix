@@ -46,6 +46,7 @@
 
 
               file.".config/iamb/config.json".text = builtins.toJSON {
+                default_profile = "douglas";
                 profiles = {
                   dougmass = {
                     user_id = "@dougmass:matrix.org";
@@ -55,8 +56,11 @@
                     user_id = "@douglas:massolari.us.to";
                     url = "https://massolari.us.to";
                   };
+                  beeper = {
+                    user_id = "@douglas-massolari:beeper.com";
+                    url = "https://matrix.beeper.com";
+                  };
                 };
-                default_profile = "douglas";
                 settings = {
                   image_preview = { };
                 };
