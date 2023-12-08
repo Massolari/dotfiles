@@ -22,320 +22,319 @@
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ({ config, ... }: {
-            home = {
-              stateVersion = "22.11";
-              inherit username;
-              homeDirectory = "/Users/${username}";
+          ({ config, ... }:
+            let
+              mkDotfilesSymlink = file:
+                config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${file}";
+            in
+            {
+              home = {
+                stateVersion = "22.11";
+                inherit username;
+                homeDirectory = "/Users/${username}";
 
-              file.".config/nix/nix.conf".text = ''
-                experimental-features = nix-command flakes
-                trusted-users = ${username}
-              '';
+                file.".config/nix/nix.conf".text = ''
+                  experimental-features = nix-command flakes
+                  trusted-users = ${username}
+                '';
 
-              # Install MacOS applications to the user environment.
-              file."Applications/Home Manager Apps".source =
-                let
-                  apps = pkgs.buildEnv {
-                    name = "home-manager-applications";
-                    paths = config.home.packages;
-                    pathsToLink = "/Applications";
+                # Install MacOS applications to the user environment.
+                file."Applications/Home Manager Apps".source =
+                  let
+                    apps = pkgs.buildEnv {
+                      name = "home-manager-applications";
+                      paths = config.home.packages;
+                      pathsToLink = "/Applications";
+                    };
+                  in
+                  "${apps}/Applications";
+
+
+                file.".config/iamb/config.json".text = builtins.toJSON {
+                  default_profile = "douglas";
+                  profiles = {
+                    dougmass = {
+                      user_id = "@dougmass:matrix.org";
+                      url = "https://matrix.org";
+                    };
+                    douglas = {
+                      user_id = "@douglas:massolari.us.to";
+                      url = "https://massolari.us.to";
+                    };
+                    beeper = {
+                      user_id = "@douglas-massolari:beeper.com";
+                      url = "https://matrix.beeper.com";
+                    };
                   };
-                in
-                "${apps}/Applications";
-
-
-              file.".config/iamb/config.json".text = builtins.toJSON {
-                default_profile = "douglas";
-                profiles = {
-                  dougmass = {
-                    user_id = "@dougmass:matrix.org";
-                    url = "https://matrix.org";
-                  };
-                  douglas = {
-                    user_id = "@douglas:massolari.us.to";
-                    url = "https://massolari.us.to";
-                  };
-                  beeper = {
-                    user_id = "@douglas-massolari:beeper.com";
-                    url = "https://matrix.beeper.com";
-                  };
-                };
-                settings = {
-                  image_preview = { };
-                  username_display = "displayname";
-                };
-              };
-
-              file.".config/silicon/config".text = "--theme 'Solarized (light)'";
-
-              file.".config/vifm/vifmrc".source = pkgs.substituteAll {
-                src = ./config/vifmrc;
-                favicons = pkgs.fetchFromGitHub
-                  {
-                    owner = "thimc";
-                    repo = "vifm_devicons";
-                    rev = "master";
-                    sha256 = "sha256-MYbOob60TzIn+2v64z/6HwnxNoDAZnOoYLLYikUA078=";
-                  } + "/favicons.vifm";
-              };
-
-              file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
-                owner = "vifm";
-                repo = "vifm-colors";
-                rev = "master";
-                sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
-              };
-
-              file."Library/Preferences/espanso/match/custom.yml".text = builtins.readFile ./config/espanso/match.yml;
-
-              file."Library/Application Support/nushell/nu_scripts".source = pkgs.fetchFromGitHub {
-                owner = "nushell";
-                repo = "nu_scripts";
-                rev = "master";
-                sha256 = "sha256-Sug07QTL7fxxQAf9YOprMNEQSDqeXEk7qt1g2dP0Eqk=";
-              };
-
-              file.".skhdrc" = {
-                text = builtins.readFile ./config/skhdrc;
-                executable = true;
-              };
-
-              file.".w3m/keymap".text = builtins.readFile ./config/w3m/keymap;
-
-              file.".yabairc" = {
-                text = builtins.readFile ./config/yabairc;
-                executable = true;
-              };
-
-              packages = with pkgs; [
-                ascii-image-converter
-                bitwarden-cli
-                devbox
-                elmPackages.elm-language-server
-                fd
-                fennel
-                fswatch
-                garn.packages.${system}.default
-                gomuks
-                htop
-                imagemagick
-                jdk11
-                jq
-                languagetool
-                luajitPackages.luarocks
-                mpv
-                neovim
-                nodejs
-                python310
-                python310Packages.pip
-                python310Packages.pynvim
-                rsync
-                silicon
-                terminal-notifier
-                tldr
-                tree-sitter
-                vifm
-                w3m
-                wget
-                yarn
-                yt-dlp
-              ];
-            };
-
-            programs = {
-              home-manager.enable = true;
-
-              aerc = {
-                enable = true;
-                extraConfig = {
-                  filters = {
-                    "text/plain" = "colorize";
-                    "text/calendar" = "calendar";
-                    "message/delivery-status" = "colorize";
-                    "message/rfc822" = "colorize";
-                    "text/html" = "html | colorize";
+                  settings = {
+                    image_preview = { };
+                    username_display = "displayname";
                   };
                 };
-              };
 
-              alacritty = {
-                enable = true;
-                settings = {
-                  font = {
-                    normal.family = "JetBrainsMono Nerd Font";
-                    size = 12.0;
-                  };
+                file.".config/silicon/config".text = "--theme 'Solarized (light)'";
+
+                file.".config/vifm/vifmrc".source = pkgs.substituteAll {
+                  src = ./config/vifmrc;
+                  favicons = pkgs.fetchFromGitHub
+                    {
+                      owner = "thimc";
+                      repo = "vifm_devicons";
+                      rev = "master";
+                      sha256 = "sha256-MYbOob60TzIn+2v64z/6HwnxNoDAZnOoYLLYikUA078=";
+                    } + "/favicons.vifm";
                 };
-              };
 
-              bat.enable = true;
+                file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
+                  owner = "vifm";
+                  repo = "vifm-colors";
+                  rev = "master";
+                  sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
+                };
 
-              carapace.enable = true;
+                file."Library/Preferences/espanso/match/custom.yml".source = mkDotfilesSymlink "config/espanso/match.yml";
 
-              direnv = {
-                enable = true;
-                enableNushellIntegration = true;
-                nix-direnv.enable = true;
-              };
+                file."Library/Application Support/nushell/nu_scripts".source = pkgs.fetchFromGitHub {
+                  owner = "nushell";
+                  repo = "nu_scripts";
+                  rev = "master";
+                  sha256 = "sha256-Sug07QTL7fxxQAf9YOprMNEQSDqeXEk7qt1g2dP0Eqk=";
+                };
 
-              emacs.enable = true;
+                file.".skhdrc".source = mkDotfilesSymlink "config/skhdrc";
 
-              fzf.enable = true;
+                file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
 
-              git = {
-                enable = true;
-                lfs.enable = true;
-                userName = "Douglas M.";
-                userEmail = "douglasmassolari@hotmail.com";
-                includes = [
-                  {
-                    path = "~/tweag/.gitconfig";
-                    condition = "gitdir:~/tweag";
-                  }
-                  {
-                    path = "~/tweag/.gitconfig";
-                    condition = "gitdir:~/tweag/";
-                  }
-                  {
-                    path = "~/tweag/metronome/.gitconfig";
-                    condition = "gitdir:~/tweag/metronome/";
-                  }
+                file.".yabairc".source = mkDotfilesSymlink "config/yabairc";
+
+                packages = with pkgs; [
+                  ascii-image-converter
+                  bitwarden-cli
+                  devbox
+                  elmPackages.elm-language-server
+                  fd
+                  fennel
+                  fswatch
+                  garn.packages.${system}.default
+                  gomuks
+                  htop
+                  imagemagick
+                  jdk11
+                  jq
+                  languagetool
+                  luajitPackages.luarocks
+                  mpv
+                  neovim
+                  nodejs
+                  python310
+                  python310Packages.pip
+                  python310Packages.pynvim
+                  rsync
+                  silicon
+                  terminal-notifier
+                  tldr
+                  tree-sitter
+                  vifm
+                  w3m
+                  wget
+                  yarn
+                  yt-dlp
                 ];
-                extraConfig = {
-                  core.editor = "nvim";
-                  init.defaultBranch = "master";
-                  pull.ff = "only";
-                  github.user = "Massolari";
-                };
-                delta = {
+              };
+
+              programs = {
+                home-manager.enable = true;
+
+                aerc = {
                   enable = true;
-                  options.light = true;
-                };
-              };
-
-              gh = {
-                enable = true;
-                settings = {
-                  git_protocol = "ssh";
-                  editor = "nvim";
-                  prompt = "enable";
-                };
-              };
-
-              helix = {
-                enable = true;
-                settings = {
-                  theme = "everforest_light";
-                  editor = {
-                    "line-number" = "relative";
-                    lsp = {
-                      display-messages = true;
-                      display-inlay-hints = true;
+                  extraConfig = {
+                    filters = {
+                      "text/plain" = "colorize";
+                      "text/calendar" = "calendar";
+                      "message/delivery-status" = "colorize";
+                      "message/rfc822" = "colorize";
+                      "text/html" = "html | colorize";
                     };
-                    "cursor-shape".insert = "bar";
-                    statusline = {
-                      left = [ "mode" "file-type" "file-name" "diagnostics" ];
-                      center = [ "spinner" ];
-                      right = [ "selections" "position" "position-percentage" ];
-                    };
-                    "file-picker".hidden = false;
-                    "indent-guides".render = true;
                   };
-                  keys = {
-                    normal = {
-                      "C-h" = "jump_view_left";
-                      "C-j" = "jump_view_down";
-                      "C-k" = "jump_view_up";
-                      "C-l" = "jump_view_right";
-                      "C-e" = "scroll_down";
-                      "C-y" = "scroll_up";
-                      "space".b = {
-                        b = "buffer_picker";
-                        d = ":bc";
-                        s = ":w";
+                };
+
+                alacritty = {
+                  enable = true;
+                  settings = {
+                    font = {
+                      normal.family = "JetBrainsMono Nerd Font";
+                      size = 12.0;
+                    };
+                  };
+                };
+
+                bat.enable = true;
+
+                carapace.enable = true;
+
+                direnv = {
+                  enable = true;
+                  enableNushellIntegration = true;
+                  nix-direnv.enable = true;
+                };
+
+                emacs.enable = true;
+
+                fzf.enable = true;
+
+                git = {
+                  enable = true;
+                  lfs.enable = true;
+                  userName = "Douglas M.";
+                  userEmail = "douglasmassolari@hotmail.com";
+                  includes = [
+                    {
+                      path = "~/tweag/.gitconfig";
+                      condition = "gitdir:~/tweag";
+                    }
+                    {
+                      path = "~/tweag/.gitconfig";
+                      condition = "gitdir:~/tweag/";
+                    }
+                    {
+                      path = "~/tweag/metronome/.gitconfig";
+                      condition = "gitdir:~/tweag/metronome/";
+                    }
+                  ];
+                  extraConfig = {
+                    core.editor = "nvim";
+                    init.defaultBranch = "master";
+                    pull.ff = "only";
+                    github.user = "Massolari";
+                  };
+                  delta = {
+                    enable = true;
+                    options.light = true;
+                  };
+                };
+
+                gh = {
+                  enable = true;
+                  settings = {
+                    git_protocol = "ssh";
+                    editor = "nvim";
+                    prompt = "enable";
+                  };
+                };
+
+                helix = {
+                  enable = true;
+                  settings = {
+                    theme = "everforest_light";
+                    editor = {
+                      "line-number" = "relative";
+                      lsp = {
+                        display-messages = true;
+                        display-inlay-hints = true;
                       };
-                      X = "extend_line_above";
+                      "cursor-shape".insert = "bar";
+                      statusline = {
+                        left = [ "mode" "file-type" "file-name" "diagnostics" ];
+                        center = [ "spinner" ];
+                        right = [ "selections" "position" "position-percentage" ];
+                      };
+                      "file-picker".hidden = false;
+                      "indent-guides".render = true;
                     };
-                    insert = {
-                      j.k = "normal_mode";
+                    keys = {
+                      normal = {
+                        "C-h" = "jump_view_left";
+                        "C-j" = "jump_view_down";
+                        "C-k" = "jump_view_up";
+                        "C-l" = "jump_view_right";
+                        "C-e" = "scroll_down";
+                        "C-y" = "scroll_up";
+                        "space".b = {
+                          b = "buffer_picker";
+                          d = ":bc";
+                          s = ":w";
+                        };
+                        X = "extend_line_above";
+                      };
+                      insert = {
+                        j.k = "normal_mode";
+                      };
                     };
                   };
                 };
-              };
 
-              kitty = {
-                enable = true;
-                font = {
-                  name = "Iosevka NFM";
-                  size = 14;
-                };
-                keybindings = {
-                  "shift+cmd+t" = "new_tab_with_cwd";
-                  "kitty_mod+j" = "previous_tab";
-                  "kitty_mod+k" = "next_tab";
-                  "kitty_mod+enter" = "new_window_with_cwd";
-                  "kitty_mod+z" = "toggle_layout stack";
-                };
-                settings = {
-                  hide_window_decorations = "yes";
-                  include = "${./config/kitty/theme/catppuccin-latte.conf}";
-                  macos_option_as_alt = "yes";
-                  scrollback_pager = ''/Users/douglasmassolari/.nix-profile/bin/nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
-                  tab_bar_style = "powerline";
-                  watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
-                };
-              };
-
-              lazygit = {
-                enable = true;
-                settings.gui = {
-                  theme = {
-                    lightTheme = true;
-                    defaultFgColor = [ "black" ];
+                kitty = {
+                  enable = true;
+                  font = {
+                    name = "Iosevka NFM";
+                    size = 14;
                   };
-                  showIcons = true;
-                };
-              };
-
-              starship.enable = true;
-
-              wezterm = {
-                enable = true;
-                extraConfig = builtins.readFile ./config/wezterm.lua;
-              };
-
-              nushell = {
-                enable = true;
-
-                configFile.source = ./config/nushell/conf.nu;
-
-                environmentVariables = {
-                  XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-                  EDITOR = "nvim";
-                  MANPAGER = "'nvim +Man!'";
-                  LC_TYPE = "pt_BR.UTF-8";
-                  LC_ALL = "pt_BR.UTF-8";
+                  keybindings = {
+                    "shift+cmd+t" = "new_tab_with_cwd";
+                    "kitty_mod+j" = "previous_tab";
+                    "kitty_mod+k" = "next_tab";
+                    "kitty_mod+enter" = "new_window_with_cwd";
+                    "kitty_mod+z" = "toggle_layout stack";
+                  };
+                  settings = {
+                    hide_window_decorations = "yes";
+                    include = "${./config/kitty/theme/catppuccin-latte.conf}";
+                    macos_option_as_alt = "yes";
+                    scrollback_pager = ''/Users/douglasmassolari/.nix-profile/bin/nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
+                    tab_bar_style = "powerline";
+                    watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
+                  };
                 };
 
-                shellAliases = {
-                  open = "^open";
-                  ".." = "cd ..";
-                  doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
-                  iamb = "iamb -C ${config.home.homeDirectory}/.config";
-                  lg = "lazygit";
-                  ll = "ls -l";
-                  nsb = "bash -c 'source ~/.bashrc && nsb'";
-                  ndb = "bash -c 'source ~/.bashrc && ndb'";
-                  nsx = "nix-shell --system x86_64-darwin";
+                lazygit = {
+                  enable = true;
+                  settings.gui = {
+                    theme = {
+                      lightTheme = true;
+                      defaultFgColor = [ "black" ];
+                    };
+                    showIcons = true;
+                  };
                 };
+
+                starship.enable = true;
+
+                wezterm = {
+                  enable = true;
+                  extraConfig = builtins.readFile ./config/wezterm.lua;
+                };
+
+                nushell = {
+                  enable = true;
+
+                  configFile.source = ./config/nushell/conf.nu;
+
+                  environmentVariables = {
+                    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+                    EDITOR = "nvim";
+                    MANPAGER = "'nvim +Man!'";
+                    LC_TYPE = "pt_BR.UTF-8";
+                    LC_ALL = "pt_BR.UTF-8";
+                  };
+
+                  shellAliases = {
+                    open = "^open";
+                    ".." = "cd ..";
+                    doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
+                    iamb = "iamb -C ${config.home.homeDirectory}/.config";
+                    lg = "lazygit";
+                    ll = "ls -l";
+                    nsb = "bash -c 'source ~/.bashrc && nsb'";
+                    ndb = "bash -c 'source ~/.bashrc && ndb'";
+                    nsx = "nix-shell --system x86_64-darwin";
+                  };
+                };
+
+                ripgrep.enable = true;
+
+                zoxide.enable = true;
               };
-
-              ripgrep.enable = true;
-
-              zoxide.enable = true;
-            };
-          })
+            })
 
           ({ pkgs, ... }: {
             nix = {
