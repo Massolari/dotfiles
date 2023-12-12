@@ -1,6 +1,5 @@
 {
   inputs = {
-    garn.url = "github:garnix-io/garn";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -8,7 +7,7 @@
     };
   };
 
-  outputs = { self, garn, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
@@ -115,7 +114,6 @@
                   fd
                   fennel
                   fswatch
-                  garn.packages.${system}.default
                   gomuks
                   htop
                   imagemagick
