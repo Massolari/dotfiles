@@ -49,6 +49,8 @@
                   "${apps}/Applications";
 
 
+                file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
+
                 file.".config/iamb/config.json".text = builtins.toJSON {
                   default_profile = "douglas";
                   profiles = {
