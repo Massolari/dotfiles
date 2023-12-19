@@ -112,13 +112,11 @@
                   ascii-image-converter
                   bitwarden-cli
                   devbox
-                  elmPackages.elm-language-server
                   fd
                   fennel
                   fswatch
                   gomuks
                   htop
-                  hub
                   imagemagick
                   jdk11
                   jq
@@ -130,7 +128,6 @@
                   python310
                   python310Packages.pip
                   python310Packages.pynvim
-                  rsync
                   silicon
                   terminal-notifier
                   tldr
