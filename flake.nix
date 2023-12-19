@@ -118,6 +118,7 @@
                   fswatch
                   gomuks
                   htop
+                  hub
                   imagemagick
                   jdk11
                   jq
