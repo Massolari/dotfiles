@@ -7,3 +7,11 @@ includeInlayVariableTypeHintsWhenTypeMatchesName = true
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayFunctionLikeReturnTypeHints = true
 includeInlayEnumMemberValueHints = true
+
+[language-server.glas]
+command = "/Users/douglasmassolari/.vscode/extensions/maurobalbi.glas-vscode-0.0.6-darwin-arm64/glas"
+args = ["--stdio"]
+
+[[language]]
+name = "gleam"
+language-servers = ["glas", "gleam"]
