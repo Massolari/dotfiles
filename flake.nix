@@ -226,7 +226,7 @@
                 helix = {
                   enable = true;
                   settings = {
-                    theme = "everforest_light";
+                    theme = "catppuccin_latte";
                     editor = {
                       "line-number" = "relative";
                       lsp = {
