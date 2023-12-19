@@ -267,7 +267,7 @@
                 kitty = {
                   enable = true;
                   font = {
-                    name = "Iosevka NFM";
+                    name = "Iosevka Nerd Font";
                     size = 14;
                   };
                   keybindings = {
