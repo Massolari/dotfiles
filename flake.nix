@@ -99,7 +99,7 @@
                   owner = "nushell";
                   repo = "nu_scripts";
                   rev = "master";
-                  sha256 = "sha256-4iqQLkzAYuzrW7RPIRLEKSlZsBumbeyogxa04SzXArQ=";
+                  sha256 = "sha256-XkYW6z1g1K1rwFgebamzo1poUuAKtS9MmOhjIKcEriM=";
                 };
 
                 file.".skhdrc".source = mkDotfilesSymlink "config/skhdrc";
