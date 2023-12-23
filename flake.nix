@@ -266,7 +266,7 @@
                   enable = true;
                   font = {
                     name = "Iosevka Nerd Font";
-                    size = 14;
+                    size = 13;
                   };
                   keybindings = {
                     "shift+cmd+t" = "new_tab_with_cwd";
