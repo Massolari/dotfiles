@@ -280,7 +280,7 @@
                     macos_option_as_alt = "yes";
                     scrollback_pager = ''/Users/douglasmassolari/.nix-profile/bin/nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
                     tab_bar_style = "powerline";
-                    watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
+                    # watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
                   };
                 };
 
