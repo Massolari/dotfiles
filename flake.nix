@@ -115,7 +115,6 @@
                   fd
                   fennel
                   fswatch
-                  gomuks
                   htop
                   imagemagick
                   jdk11
