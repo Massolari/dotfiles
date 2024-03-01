@@ -135,6 +135,7 @@
                   w3m
                   wget
                   yarn
+                  yazi
                   yt-dlp
                 ];
               };
