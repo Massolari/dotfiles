@@ -71,7 +71,7 @@ def nuopen [arg, --raw (-r)] { if $raw { open -r $arg } else { open $arg } }
 def ls-size [] { ls -a | each {|it| du -d 6 $it.name } | flatten | reject directories | sort-by physical }
 
 def git-remove-not-checked-out-branches [] {
-  git branch | split row -r "\n" | enumerate | where item =~ '^[^*+]' | get item | str trim | git branch -D $in
+  git branch | split row -r "\n" | enumerate | where item =~ '^[^*+]' | get item | str trim | git branch -D ...$in
 }
 
 $env.PATH = ($env.PATH
