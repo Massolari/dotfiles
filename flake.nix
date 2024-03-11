@@ -121,7 +121,6 @@
                   jq
                   languagetool
                   luajitPackages.luarocks
-                  mpv
                   neovim
                   nodejs
                   python310
@@ -302,6 +301,8 @@
                   enable = true;
                   extraConfig = builtins.readFile ./config/wezterm.lua;
                 };
+
+                # mpv.enable = true;
 
                 nushell = {
                   enable = true;
