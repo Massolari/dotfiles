@@ -1,5 +1,8 @@
 use "~/Library/Application Support/nushell/nu_scripts/themes/nu-themes/nushell-light.nu"
 use "~/Library/Application Support/nushell/nu_scripts/aliases/git/git-aliases.nu" *
+# Check if the file exists before sourcing it
+const env_path = "~/env.nu"
+$env_path | path exists | if $in { source $env_path }
 
 $env.config = {
   edit_mode: vi
