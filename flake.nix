@@ -134,7 +134,6 @@
                   w3m
                   wget
                   yarn
-                  yazi
                   yt-dlp
                 ];
               };
@@ -332,6 +331,16 @@
                 };
 
                 ripgrep.enable = true;
+
+                yazi = {
+                  enable = true;
+                  enableNushellIntegration = true;
+                  settings = {
+                    manager = {
+                      sort_by = "natural";
+                    };
+                  };
+                };
 
                 zoxide.enable = true;
               };
