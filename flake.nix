@@ -160,7 +160,10 @@
                   settings = {
                     font = {
                       normal.family = "Iosevka Nerd Font";
-                      size = 12.0;
+                      size = 13.0;
+                    };
+                    window = {
+                      decorations = "None";
                     };
                   };
                 };
