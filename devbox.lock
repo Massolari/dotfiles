@@ -1,0 +1,25 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "rnix-lsp@latest": {
+      "last_modified": "2024-03-08T13:51:52Z",
+      "resolved": "github:NixOS/nixpkgs/a343533bccc62400e8a9560423486a3b6c11a23b#rnix-lsp",
+      "source": "devbox-search",
+      "version": "2022-11-27",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/4cjkqzn6zc691vprwcmnsa86wbaww026-rnix-lsp-unstable-2022-11-27"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/wjxxsh1qxa03bkmlngvxrngw3wjfw2ch-rnix-lsp-unstable-2022-11-27"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/1d9zvf917w96b9f6iq7c8dl53wscv675-rnix-lsp-unstable-2022-11-27"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/z57iz1blk20rva1axkq2h6d47vqama48-rnix-lsp-unstable-2022-11-27"
+        }
+      }
+    }
+  }
+}

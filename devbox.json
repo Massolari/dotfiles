@@ -1,0 +1,9 @@
+{
+  "packages": [
+    "rnix-lsp@latest"
+  ],
+  "shell": {
+    "init_hook": [],
+    "scripts": {}
+  }
+}
