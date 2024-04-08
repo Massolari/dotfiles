@@ -1,0 +1,7 @@
+neovim-bin = "/Users/douglasmassolari/.nix-profile/bin/nvim"
+title-hidden = true
+frame = "none"
+
+[font]
+normal = ["Iosevka Nerd Font"]
+size = 13

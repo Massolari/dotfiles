@@ -73,6 +73,8 @@
                   };
                 };
 
+                file.".config/neovide/config.toml".source = mkDotfilesSymlink "config/neovide/config.toml";
+
                 file.".config/silicon/config".text = "--theme 'Solarized (light)'";
 
                 file.".config/vifm/vifmrc".source = pkgs.substituteAll {
