@@ -305,7 +305,7 @@
                   extraConfig = builtins.readFile ./config/wezterm.lua;
                 };
 
-                # mpv.enable = true;
+                mpv.enable = true;
 
                 nushell = {
                   enable = true;
