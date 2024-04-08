@@ -132,7 +132,6 @@
                   terminal-notifier
                   tldr
                   tree-sitter
-                  vifm
                   w3m
                   wget
                   yarn
