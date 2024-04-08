@@ -90,7 +90,5 @@ $env.PATH = ($env.PATH
   | prepend $'($env.HOME)/.local/share/nvim/mason/bin/'
 )
 
-def nvid [] { which nvim | get path | /Applications/neovide.app/Contents/MacOS/neovide --neovim-bin $in }
-
 yabai --start-service
 skhd --start-service
