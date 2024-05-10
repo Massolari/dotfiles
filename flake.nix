@@ -232,16 +232,19 @@
                   settings = {
                     theme = "catppuccin_latte";
                     editor = {
+                      bufferline = "always";
                       "line-number" = "relative";
+                      "soft-wrap".enable = true;
                       lsp = {
                         display-messages = true;
                         display-inlay-hints = true;
                       };
                       "cursor-shape".insert = "bar";
                       statusline = {
-                        left = [ "mode" "file-type" "file-name" "diagnostics" ];
+                        left = [ "file-type" "file-name" "diagnostics" "mode" ];
                         center = [ "spinner" ];
                         right = [ "selections" "position" "position-percentage" ];
+                        mode.normal = "";
                       };
                       "file-picker".hidden = false;
                       "indent-guides".render = true;
