@@ -7,6 +7,7 @@ includeInlayVariableTypeHintsWhenTypeMatchesName = true
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayFunctionLikeReturnTypeHints = true
 includeInlayEnumMemberValueHints = true
+languages = { tsx = [{ formatCommand = "npx prettier --stdin-filepath ${INPUT} --config prettier.config.js", formatStdin = true}], typescript = [{ formatCommand = "npx prettier --stdin-filepath ${INPUT}", formatStdin = true}] }
 
 [language-server.glas]
 command = "/Users/douglasmassolari/.vscode/extensions/maurobalbi.glas-vscode-0.0.6-darwin-arm64/glas"
@@ -15,3 +16,13 @@ args = ["--stdio"]
 [[language]]
 name = "gleam"
 language-servers = ["glas", "gleam"]
+
+[[language]]
+name = "typescript"
+indent = {tab-width = 4, unit = "    "}
+auto-format = true
+
+[[language]]
+name = "tsx"
+indent = {tab-width = 4, unit = "    "}
+auto-format = true
