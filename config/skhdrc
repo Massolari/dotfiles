@@ -106,7 +106,7 @@
 # ]
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-alt - return : ~/.nix-profile/bin/kitty --single-instance -d ~
+# alt - return : ~/.nix-profile/bin/kitty --single-instance -d ~
 
 # open qutebrowser
 # cmd + shift - return : ~/Scripts/qtb.sh
@@ -160,6 +160,6 @@ shift + alt - z : yabai -m window --toggle zoom-fullscreen
 alt - 0x18 : yabai -m space --balance
 
 # stop/start/restart yabai
-ctrl + alt - q : brew services stop yabai
-ctrl + alt - s : brew services start yabai
-ctrl + alt - r : brew services restart yabai
+# ctrl + alt - q : brew services stop yabai
+# ctrl + alt - s : brew services start yabai
+# ctrl + alt - r : brew services restart yabai
