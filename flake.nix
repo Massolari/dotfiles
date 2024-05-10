@@ -114,7 +114,6 @@
                   ascii-image-converter
                   bitwarden-cli
                   devbox
-                  fd
                   fennel
                   fswatch
                   htop
@@ -182,6 +181,8 @@
                   enable = true;
                   package = pkgs.emacs-macport;
                 };
+
+                fd.enable = true;
 
                 fzf.enable = true;
 
