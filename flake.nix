@@ -330,6 +330,7 @@
                   shellAliases = {
                     open = "^open";
                     ".." = "cd ..";
+                    cvlc = "/Applications/VLC.app/Contents/MacOS/VLC -I rc";
                     doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
                     iamb = "iamb -C ${config.home.homeDirectory}/.config";
                     lg = "lazygit";
