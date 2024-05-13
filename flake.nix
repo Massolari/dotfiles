@@ -340,7 +340,6 @@
                     ndb = "bash -c 'source ~/.bashrc && ndb'";
                     nsx = "nix-shell --system x86_64-darwin";
                     nvid = "/Applications/neovide.app/Contents/MacOS/neovide";
-                    zed = "/Applications/Zed.app/Contents/MacOS/zed";
                   };
                 };
 
