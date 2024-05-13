@@ -79,6 +79,7 @@ def git-remove-not-checked-out-branches [] {
 
 $env.PATH = ($env.PATH
   | split row (char esep)
+  | prepend '/usr/local/bin'
   | prepend '/opt/homebrew/bin'
   | prepend $'($env.HOME)/.ghcup/bin'
   | prepend $'($env.HOME)/.cargo/bin'
