@@ -104,11 +104,7 @@
                   sha256 = "sha256-FmLoF+QieZxjhFglqmSHyPOjj3T8XSn3nCvaZ5RP8Z4=";
                 };
 
-                file.".skhdrc".source = mkDotfilesSymlink "config/skhdrc";
-
                 file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
-
-                file.".yabairc".source = mkDotfilesSymlink "config/yabairc";
 
                 packages = with pkgs; [
                   ascii-image-converter

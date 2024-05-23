@@ -90,6 +90,3 @@ $env.PATH = ($env.PATH
   | prepend $'($env.HOME)/.docker/bin'
   | prepend $'($env.HOME)/.local/share/nvim/mason/bin/'
 )
-
-yabai --start-service
-skhd --start-service
