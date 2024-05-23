@@ -48,6 +48,7 @@
                   in
                   "${apps}/Applications";
 
+                file.".aerospace.toml".source = mkDotfilesSymlink "config/aerospace.toml";
 
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
 
