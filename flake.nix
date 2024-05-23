@@ -52,27 +52,7 @@
 
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
 
-                file.".config/iamb/config.json".text = builtins.toJSON {
-                  default_profile = "douglas";
-                  profiles = {
-                    dougmass = {
-                      user_id = "@dougmass:matrix.org";
-                      url = "https://matrix.org";
-                    };
-                    douglas = {
-                      user_id = "@douglas:massolari.us.to";
-                      url = "https://massolari.us.to";
-                    };
-                    beeper = {
-                      user_id = "@douglas-massolari:beeper.com";
-                      url = "https://matrix.beeper.com";
-                    };
-                  };
-                  settings = {
-                    image_preview = { };
-                    username_display = "displayname";
-                  };
-                };
+                file.".config/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
 
                 file.".config/neovide/config.toml".source = mkDotfilesSymlink "config/neovide/config.toml";
 
@@ -330,7 +310,6 @@
                     ".." = "cd ..";
                     cvlc = "/Applications/VLC.app/Contents/MacOS/VLC -I rc";
                     doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
-                    iamb = "iamb -C ${config.home.homeDirectory}/.config";
                     lg = "lazygit";
                     ll = "ls -l";
                     nsb = "bash -c 'source ~/.bashrc && nsb'";

@@ -1,0 +1,33 @@
+default_profile = "douglas"
+
+[profiles.douglas]
+user_id = "@douglas:massolari.us.to"
+url = "https://massolari.us.to"
+
+[profiles.dougmass]
+user_id = "@dougmass:matrix.org"
+url = "https://matrix.org"
+
+[profiles.beeper]
+user_id = "@douglas-massolari:beeper.com"
+url = "https://matrix.beeper.com"
+
+[settings]
+image_preview = {}
+username_display = "displayname"
+
+[settings.notifications]
+enabled = true
+
+[macros."normal|visual"]
+"V" = "<C-W>m"
+"<C-L>" = "<C-W>l"
+"<C-H>" = "<C-W>h"
+"<C-J>" = "<C-W>j"
+"<C-K>" = "<C-W>k"
+
+[macros.normal]
+"ga" = ":react<CR>"
+"ge" = ":edit<CR>"
+"gr" = ":reply<CR>"
+"<C-C>" = ":cancel!<CR>"
