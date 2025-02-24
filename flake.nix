@@ -126,20 +126,16 @@
                   };
                 };
 
-                alacritty = {
+                bat.enable = true;
+
+                btop = {
                   enable = true;
                   settings = {
-                    font = {
-                      normal.family = "Iosevka Nerd Font";
-                      size = 13.0;
-                    };
-                    window = {
-                      decorations = "None";
-                    };
+                    color_theme = "adwaita";
+                    theme_background = false;
+                    vim_keys = true;
                   };
                 };
-
-                bat.enable = true;
 
                 carapace.enable = true;
 
