@@ -78,12 +78,6 @@
 
                 file."Library/Preferences/espanso/match/custom.yml".source = mkDotfilesSymlink "config/espanso/match.yml";
 
-                file."Library/Application Support/nushell/nu_scripts".source = pkgs.fetchFromGitHub {
-                  owner = "nushell";
-                  repo = "nu_scripts";
-                  rev = "master";
-                  sha256 = "sha256-FmLoF+QieZxjhFglqmSHyPOjj3T8XSn3nCvaZ5RP8Z4=";
-                };
 
                 file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
 
@@ -151,7 +145,6 @@
 
                 direnv = {
                   enable = true;
-                  enableNushellIntegration = true;
                   nix-direnv.enable = true;
                 };
 
@@ -298,38 +291,10 @@
 
                 mpv.enable = true;
 
-                nushell = {
-                  enable = true;
-
-                  configFile.source = ./config/nushell/conf.nu;
-
-                  environmentVariables = {
-                    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-                    EDITOR = "nvim";
-                    MANPAGER = "'nvim +Man!'";
-                    LC_TYPE = "pt_BR.UTF-8";
-                    LC_ALL = "pt_BR.UTF-8";
-                  };
-
-                  shellAliases = {
-                    open = "^open";
-                    ".." = "cd ..";
-                    cvlc = "/Applications/VLC.app/Contents/MacOS/VLC -I rc";
-                    doom = "${config.home.homeDirectory}/.config/emacs/bin/doom";
-                    lg = "lazygit";
-                    ll = "ls -l";
-                    nsb = "bash -c 'source ~/.bashrc && nsb'";
-                    ndb = "bash -c 'source ~/.bashrc && ndb'";
-                    nsx = "nix-shell --system x86_64-darwin";
-                    nvid = "/Applications/neovide.app/Contents/MacOS/neovide";
-                  };
-                };
-
                 ripgrep.enable = true;
 
                 yazi = {
                   enable = true;
-                  enableNushellIntegration = true;
                   enableFishIntegration = true;
                   enableZshIntegration = true;
                   settings = {
