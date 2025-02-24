@@ -83,7 +83,8 @@
 
                 packages = with pkgs; [
                   ascii-image-converter
-                  bitwarden-cli
+                  # quebrado
+                  # bitwarden-cli
                   devbox
                   fennel
                   fswatch
