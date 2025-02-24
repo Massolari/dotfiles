@@ -52,7 +52,7 @@
 
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
 
-                file.".config/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
+                file."Library/Application Support/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
 
                 file.".config/neovide/config.toml".source = mkDotfilesSymlink "config/neovide/config.toml";
 
