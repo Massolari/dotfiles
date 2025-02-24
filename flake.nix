@@ -162,6 +162,11 @@
 
                 fd.enable = true;
 
+                fish = {
+                  enable = true;
+                  shellInit = builtins.readFile ./config/fish/config.fish;
+                };
+
                 fzf.enable = true;
 
                 git = {
@@ -270,6 +275,7 @@
                     tab_bar_style = "powerline";
                     # watcher = "${config.home.homeDirectory}/.fig/tools/kitty-integration.py";
                   };
+                  shellIntegration.enableFishIntegration = true;
                 };
 
                 lazygit = {
@@ -324,6 +330,8 @@
                 yazi = {
                   enable = true;
                   enableNushellIntegration = true;
+                  enableFishIntegration = true;
+                  enableZshIntegration = true;
                   settings = {
                     manager = {
                       sort_by = "natural";
