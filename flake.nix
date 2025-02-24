@@ -78,7 +78,6 @@
 
                 file."Library/Preferences/espanso/match/custom.yml".source = mkDotfilesSymlink "config/espanso/match.yml";
 
-
                 file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
 
                 packages = with pkgs; [
@@ -88,19 +87,14 @@
                   devbox
                   fennel
                   fswatch
-                  gomuks
-                  htop
-                  imagemagick
-                  jdk11
                   jq
                   languagetool
                   luajitPackages.luarocks
-                  neovim
                   nodejs
-                  python310
-                  python310Packages.pip
-                  python310Packages.pynvim
                   pnpm
+                  python311
+                  python311Packages.pip
+                  python311Packages.pynvim
                   silicon
                   terminal-notifier
                   tldr
@@ -144,11 +138,6 @@
                 direnv = {
                   enable = true;
                   nix-direnv.enable = true;
-                };
-
-                emacs = {
-                  enable = true;
-                  package = pkgs.emacs-macport;
                 };
 
                 fd.enable = true;
@@ -283,13 +272,6 @@
                 };
 
                 starship.enable = true;
-
-                wezterm = {
-                  enable = true;
-                  extraConfig = builtins.readFile ./config/wezterm.lua;
-                };
-
-                mpv.enable = true;
 
                 ripgrep.enable = true;
 
