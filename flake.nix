@@ -99,6 +99,7 @@
                   python310
                   python310Packages.pip
                   python310Packages.pynvim
+                  pnpm
                   silicon
                   terminal-notifier
                   tldr
