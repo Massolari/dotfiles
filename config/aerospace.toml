@@ -82,6 +82,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
+alt-m = 'mode media'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -203,3 +204,9 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'layout tiling'
 
+
+[mode.media.binding]
+semicolon = 'volume up'
+l = 'volume down'
+k = 'volume mute-toggle'
+enter = 'mode main'
