@@ -209,6 +209,10 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'layout tiling'
 
+[[on-window-detected]]
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = 'layout floating'
+
 
 [mode.media.binding]
 semicolon = 'volume up'
