@@ -16,3 +16,5 @@ set PATH \
 set -g fish_key_bindings fish_vi_key_bindings
 set DYLD_LIBRARY_PATH "/opt/homebrew/lib"
 set XDG_CONFIG_HOME $HOME/.config
+
+abbr --add lg lazygit
