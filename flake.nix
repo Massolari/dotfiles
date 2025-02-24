@@ -246,8 +246,8 @@
                 kitty = {
                   enable = true;
                   font = {
-                    name = "Iosevka Nerd Font";
-                    size = 14;
+                    name = "Iosevka";
+                    size = 12;
                   };
                   keybindings = {
                     "shift+cmd+t" = "new_tab_with_cwd";
