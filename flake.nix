@@ -164,8 +164,8 @@
                       condition = "gitdir:~/tweag/";
                     }
                     {
-                      path = "~/tweag/metronome/.gitconfig";
-                      condition = "gitdir:~/tweag/metronome/";
+                      path = "~/tweag/code-commons/.gitconfig";
+                      condition = "gitdir:~/tweag/code-commons/";
                     }
                   ];
                   extraConfig = {
