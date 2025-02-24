@@ -13,6 +13,13 @@ languages = { tsx = [{ formatCommand = "npx prettier --stdin-filepath ${INPUT} -
 command = "/Users/douglasmassolari/.vscode/extensions/maurobalbi.glas-vscode-0.2.3-darwin-arm64/glas"
 args = ["--stdio"]
 
+[language-server.tailwindcss-ls]
+config = { userLanguages = { elm = "html", gleam = "html"}, tailwindCSS = { includeLanguages = { elm = "html", gleam = "html" }, experimental = { classRegex = [ "\\bclass[\\s(<|]+\"([^\"]*)\"", "\\bclass[\\s(]+\"[^\"]*\"[\\s+]+\"([^\"]*)\"", "\\bclass[\\s<|]+\"[^\"]*\"\\s*\\+{2}\\s*\" ([^\"]*)\"", "\\bclass[\\s<|]+\"[^\"]*\"\\s*\\+{2}\\s*\" [^\"]*\"\\s*\\+{2}\\s*\" ([^\"]*)\"", "\\bclass[\\s<|]+\"[^\"]*\"\\s*\\+{2}\\s*\" [^\"]*\"\\s*\\+{2}\\s*\" [^\"]*\"\\s*\\+{2}\\s*\" ([^\"]*)\"", "\\bclassList[\\s\\[\\(]+\"([^\"]*)\"", "\\bclassList[\\s\\[\\(]+\"[^\"]*\",\\s[^\\)]+\\)[\\s\\[\\(,]+\"([^\"]*)\"", "\\bclassList[\\s\\[\\(]+\"[^\"]*\",\\s[^\\)]+\\)[\\s\\[\\(,]+\"[^\"]*\",\\s[^\\)]+\\)[\\s\\[\\(,]+\"([^\"]*)\"" ] } }}
+
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+
 [[language]]
 name = "gleam"
 # language-servers = ["glas", "gleam"]
@@ -22,8 +29,20 @@ language-servers = ["gleam"]
 name = "typescript"
 indent = {tab-width = 4, unit = "    "}
 auto-format = true
+language-servers = ["vtsls"]
+
+[[language]]
+name = "javascript"
+indent = {tab-width = 4, unit = "    "}
+auto-format = true
+language-servers = ["vtsls"]
 
 [[language]]
 name = "tsx"
 indent = {tab-width = 4, unit = "    "}
 auto-format = true
+language-servers = ["vtsls", "tailwindcss-ls"]
+
+[[language]]
+name = "elm"
+language-servers = ["elm-language-server", "tailwindcss-ls"]
