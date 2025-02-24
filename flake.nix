@@ -145,6 +145,12 @@
                 fish = {
                   enable = true;
                   shellInit = builtins.readFile ./config/fish/config.fish;
+                  plugins = [
+                    {
+                      name = "plugin-git";
+                      src = pkgs.fishPlugins.plugin-git.src;
+                    }
+                  ];
                 };
 
                 fzf.enable = true;
