@@ -76,8 +76,6 @@
                   sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
                 };
 
-                file."Library/Preferences/espanso/match/custom.yml".source = mkDotfilesSymlink "config/espanso/match.yml";
-
                 file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
 
                 packages = with pkgs; [
