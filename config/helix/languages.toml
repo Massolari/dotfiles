@@ -16,9 +16,9 @@ args = ["--stdio"]
 [language-server.tailwindcss-ls]
 config = { userLanguages = { elm = "html", gleam = "html"}, tailwindCSS = { includeLanguages = { elm = "html", gleam = "html" }, experimental = { classRegex = [ "\\bclass[\\s(<|]+\"([^\"]*)\"", "\\bclass[\\s(]+\"[^\"]*\"[\\s+]+\"([^\"]*)\"", "\\bclass[\\s<|]+\"[^\"]*\"\\s*\\+{2}\\s*\" ([^\"]*)\"", "\\bclass[\\s<|]+\"[^\"]*\"\\s*\\+{2}\\s*\" [^\"]*\"\\s*\\+{2}\\s*\" ([^\"]*)\"", "\\bclass[\\s<|]+\"[^\"]*\"\\s*\\+{2}\\s*\" [^\"]*\"\\s*\\+{2}\\s*\" [^\"]*\"\\s*\\+{2}\\s*\" ([^\"]*)\"", "\\bclassList[\\s\\[\\(]+\"([^\"]*)\"", "\\bclassList[\\s\\[\\(]+\"[^\"]*\",\\s[^\\)]+\\)[\\s\\[\\(,]+\"([^\"]*)\"", "\\bclassList[\\s\\[\\(]+\"[^\"]*\",\\s[^\\)]+\\)[\\s\\[\\(,]+\"[^\"]*\",\\s[^\\)]+\\)[\\s\\[\\(,]+\"([^\"]*)\"" ] } }}
 
-[language-server.vtsls]
-command = "vtsls"
-args = ["--stdio"]
+# [language-server.vtsls]
+# command = "vtsls"
+# args = ["--stdio"]
 
 [[language]]
 name = "gleam"
@@ -29,19 +29,19 @@ language-servers = ["gleam"]
 name = "typescript"
 indent = {tab-width = 4, unit = "    "}
 auto-format = true
-language-servers = ["vtsls"]
+# language-servers = ["vtsls"]
 
 [[language]]
 name = "javascript"
 indent = {tab-width = 4, unit = "    "}
 auto-format = true
-language-servers = ["vtsls"]
+# language-servers = ["vtsls"]
 
 [[language]]
 name = "tsx"
 indent = {tab-width = 4, unit = "    "}
 auto-format = true
-language-servers = ["vtsls", "tailwindcss-ls"]
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "elm"

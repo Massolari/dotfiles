@@ -1,4 +1,4 @@
-(defcfg
+;; (defcfg
   ;; For Linux
   ;; input  (device-file "/dev/input/by-id/usb-04d9_daskeyboard-event-kbd")
   ;; output (uinput-sink "My KMonad output"
@@ -9,30 +9,38 @@
 
   ;; For MacOS
   ;; Copy this file to /Library/LaunchDaemons/
-  input  (iokit-name)
-  output (kext)
+  ;; input  (iokit-name)
+  ;; output (kext)
 
   ;; This option tells KMonad to let non-configured keys act normal
-  fallthrough true
+  ;; fallthrough true
+;; )
+
+(defcfg
+  process-unmapped-keys yes
+  ;;macos-dev-names-include (
+  ;;  "Apple Internal Keyboard / Trackpad"
+  ;;  "Advantage2 Keyboard"
+  ;;)
 )
 
 (defalias
-    c_esc (tap-hold-next-release 200 esc (layer-toggle normal)) ;; key will behave as ESC when tapped, but change to the normal layer when held down
-    c_nor (layer-toggle capsnormal)
-    media (layer-toggle media)
-    c_tab (tap-hold-next-release 200 tab (layer-toggle disabled)) ;; key will behave as TAB when tapped, but change to the disabeld layer when held down
+    c_esc (tap-hold 200 200 esc (layer-while-held normal)) ;; key will behave as ESC when tapped, but change to the normal layer when held down
+    c_nor (layer-while-held capsnormal)
+    media (layer-while-held media)
+    c_tab (tap-hold 200 200 tab (layer-while-held disabled)) ;; key will behave as TAB when tapped, but change to the disabeld layer when held down
 
-    met_a (tap-hold-next-release 200 a lctl)
-    alt_s (tap-hold-next-release 200 s lalt)
-    ctl_d (tap-hold-next-release 200 d lmet)
-    sft_f (tap-hold-next-release 200 f lsft)
+    met_a (tap-hold 200 200 a lctl)
+    alt_s (tap-hold 200 200 s lalt)
+    ctl_d (tap-hold 200 200 d lmet)
+    sft_f (tap-hold 200 200 f lsft)
 
-    sft_j (tap-hold-next-release 200 j rsft)
-    ctl_k (tap-hold-next-release 200 k rmet)
-    alt_l (tap-hold-next-release 200 l lalt)
-    met_; (tap-hold-next-release 200 ; rctl)
+    sft_j (tap-hold 200 200 j rsft)
+    ctl_k (tap-hold 200 200 k rmet)
+    alt_l (tap-hold 200 200 l lalt)
+    met_; (tap-hold 200 200 ; rctl)
 
-    sft_spc (tap-hold-next-release 200 spc lsft)
+    sft_spc (tap-hold 200 200 spc lsft)
 )
 
 (defsrc

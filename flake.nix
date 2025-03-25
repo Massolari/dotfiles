@@ -49,52 +49,44 @@
                   "${apps}/Applications";
 
                 file.".aerospace.toml".source = mkDotfilesSymlink "config/aerospace.toml";
-
+                file.".config/aerc/aerc.conf".source = mkDotfilesSymlink "config/aerc/aerc.conf";
+                file.".config/bat/config".source = mkDotfilesSymlink "config/bat/config";
+                file.".config/btop/btop.conf".source = mkDotfilesSymlink "config/btop/btop.conf";
+                file.".config/gh/config.yml".source = mkDotfilesSymlink "config/gh/config.yml";
+                file.".config/git/config".source = mkDotfilesSymlink "config/git/config";
+                file.".config/kitty/kitty.conf".source = mkDotfilesSymlink "config/kitty/kitty.conf";
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
-
-                file."Library/Application Support/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
-
+                file.".config/lazygit/config.yml".source = mkDotfilesSymlink "config/lazygit/config.yml";
                 file.".config/neovide/config.toml".source = mkDotfilesSymlink "config/neovide/config.toml";
-
                 file.".config/silicon/config".text = "--theme 'Solarized (light)'";
-
-                file.".config/vifm/vifmrc".source = pkgs.substituteAll {
-                  src = ./config/vifmrc;
-                  favicons = pkgs.fetchFromGitHub
-                    {
-                      owner = "thimc";
-                      repo = "vifm_devicons";
-                      rev = "master";
-                      sha256 = "sha256-MYbOob60TzIn+2v64z/6HwnxNoDAZnOoYLLYikUA078=";
-                    } + "/favicons.vifm";
-                };
-
-                file.".config/vifm/colors".source = pkgs.fetchFromGitHub {
-                  owner = "vifm";
-                  repo = "vifm-colors";
-                  rev = "master";
-                  sha256 = "sha256-TMBjrgDfaSBfQlOxVoqJ/7MfOy4QbB77T6kDOql/odM=";
-                };
-
+                file.".lynxrc".source = mkDotfilesSymlink "config/lynxrc";
                 file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
+                file."Library/Application Support/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
+                file."Library/Application Support/kanata/kanata.kbd".source = mkDotfilesSymlink "config/kanata/kanata.kbd";
 
                 packages = with pkgs; [
+                  aerc
                   ascii-image-converter
-                  # quebrado
-                  # bitwarden-cli
+                  bat
+                  btop
                   devbox
+                  fd
                   fennel
                   fswatch
+                  fzf
+                  git
+                  gh
+                  gnupg
                   jq
+                  kitty
                   languagetool
-                  luajitPackages.luarocks
-                  nodejs
+                  lazygit
+                  lynx
                   pnpm
-                  python311
-                  python311Packages.pip
-                  python311Packages.pynvim
+                  python313
+                  python313Packages.pip
+                  python313Packages.pynvim
                   silicon
-                  terminal-notifier
                   tldr
                   tree-sitter
                   w3m
@@ -107,38 +99,12 @@
               programs = {
                 home-manager.enable = true;
 
-                aerc = {
-                  enable = true;
-                  extraConfig = {
-                    filters = {
-                      "text/plain" = "colorize";
-                      "text/calendar" = "calendar";
-                      "message/delivery-status" = "colorize";
-                      "message/rfc822" = "colorize";
-                      "text/html" = "html | colorize";
-                    };
-                  };
-                };
-
-                bat.enable = true;
-
-                btop = {
-                  enable = true;
-                  settings = {
-                    color_theme = "adwaita";
-                    theme_background = false;
-                    vim_keys = true;
-                  };
-                };
-
                 carapace.enable = true;
 
                 direnv = {
                   enable = true;
                   nix-direnv.enable = true;
                 };
-
-                fd.enable = true;
 
                 fish = {
                   enable = true;
@@ -149,49 +115,6 @@
                       src = pkgs.fishPlugins.plugin-git.src;
                     }
                   ];
-                };
-
-                fzf.enable = true;
-
-                git = {
-                  enable = true;
-                  lfs.enable = true;
-                  userName = "Douglas M.";
-                  userEmail = "douglasmassolari@hotmail.com";
-                  includes = [
-                    {
-                      path = "~/tweag/.gitconfig";
-                      condition = "gitdir:~/tweag";
-                    }
-                    {
-                      path = "~/tweag/.gitconfig";
-                      condition = "gitdir:~/tweag/";
-                    }
-                    {
-                      path = "~/tweag/code-commons/.gitconfig";
-                      condition = "gitdir:~/tweag/code-commons/";
-                    }
-                  ];
-                  extraConfig = {
-                    core.editor = "nvim";
-                    init.defaultBranch = "master";
-                    pull.ff = "only";
-                    github.user = "Massolari";
-                  };
-                  delta = {
-                    enable = true;
-                    options.light = true;
-                  };
-                };
-
-                gh = {
-                  enable = true;
-                  settings = {
-                    version = "1";
-                    git_protocol = "ssh";
-                    editor = "nvim";
-                    prompt = "enable";
-                  };
                 };
 
                 helix = {
@@ -235,42 +158,6 @@
                         j.k = "normal_mode";
                       };
                     };
-                  };
-                };
-
-                kitty = {
-                  enable = true;
-                  font = {
-                    name = "Iosevka";
-                    size = 12;
-                  };
-                  keybindings = {
-                    "shift+cmd+t" = "new_tab_with_cwd";
-                    "kitty_mod+j" = "previous_tab";
-                    "kitty_mod+k" = "next_tab";
-                    "kitty_mod+enter" = "new_window_with_cwd";
-                    "kitty_mod+z" = "toggle_layout stack";
-                  };
-                  settings = {
-                    hide_window_decorations = "yes";
-                    include = "${./config/kitty/theme/catppuccin-latte.conf}";
-                    macos_option_as_alt = "yes";
-                    scrollback_pager = ''/opt/homebrew/bin/nvim -c "set ft=man" -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "norm G"'';
-                    tab_bar_style = "powerline";
-                    cursor_trail = 3;
-                    cursor_trail_decay = "0.1 0.4";
-                  };
-                  shellIntegration.enableFishIntegration = true;
-                };
-
-                lazygit = {
-                  enable = true;
-                  settings.gui = {
-                    theme = {
-                      lightTheme = true;
-                      defaultFgColor = [ "black" ];
-                    };
-                    showIcons = true;
                   };
                 };
 
