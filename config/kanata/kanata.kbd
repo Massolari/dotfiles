@@ -1,34 +1,12 @@
-;; (defcfg
-  ;; For Linux
-  ;; input  (device-file "/dev/input/by-id/usb-04d9_daskeyboard-event-kbd")
-  ;; output (uinput-sink "My KMonad output"
-
-  ;; For Windows
-  ;; input  (low-level-hook)
-  ;; output (send-event-sink)
-
-  ;; For MacOS
-  ;; Copy this file to /Library/LaunchDaemons/
-  ;; input  (iokit-name)
-  ;; output (kext)
-
-  ;; This option tells KMonad to let non-configured keys act normal
-  ;; fallthrough true
-;; )
-
 (defcfg
   process-unmapped-keys yes
-  ;;macos-dev-names-include (
-  ;;  "Apple Internal Keyboard / Trackpad"
-  ;;  "Advantage2 Keyboard"
-  ;;)
 )
 
 (defalias
     c_esc (tap-hold 200 200 esc (layer-while-held normal)) ;; key will behave as ESC when tapped, but change to the normal layer when held down
     c_nor (layer-while-held capsnormal)
     media (layer-while-held media)
-    c_tab (tap-hold 200 200 tab (layer-while-held disabled)) ;; key will behave as TAB when tapped, but change to the disabeld layer when held down
+    c_tab (tap-hold 200 200 tab (layer-while-held disabled)) ;; key will behave as TAB when tapped, but change to the disabled layer when held down
 
     met_a (tap-hold 200 200 a lctl)
     alt_s (tap-hold 200 200 s lalt)
