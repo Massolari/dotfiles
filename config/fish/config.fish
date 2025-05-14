@@ -3,7 +3,7 @@ set PATH \
   $HOME/.docker/bin\
   $HOME/.ghcup/bin\
   $HOME/.local/bin\
-  $HOME/.local/share/nvim/mason/bin/\
+  $HOME/.local/share/nvim/mason/bin\
   $HOME/.nimble/bin\
   $HOME/.nix-profile/bin\
   $HOME/go/bin\
