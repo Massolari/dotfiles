@@ -3,5 +3,5 @@ title-hidden = true
 frame = "none"
 
 [font]
-normal = ["Iosevka Nerd Font"]
+normal = ["Iosevka"]
 size = 12
