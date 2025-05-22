@@ -69,6 +69,7 @@
                   ascii-image-converter
                   bat
                   btop
+                  delta
                   devbox
                   fd
                   fennel
