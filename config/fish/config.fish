@@ -29,3 +29,4 @@ set -x DYLD_LIBRARY_PATH "/opt/homebrew/lib"
 set -x XDG_CONFIG_HOME $HOME/.config
 
 abbr --add lg lazygit
+abbr --add karabiner-daemon "sudo '/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon'"
