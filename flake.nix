@@ -57,6 +57,7 @@
                 file.".config/kitty/kitty.conf".source = mkDotfilesSymlink "config/kitty/kitty.conf";
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
                 file.".config/lazygit/config.yml".source = mkDotfilesSymlink "config/lazygit/config.yml";
+                file.".config/mpv/mpv.conf".source = mkDotfilesSymlink "config/mpv/mpv.conf";
                 file.".config/neovide/config.toml".source = mkDotfilesSymlink "config/neovide/config.toml";
                 file.".config/silicon/config".text = "--theme 'Solarized (light)'";
                 file.".lynxrc".source = mkDotfilesSymlink "config/lynxrc";
