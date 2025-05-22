@@ -66,7 +66,6 @@
                 file."Library/Application Support/kanata/kanata.kbd".source = mkDotfilesSymlink "config/kanata/kanata.kbd";
 
                 packages = with pkgs; [
-                  aerc
                   ascii-image-converter
                   bat
                   btop
