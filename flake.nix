@@ -127,7 +127,6 @@
                       bufferline = "always";
                       "line-number" = "relative";
                       "soft-wrap".enable = true;
-                      shell = [ "/Users/douglasmassolari/.nix-profile/bin/nu" "-c" ];
                       lsp = {
                         display-messages = true;
                         display-inlay-hints = true;
