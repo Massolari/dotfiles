@@ -79,6 +79,7 @@
                   git
                   gnupg
                   jq
+                  kanata
                   kitty
                   languagetool
                   lazygit
