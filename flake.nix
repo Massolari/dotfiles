@@ -75,8 +75,8 @@
                   fennel
                   fswatch
                   fzf
-                  git
                   gh
+                  git
                   gnupg
                   jq
                   kitty
