@@ -27,6 +27,7 @@ end
 set -g fish_key_bindings fish_user_key_bindings
 set -x DYLD_LIBRARY_PATH "/opt/homebrew/lib"
 set -x XDG_CONFIG_HOME $HOME/.config
+set -x EDITOR nvim
 
 abbr --add lg lazygit
 abbr --add karabiner-daemon "sudo '/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon'"
