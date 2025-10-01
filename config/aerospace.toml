@@ -210,6 +210,10 @@ if.app-id = 'net.kovidgoyal.kitty'
 run = 'layout tiling'
 
 [[on-window-detected]]
+if.app-id = 'com.neovide.neovide'
+run = 'layout tiling'
+
+[[on-window-detected]]
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = 'layout floating'
 
