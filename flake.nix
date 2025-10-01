@@ -54,6 +54,7 @@
                 file.".config/btop/btop.conf".source = mkDotfilesSymlink "config/btop/btop.conf";
                 file.".config/gh/config.yml".source = mkDotfilesSymlink "config/gh/config.yml";
                 file.".config/git/config".source = mkDotfilesSymlink "config/git/config";
+                file.".config/git/ignore".source = mkDotfilesSymlink "config/git/ignore";
                 file.".config/kitty/kitty.conf".source = mkDotfilesSymlink "config/kitty/kitty.conf";
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
                 file.".config/lazygit/config.yml".source = mkDotfilesSymlink "config/lazygit/config.yml";

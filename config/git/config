@@ -2,6 +2,7 @@
 editor = "nvim"
 pager = "~/.nix-profile/bin/delta"
 ignorecase = false
+excludesFile = "~/.config/git/ignore"
 
 [credential "https://gist.github.com"]
 helper = "~/.nix-profile/bin/gh auth git-credential"
