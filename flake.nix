@@ -79,6 +79,7 @@
                   gh
                   git
                   gnupg
+                  himalaya
                   jq
                   kanata
                   kitty
