@@ -52,6 +52,8 @@
                 file.".config/aerc/aerc.conf".source = mkDotfilesSymlink "config/aerc/aerc.conf";
                 file.".config/bat/config".source = mkDotfilesSymlink "config/bat/config";
                 file.".config/btop/btop.conf".source = mkDotfilesSymlink "config/btop/btop.conf";
+                file.".config/chawan/config.toml".source = mkDotfilesSymlink "config/chawan/config.toml";
+                file.".config/fish/config.fish".source = mkDotfilesSymlink "config/fish/config.fish";
                 file.".config/gh/config.yml".source = mkDotfilesSymlink "config/gh/config.yml";
                 file.".config/git/config".source = mkDotfilesSymlink "config/git/config";
                 file.".config/git/ignore".source = mkDotfilesSymlink "config/git/ignore";

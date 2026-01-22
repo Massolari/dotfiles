@@ -1,0 +1,15 @@
+[buffer]
+images = true
+scripting = true
+
+# Search using DuckDuckGo Lite.
+# (This rule is included in the default config, although C-k invokes Brave search.)
+# [omnirule.ddg]
+# match = '^ddg:'
+# substitute-url = '(x) => "https://lite.duckduckgo.com/lite/?kp=-1&kd=-1&q=" + encodeURIComponent(x.split(":").slice(1).join(":"))'
+
+[page]
+'C-k' = '() => pager.load("ddg:")'
+
+[external]
+copy-cmd = "pbcopy"
