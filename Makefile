@@ -7,6 +7,9 @@ activate:
 update:
 	nix flake update
 
+brew:
+	brew bundle dump --no-vscode -f
+
 fix-mac-update:
 		@echo Add this:
 		@echo '# Nix'

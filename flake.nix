@@ -55,8 +55,8 @@
                 file.".config/gh/config.yml".source = mkDotfilesSymlink "config/gh/config.yml";
                 file.".config/git/config".source = mkDotfilesSymlink "config/git/config";
                 file.".config/git/ignore".source = mkDotfilesSymlink "config/git/ignore";
-                file.".config/kitty/kitty.conf".source = mkDotfilesSymlink "config/kitty/kitty.conf";
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
+                file.".config/kitty/kitty.conf".source = mkDotfilesSymlink "config/kitty/kitty.conf";
                 file.".config/lazygit/config.yml".source = mkDotfilesSymlink "config/lazygit/config.yml";
                 file.".config/mpv/mpv.conf".source = mkDotfilesSymlink "config/mpv/mpv.conf";
                 file.".config/neovide/config.toml".source = mkDotfilesSymlink "config/neovide/config.toml";
@@ -75,14 +75,11 @@
                   fd
                   fennel
                   fswatch
-                  fzf
                   gh
                   git
                   gnupg
                   himalaya
                   jq
-                  kanata
-                  kitty
                   languagetool
                   lazygit
                   lynx
@@ -104,22 +101,6 @@
                 home-manager.enable = true;
 
                 carapace.enable = true;
-
-                direnv = {
-                  enable = true;
-                  nix-direnv.enable = true;
-                };
-
-                fish = {
-                  enable = true;
-                  shellInit = builtins.readFile ./config/fish/config.fish;
-                  plugins = [
-                    {
-                      name = "plugin-git";
-                      src = pkgs.fishPlugins.plugin-git.src;
-                    }
-                  ];
-                };
 
                 helix = {
                   enable = true;
@@ -170,7 +151,7 @@
 
                 yazi = {
                   enable = true;
-                  enableFishIntegration = true;
+                  enableFishIntegration = false;
                   enableZshIntegration = true;
                   settings = {
                     manager = {
