@@ -142,7 +142,7 @@
                   enableFishIntegration = false;
                   enableZshIntegration = true;
                   settings = {
-                    manager = {
+                    mgr = {
                       sort_by = "natural";
                     };
                   };
