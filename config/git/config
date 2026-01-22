@@ -4,12 +4,6 @@ pager = "~/.nix-profile/bin/delta"
 ignorecase = false
 excludesFile = "~/.config/git/ignore"
 
-[credential "https://gist.github.com"]
-helper = "~/.nix-profile/bin/gh auth git-credential"
-
-[credential "https://github.com"]
-helper = "~/.nix-profile/bin/gh auth git-credential"
-
 [delta]
 light = true
 
@@ -40,9 +34,6 @@ ff = "only"
 [user]
 email = "douglasmassolari@hotmail.com"
 name = "Douglas M."
-
-[includeIf "gitdir:~/tweag"]
-path = "~/tweag/.gitconfig"
 
 [includeIf "gitdir:~/tweag/"]
 path = "~/tweag/.gitconfig"
