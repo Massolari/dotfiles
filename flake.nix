@@ -64,7 +64,7 @@
                   delta
                   devbox
                   fd
-                  fennel
+                  luaPackages.fennel
                   fswatch
                   gh
                   git
