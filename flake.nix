@@ -47,6 +47,7 @@
                 file.".config/git/config".source = mkDotfilesSymlink "config/git/config";
                 file.".config/git/ignore".source = mkDotfilesSymlink "config/git/ignore";
                 file.".config/helix/languages.toml".source = mkDotfilesSymlink "config/helix/languages.toml";
+                file.".config/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
                 file.".config/kitty/kitty.conf".source = mkDotfilesSymlink "config/kitty/kitty.conf";
                 file.".config/lazygit/config.yml".source = mkDotfilesSymlink "config/lazygit/config.yml";
                 file.".config/mpv/mpv.conf".source = mkDotfilesSymlink "config/mpv/mpv.conf";
@@ -54,7 +55,6 @@
                 file.".config/silicon/config".text = "--theme 'Solarized (light)'";
                 file.".lynxrc".source = mkDotfilesSymlink "config/lynxrc";
                 file.".w3m/keymap".source = mkDotfilesSymlink "config/w3m/keymap";
-                file."Library/Application Support/iamb/config.toml".source = mkDotfilesSymlink "config/iamb/config.toml";
                 file."Library/Application Support/kanata/kanata.kbd".source = mkDotfilesSymlink "config/kanata/kanata.kbd";
 
                 packages = with pkgs; [
