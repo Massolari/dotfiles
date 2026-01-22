@@ -133,8 +133,6 @@
                   };
                 };
 
-                starship.enable = true;
-
                 ripgrep.enable = true;
 
                 yazi = {
