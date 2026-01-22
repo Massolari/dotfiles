@@ -63,18 +63,14 @@
                   btop
                   delta
                   devbox
-                  fd
                   luaPackages.fennel
                   fswatch
                   gh
                   git
                   gnupg
-                  himalaya
                   jq
                   languagetool
                   lazygit
-                  lynx
-                  pnpm
                   python313
                   python313Packages.pip
                   python313Packages.pynvim
