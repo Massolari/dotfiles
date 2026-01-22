@@ -75,6 +75,7 @@
                   python313Packages.pip
                   python313Packages.pynvim
                   silicon
+                  tdf
                   tldr
                   tree-sitter
                   w3m
