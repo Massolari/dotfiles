@@ -37,17 +37,6 @@
                   trusted-users = ${username}
                 '';
 
-                # Install MacOS applications to the user environment.
-                file."Applications/Home Manager Apps".source =
-                  let
-                    apps = pkgs.buildEnv {
-                      name = "home-manager-applications";
-                      paths = config.home.packages;
-                      pathsToLink = "/Applications";
-                    };
-                  in
-                  "${apps}/Applications";
-
                 file.".aerospace.toml".source = mkDotfilesSymlink "config/aerospace.toml";
                 file.".config/aerc/aerc.conf".source = mkDotfilesSymlink "config/aerc/aerc.conf";
                 file.".config/bat/config".source = mkDotfilesSymlink "config/bat/config";
