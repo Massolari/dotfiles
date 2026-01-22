@@ -74,9 +74,9 @@ gui:
   filterMode: substring
   spinner:
     frames:
-      - '|'
+      - "|"
       - /
-      - '-'
+      - "-"
       - \
     rate: 50
   statusPanelView: dashboard
@@ -85,11 +85,6 @@ gui:
   switchTabsWithPanelJumpKeys: false
   useHunkModeInStagingView: false
 git:
-  paging:
-    colorArg: always
-    pager: ""
-    useConfig: false
-    externalDiffCommand: ""
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -107,7 +102,10 @@ git:
   fetchAll: true
   autoStageResolvedConflicts: true
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
-  allBranchesLogCmds: [git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium]
+  allBranchesLogCmds:
+    [
+      git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium,
+    ]
   overrideGpg: false
   disableForcePushing: false
   commitPrefix: []
@@ -143,12 +141,12 @@ keybinding:
     nextItem: <down>
     prevItem-alt: k
     nextItem-alt: j
-    prevPage: ','
+    prevPage: ","
     nextPage: .
     scrollLeft: H
     scrollRight: L
     gotoTop: <
-    gotoBottom: '>'
+    gotoBottom: ">"
     toggleRangeSelect: v
     rangeSelectDown: <s-down>
     rangeSelectUp: <s-up>
@@ -168,7 +166,7 @@ keybinding:
     prevMatch: "N"
     startSearch: /
     optionMenu: <disabled>
-    optionMenu-alt1: '?'
+    optionMenu-alt1: "?"
     select: <space>
     goInto: <enter>
     confirm: <enter>
@@ -183,14 +181,14 @@ keybinding:
     scrollDownMain-alt1: J
     scrollUpMain-alt2: <c-u>
     scrollDownMain-alt2: <c-d>
-    executeShellCommand: ':'
+    executeShellCommand: ":"
     createRebaseOptionsMenu: m
     pushFiles: P
     pullFiles: p
     refresh: R
     createPatchOptionsMenu: <c-p>
-    nextTab: ']'
-    prevTab: '['
+    nextTab: "]"
+    prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
     undo: z
@@ -201,10 +199,10 @@ keybinding:
     copyToClipboard: <c-o>
     openRecentRepos: <c-r>
     submitEditorText: <enter>
-    extrasMenu: '@'
+    extrasMenu: "@"
     toggleWhitespaceInDiffView: <c-w>
-    increaseContextInDiffView: '}'
-    decreaseContextInDiffView: '{'
+    increaseContextInDiffView: "}"
+    decreaseContextInDiffView: "{"
     increaseRenameSimilarityThreshold: )
     decreaseRenameSimilarityThreshold: (
     openDiffTool: <c-t>
@@ -225,11 +223,10 @@ keybinding:
     toggleStagedAll: a
     viewResetOptions: D
     fetch: f
-    toggleTreeView: '`'
-    openMergeTool: M
+    toggleTreeView: "`"
     openStatusFilter: <c-b>
     copyFileInfoToClipboard: "y"
-    collapseAll: '-'
+    collapseAll: "-"
     expandAll: =
   branches:
     createPullRequest: o
