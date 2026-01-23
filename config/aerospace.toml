@@ -214,6 +214,11 @@ run = 'layout tiling'
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id="com.mitchellh.ghostty"
+run= [
+  "layout floating",
+]
 
 [mode.media.binding]
 semicolon = 'volume up'
