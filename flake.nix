@@ -143,6 +143,19 @@
                     mgr = {
                       sort_by = "natural";
                     };
+                    opener = {
+                      tdf = [{
+                        run = "tdf %s";
+                        block = true;
+                        desc = "TDF";
+                      }];
+                    };
+                    open = {
+                      append_rules = [
+                        { mime = "image/*"; use = ["tdf" "open" "reveal"]; }
+                        { mime = "application/pdf"; use = ["tdf" "open" "reveal"];  }
+                      ];
+                    };
                   };
                 };
 
