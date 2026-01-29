@@ -133,7 +133,7 @@
                       }];
                     };
                     open = {
-                      append_rules = [
+                      prepend_rules = [
                         { mime = "image/*"; use = ["tdf" "open" "reveal"]; }
                         { mime = "application/pdf"; use = ["tdf" "open" "reveal"];  }
                       ];
