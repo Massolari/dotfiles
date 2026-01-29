@@ -58,30 +58,12 @@
                 file."Library/Application Support/kanata/kanata.kbd".source = mkDotfilesSymlink "config/kanata/kanata.kbd";
 
                 packages = with pkgs; [
-                  ascii-image-converter
-                  bat
-                  btop
-                  delta
                   devbox
                   luaPackages.fennel
-                  fswatch
-                  gh
-                  git
-                  gnupg
-                  jq
-                  languagetool
-                  lazygit
                   python313
                   python313Packages.pip
                   python313Packages.pynvim
-                  silicon
                   tdf
-                  tldr
-                  tree-sitter
-                  w3m
-                  wget
-                  yarn
-                  yt-dlp
                 ];
               };
 
