@@ -72,8 +72,6 @@
               programs = {
                 home-manager.enable = true;
 
-                carapace.enable = true;
-
                 helix = {
                   enable = true;
                   settings = {
