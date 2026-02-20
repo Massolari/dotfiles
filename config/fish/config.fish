@@ -47,6 +47,7 @@ set -x EDITOR nvim
 
 abbr --add lg lazygit
 abbr --add karabiner-daemon "sudo '/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon'"
+set -x FZF_DEFAULT_OPTS '--style full'
 
 status is-login; and begin
 
