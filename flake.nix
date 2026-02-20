@@ -60,9 +60,11 @@
                 packages = with pkgs; [
                   devbox
                   luaPackages.fennel
-                  python313
-                  python313Packages.pip
-                  python313Packages.pynvim
+                  (python313.withPackages (pp: [
+                    pp.pip
+                    pp.pynvim
+                    pp.psutil
+                  ]))
                   tdf
                 ];
               };
