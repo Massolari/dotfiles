@@ -44,9 +44,6 @@ set -g fish_key_bindings fish_user_key_bindings
 set -x DYLD_LIBRARY_PATH /opt/homebrew/lib
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x EDITOR nvim
-
-abbr --add lg lazygit
-abbr --add karabiner-daemon "sudo '/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon'"
 set -x FZF_DEFAULT_OPTS '--style full'
 
 status is-login; and begin
@@ -57,14 +54,18 @@ end
 
 status is-interactive; and begin
 
-    fzf --fish | source
-    # tv init fish | source
     # Abbreviations
+    abbr --add lg lazygit
+    abbr --add gst git status
+    abbr --add gl git pull
+    abbr --add gp git push
+    abbr --add karabiner-daemon "sudo '/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon'"
 
     # Aliases
     alias ls='lsd'
 
     # Interactive shell initialisation
+    fzf --fish | source
     zoxide init fish | source
 
     if test "$TERM" != dumb
