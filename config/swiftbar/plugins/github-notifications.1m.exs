@@ -8,6 +8,12 @@ get_subject_type_icon = fn
   type -> type
 end
 
+replace_api_github_url = fn url ->
+  url
+  |> String.replace_leading("https://api.github.com/repos", "https://github.com")
+  |> String.replace("/pulls/", "/pull/")
+end
+
 notifications =
   case System.shell("gh api notifications") do
     {notifications_json, 0} ->
@@ -62,8 +68,7 @@ case notifications do
 
         url =
           subject["url"]
-          |> String.replace_leading("https://api.github.com/repos", "https://github.com")
-          |> String.replace("/pulls/", "/pull/")
+          |> replace_api_github_url.()
 
         "#{get_subject_type_icon.(subject["type"])} #{title} - #{repository["name"]}| href=#{url}"
       end)
@@ -81,7 +86,11 @@ case issues do
     IO.puts(
       issues
       |> Enum.map(fn issue ->
-        "#{issue["title"]} | href=#{issue["url"]}"
+        url =
+          issue["html_url"]
+          |> replace_api_github_url.()
+
+        "#{issue["title"]} | href=#{url}"
       end)
       |> Enum.join("\n")
     )
