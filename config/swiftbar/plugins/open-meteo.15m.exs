@@ -93,35 +93,35 @@ defmodule OpenMeteo do
 
   defp code_to_emoji(code, time_string) do
     case code do
-      0 -> if time_string >= "18" or time_string <= "06", do: "🌙", else: "☀️"
-      1 -> if time_string >= "18" or time_string <= "06", do: "☁️", else: "⛅"
-      2 -> if time_string >= "18" or time_string <= "06", do: "☁️", else: "⛅"
-      3 -> "☁️"
-      45 -> "🌫️"
-      48 -> "🌫️"
-      51 -> "☂️"
-      53 -> "☂️"
-      55 -> "☂️"
-      56 -> "❄️"
-      57 -> "❄️"
-      61 -> "☂️"
-      63 -> "☂️"
-      65 -> "☂️"
-      66 -> "❄️"
-      67 -> "❄️"
-      71 -> "❄️"
-      73 -> "❄️"
-      75 -> "❄️"
-      77 -> "❄️"
-      80 -> "☂️"
-      81 -> "☂️"
-      82 -> "☂️"
-      85 -> "❄️"
-      86 -> "❄️"
-      95 -> "⚡"
-      96 -> "⚡"
-      99 -> "⚡"
-      _ -> "❓"
+      0 -> if time_string >= "18" or time_string <= "06", do: "􀆺", else: "􀆮"
+      1 -> if time_string >= "18" or time_string <= "06", do: "􀇛", else: "􀇕"
+      2 -> if time_string >= "18" or time_string <= "06", do: "􀇛", else: "􀇕"
+      3 -> "􀇃"
+      45 -> "􀇋"
+      48 -> "􀇋"
+      51 -> "􀇅"
+      53 -> "􀇅"
+      55 -> "􀇅"
+      56 -> "􀇏"
+      57 -> "􀇏"
+      61 -> "􀇇"
+      63 -> "􀇇"
+      65 -> "􀇇"
+      66 -> "􀇏"
+      67 -> "􀇏"
+      71 -> "􀇥"
+      73 -> "􀇥"
+      75 -> "􀇥"
+      77 -> "􀇥"
+      80 -> "􀇇"
+      81 -> "􀇇"
+      82 -> "􀇇"
+      85 -> "􀇥"
+      86 -> "􀇥"
+      95 -> "􀇟"
+      96 -> "􀇟"
+      99 -> "􀇟"
+      _ -> "􀅍"
     end
   end
 
@@ -162,7 +162,7 @@ defmodule OpenMeteo do
   def render(now_string) do
     case get_weather(now_string) do
       {:error, error} ->
-        "⚠️ Error\n---\n#{error}"
+        "􀇿 Error\n---\n#{error}"
 
       {:ok, weather_data} ->
         [current | forecast] = weather_data
@@ -171,13 +171,13 @@ defmodule OpenMeteo do
         #{current.weather.emoji}#{current.temperature}°C (#{current.apparent_temperature}°C) | shortcut=ctrl+option+w
         ---
         #{current.weather.emoji}#{current.weather.description} | disabled=true
-        🌧️#{current.precipitation_probability}% 💧#{current.precipitation} mm | disabled=true
-        💨#{current.wind_speed} km/h | disabled=true
+        􀇅#{current.precipitation_probability}% 􁹡#{current.precipitation} mm | disabled=true
+        􀇤#{current.wind_speed} km/h | disabled=true
         ---
         #{Enum.map_join(forecast, "\n", fn forecast ->
-          rain = if forecast.precipitation_probability > 0, do: " 🌧️#{forecast.precipitation_probability}% 💧#{forecast.precipitation} mm", else: ""
+          rain = if forecast.precipitation_probability > 0, do: " 􀇅#{forecast.precipitation_probability}% 􁹡#{forecast.precipitation} mm", else: ""
           """
-          #{forecast.time}h: #{forecast.weather.emoji}#{forecast.temperature}°C (#{forecast.apparent_temperature}°C)#{rain} | disabled=true
+          #{forecast.time}h:\t#{forecast.weather.emoji}#{forecast.temperature}°C (#{forecast.apparent_temperature}°C)#{rain} | disabled=true
           """
         end)}
         """
