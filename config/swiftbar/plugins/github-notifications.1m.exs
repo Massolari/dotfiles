@@ -3,9 +3,18 @@
 get_group_title = fn title -> title <> ": | disabled=true size=12" end
 
 get_subject_type_icon = fn
-  "Issue" -> ""
-  "PullRequest" -> "󰓂"
+  "Issue" -> "􀍷\t"
+  "PullRequest" -> "󰓂\t"
   type -> type
+end
+
+get_reason_icon = fn
+  "comment" -> "􀌲"
+  "mention" -> "􀌮"
+  "review_requested" -> "􁌶"
+  "author" -> "􂄽"
+  "assign" -> "􁂪"
+  reason -> reason
 end
 
 replace_api_github_url = fn url ->
@@ -70,7 +79,7 @@ case notifications do
           subject["url"]
           |> replace_api_github_url.()
 
-        "#{get_subject_type_icon.(subject["type"])} #{title} - #{repository["name"]}| href=#{url}"
+        "#{get_subject_type_icon.(subject["type"])}#{get_reason_icon.(notification["reason"])} #{title} [#{repository["name"]}] | href=#{url}"
       end)
       |> Enum.join("\n")
     )
@@ -90,7 +99,13 @@ case issues do
           issue["html_url"]
           |> replace_api_github_url.()
 
-        "#{issue["title"]} | href=#{url}"
+        labels =
+          case issue["labels"] do
+            [] -> ""
+            labels -> " (#{Enum.map_join(labels, ", ", & &1["name"])})"
+          end
+
+        "##{issue["number"]} #{issue["title"]} [#{issue["repository"]["name"]}] #{labels} | href=#{url}"
       end)
       |> Enum.join("\n")
     )
