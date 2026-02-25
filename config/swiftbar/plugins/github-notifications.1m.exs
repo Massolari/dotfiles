@@ -23,30 +23,19 @@ replace_api_github_url = fn url ->
   |> String.replace("/pulls/", "/pull/")
 end
 
-notifications =
-  case System.shell("gh api notifications") do
-    {notifications_json, 0} ->
-      {:ok, notifications} = JSON.decode(notifications_json)
-      notifications
-
+{notifications, issues} =
+  with {notifications_json, 0} <- System.shell("gh api notifications"),
+       {:ok, notifications} <- JSON.decode(notifications_json),
+       {issues_json, 0} <- System.shell("gh api issues"),
+       {:ok, issues} <- JSON.decode(issues_json) do
+    {notifications, issues}
+  else
     {error, code} ->
-      IO.puts("Failed to fetch notifications")
+      IO.puts("   | font=JetBrainsMonoNF-Regular size=14 shortcut=ctrl+option+g")
       IO.puts("---")
-      IO.puts("Error: #{error} (code: #{code})")
-      System.halt(1)
-  end
-
-issues =
-  case System.shell("gh api issues") do
-    {issues_json, 0} ->
-      {:ok, issues} = JSON.decode(issues_json)
-      issues
-
-    {error, code} ->
-      IO.puts("Failed to fetch issues")
-      IO.puts("---")
-      IO.puts("Error: #{error} (code: #{code})")
-      System.halt(1)
+      IO.puts("Failed to fetch data | disabled=true")
+      IO.puts("Error: #{error} (code: #{code}) | disabled=true")
+      System.halt(0)
   end
 
 IO.puts(
