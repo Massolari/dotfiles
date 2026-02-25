@@ -1,23 +1,51 @@
 #!/usr/bin/env -S osascript -l JavaScript
 
-function run() {
-  const MediaRemote = $.NSBundle.bundleWithPath('/System/Library/PrivateFrameworks/MediaRemote.framework/');
-  MediaRemote.load
+ObjC.import('AppKit')
 
-  const MRNowPlayingRequest = $.NSClassFromString('MRNowPlayingRequest');
+function getVLCTitle() {
+  const app = Application("VLC");
+  if (!app.running()) return null;
 
-  const infoDict = MRNowPlayingRequest.localNowPlayingItem.nowPlayingInfo;
-  if (!infoDict) {
-    return ""
+  try {
+    if (!app.playing()) return null; // só se estiver tocando
+  } catch (e) {
+    return null;
   }
-  const isPlaying = infoDict.valueForKey('kMRMediaRemoteNowPlayingInfoPlaybackRate').js == 1;
-  const playingIcon = isPlaying ? '􀊗' : '􀊕'
 
+  try {
+    return app.windows[0].name();
+  } catch (e) {
+    return null;
+  }
+}
+
+function getSystemNowPlaying(infoDict) {
   const title = infoDict.valueForKey('kMRMediaRemoteNowPlayingInfoTitle');
   const artist = infoDict.valueForKey('kMRMediaRemoteNowPlayingInfoArtist');
 
-  const playing = `${title.js} - ${artist.js}`;
-  return `${playingIcon} ${playing} | length=50`;
+  return `${title.js} - ${artist.js}`;
 }
 
-console.log(run());
+function getMenuBarText(playing, isPlaying) {
+  const playingIcon = isPlaying ? '􀊗' : '􀊕';
+  return `${playingIcon} ${playing}`;
+}
+
+function run() {
+  const MediaRemote = $.NSBundle.bundleWithPath('/System/Library/PrivateFrameworks/MediaRemote.framework/');
+  MediaRemote.load
+  const MRNowPlayingRequest = $.NSClassFromString('MRNowPlayingRequest');
+  const infoDict = MRNowPlayingRequest.localNowPlayingItem.nowPlayingInfo;
+  const vlcTitle = getVLCTitle();
+  if (vlcTitle) {
+    return getMenuBarText(vlcTitle, true);
+  }
+  if (!infoDict) {
+    return getMenuBarText('Nothing playing', false);
+  }
+  const isPlaying = infoDict.valueForKey('kMRMediaRemoteNowPlayingInfoPlaybackRate').js == 1;
+
+  const playing = getSystemNowPlaying(infoDict);
+  // return `${getMenuBarText(playing, isPlaying)}\n---\n${JSON.stringify(infoDict, null, 2)}\n${vlcTitle}\n${infoDict.valueForKey('kMRMediaRemoteNowPlayingInfoPlaybackRate').js}`;
+  return getMenuBarText(playing, isPlaying);
+}
