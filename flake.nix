@@ -138,11 +138,17 @@
                         block = true;
                         desc = "TDF";
                       }];
+                      mpv = [{
+                        run = "mpv %s";
+                        block = true;
+                        desc = "Play with mpv";
+                      }];
                     };
                     open = {
                       prepend_rules = [
-                        { mime = "image/*"; use = ["tdf" "open" "reveal"]; }
-                        { mime = "application/pdf"; use = ["tdf" "open" "reveal"];  }
+                        { mime = "image/*"; use = [ "tdf" "open" "reveal" ]; }
+                        { mime = "application/pdf"; use = [ "tdf" "open" "reveal" ]; }
+                        { mime = "{audio,video}/*"; use = [ "mpv" "play" "reveal" ]; }
                       ];
                     };
                   };
