@@ -85,6 +85,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 cmd-h = []
 cmd-alt-h = []
 cmd-m = []
+cmd-esc=['exec-and-forget $HOME/dotfiles/scripts/clear-macos-notifications.sh']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
