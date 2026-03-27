@@ -121,6 +121,13 @@
                   enable = true;
                   enableFishIntegration = false;
                   enableZshIntegration = true;
+                  keymap = {
+                    mgr = {
+                      prepend_keymap = [
+                        { on = [ "g" "i" ]; run = "cd ~/iCloud"; desc = "Go ~/iCloud"; }
+                      ];
+                    };
+                  };
                   settings = {
                     mgr = {
                       sort_by = "natural";
