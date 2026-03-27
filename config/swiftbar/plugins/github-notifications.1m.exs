@@ -9,11 +9,13 @@ get_subject_type_icon = fn
 end
 
 get_reason_icon = fn
-  "comment" -> "􀌲"
-  "mention" -> "􀌮"
-  "review_requested" -> "􁌶"
-  "author" -> "􂄽"
-  "assign" -> "􁂪"
+  "comment" -> "􀌲 "
+  "mention" -> "􀌮 "
+  "review_requested" -> "􁌶 "
+  "author" -> "􂄽 "
+  "assign" -> "􁂪 "
+  "subscribed" -> "􁌴 "
+  "manual" -> "􁌴 "
   reason -> reason
 end
 
