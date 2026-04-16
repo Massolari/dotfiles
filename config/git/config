@@ -1,6 +1,6 @@
 [core]
 editor = "nvim"
-pager = "~/.nix-profile/bin/delta"
+pager = "delta"
 ignorecase = false
 excludesFile = "~/.config/git/ignore"
 
@@ -26,7 +26,7 @@ program = "~/.nix-profile/bin/gpg"
 defaultBranch = "master"
 
 [interactive]
-diffFilter = "~/.nix-profile/bin/delta --color-only"
+diffFilter = "delta --color-only"
 
 [pull]
 ff = "only"
