@@ -70,7 +70,7 @@ case notifications do
           subject["url"]
           |> replace_api_github_url.()
 
-        "#{get_subject_type_icon.(subject["type"])}#{get_reason_icon.(notification["reason"])} #{title} [#{repository["name"]}] | href=#{url}"
+        "#{get_subject_type_icon.(subject["type"])}#{get_reason_icon.(notification["reason"])} [#{repository["name"]}] #{title} | href=#{url}"
       end)
       |> Enum.join("\n")
     )
