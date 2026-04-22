@@ -10,6 +10,7 @@ scripting = true
 
 [page]
 'C-k' = '() => pager.load("ddg:")'
+'O' = '() => pager.extern("open $CHA_URL")'
 
 [external]
 copy-cmd = "pbcopy"
